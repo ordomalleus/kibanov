@@ -1,0 +1,343 @@
+//@font-face {
+//  font-family: Avenir Next Cyr Medium;
+//  src: url(AvenirNextCyr-Medium.eot);
+//  src: url(AvenirNextCyr-Medium.eot?#iefix) format("embedded-opentype"), url(AvenirNextCyr-Medium.woff) format("woff"), url(AvenirNextCyr-Medium.ttf) format("truetype");
+//  font-weight: 400;
+//  font-style: normal
+//}
+//
+//@font-face {
+//  font-family: Cormorant SC Bold;
+//  src: url(CormorantSC-Bold.ttf) format("truetype")
+//}
+
+p {
+  margin: 0;
+  padding: 0
+}
+
+.section-full {
+  height: 100%
+}
+
+.rise-text {
+  font-size: 45px;
+  line-height: 20px;
+  font-family: Cormorant SC Bold
+}
+
+.m-b-30 {
+  margin-bottom: 30px
+}
+
+.m-t-30 {
+  margin-top: 30px
+}
+
+.text-align-center {
+  text-align: center
+}
+
+.text-align-left {
+  text-align: left
+}
+
+.text-align-right {
+  text-align: right
+}
+
+.section-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .3
+}
+
+body, html {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  color: #fff;
+  font-family: Avenir Next Cyr Medium;
+  font-size: 16px
+}
+
+@media (max-width: 992px) {
+  body, html {
+    font-size: 14px
+  }
+}
+
+section {
+  position: relative
+}
+
+@media (min-width: 992px) {
+  section {
+    padding-right: 80px;
+    padding-left: 80px
+  }
+}
+
+section#general-1 {
+  background: url(../img/general-section-1.jpg) 50% 50% no-repeat;
+  background-size: cover;
+  padding-top: 10px;
+  margin-bottom: 10px
+}
+
+@media (min-width: 992px) {
+  section#general-1 {
+    min-height: 700px;
+    margin-bottom: 80px
+  }
+}
+
+section#general-1 .slogan {
+  position: absolute;
+  top: 40%;
+  width: calc(100% - 180px);
+  text-align: center
+}
+
+@media (max-width: 991px) {
+  section#general-1 .slogan {
+    width: 100%
+  }
+}
+
+section#general-1 .slogan-logan {
+  font-size: 80px;
+  line-height: 68px;
+  font-weight: 700;
+  font-family: Cormorant SC Bold
+}
+
+@media (max-width: 767px) {
+  section#general-1 .slogan-logan {
+    font-size: 50px;
+    line-height: 55px
+  }
+}
+
+section#general-1 .slogan-text {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400
+}
+
+section#general-2 {
+  color: #000
+}
+
+section#general-3 {
+  background: url(../img/general-section-3.jpg) 50% 50% no-repeat;
+  position: relative;
+  margin-bottom: 30px
+}
+
+@media (min-width: 992px) {
+  section#general-3 {
+    min-height: 700px;
+    margin-bottom: 65px
+  }
+}
+
+section#general-3 .general-text-3 {
+  margin-top: 125px
+}
+
+@media (min-width: 992px) {
+  section#general-3 .general-text-3 {
+    margin-top: 300px
+  }
+}
+
+section#general-5 {
+  background: url(../img/general-section-5.jpg) 50% 100% no-repeat;
+  background-size: cover;
+  color: #fff;
+  margin-bottom: 30px;
+  padding-bottom: 20px
+}
+
+@media (min-width: 992px) {
+  section#general-5 {
+    min-height: 600px;
+    margin-bottom: 70px
+  }
+}
+
+section#general-5 .general-5-title {
+  margin-top: 35px;
+  margin-bottom: 40px;
+  font-size: 36px;
+  line-height: 44px;
+  font-family: Cormorant SC Bold
+}
+
+section#general-5 .general-5-text-right {
+  text-align: right
+}
+
+@media (max-width: 992px) {
+  section#general-5 .general-5-text-right {
+    text-align: left
+  }
+}
+
+section#general-6 {
+  color: #000
+}
+
+@media (max-width: 992px) {
+  section#general-6 .general-6-text {
+    margin-top: 40px
+  }
+}
+
+section#general-6 .general-6-text p {
+  margin-top: 20px
+}
+
+section#general-7 {
+  color: #000;
+  margin-bottom: 30px
+}
+
+section#general-7 .title {
+  margin-bottom: 35px;
+  font-size: 45px;
+  line-height: 54px;
+  font-family: Cormorant SC Bold
+}
+
+@media (max-width: 992px) {
+  section#general-7 .title {
+    font-size: 24px;
+    line-height: 59px
+  }
+}
+
+section#general-8 {
+  color: #000;
+  margin-bottom: 30px
+}
+
+section#general-8 .general-8-text p:first-child {
+  font-family: Cormorant SC Bold;
+  font-size: 34px;
+  line-height: 41px;
+  margin-bottom: 20px
+}
+
+section#general-8 .general-8-text p:nth-child(3) {
+  margin-top: 20px
+}
+
+section#general-9 {
+  //background: url(img/general-section-1.jpg) 50% 50% no-repeat;
+  background-size: cover;
+  padding-top: 40px
+}
+
+section#general-9 .col-md-12 {
+  font-size: 45px;
+  line-height: 54px
+}
+
+.nav-menu {
+  justify-content: space-between;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 700;
+  font-family: Cormorant SC Bold
+}
+
+.nav-menu, .nav-menu-left, .nav-menu-right {
+  display: flex;
+  align-items: center
+}
+
+.nav-menu-right {
+  justify-content: space-between
+}
+
+.nav-menu-logo {
+  width: 70px;
+  height: 90px;
+  background-image: url(../img/logo.png)
+}
+
+@media (min-width: 992px) {
+  .nav-menu-logo {
+    margin-right: 65px
+  }
+}
+
+.nav-menu-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+
+.nav-menu-list ul li {
+  display: inline-block
+}
+
+.nav-menu-list ul li a {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 10px
+}
+
+.nav-menu-list ul li a:hover {
+  text-decoration: none
+}
+
+.nav-menu-basket {
+  margin-right: 10px
+}
+
+.nav-menu-basket .basket-amount {
+  padding: 0 2px;
+  margin-left: 7px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #000
+}
+
+.nav-menu-phone {
+  text-align: right
+}
+
+.nav-menu-phone .mode {
+  font-size: 12px
+}
+
+.nav-menu-phone p {
+  margin: 0
+}
+
+.product {
+  color: #000
+}
+
+.product-img img {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.product-info-title {
+  text-decoration: underline;
+  cursor: pointer
+}
+
+.product-info-price {
+  color: #000e6d;
+}
