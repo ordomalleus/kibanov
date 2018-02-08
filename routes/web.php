@@ -11,18 +11,26 @@
 |
 */
 
+//Магазин
+Route::get('/', 'Shop\GeneralController@index')->name('general.index');
+//=========================================================================================4
+
+
+// Админ панель
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function (){
+    Route::get('/', 'Admin\AdminController@index')->name('admin.index');
+
+    Route::resource('product', 'Admin\ProductController');
+    Route::resource('category', 'Admin\CategoryController');
+//    Route::get('/createCategory', 'Admin\ProductController@createCategory')->name('admin.index');
+});
+//=========================================================================================
+
+
+// TODO: Стандартные роутинги переделать
 Route::get('/laravel', function () {
     return view('welcome');
 });
-
-Route::get('/', 'Shop\GeneralController@index')->name('general.index');
-
-
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function (){
-    Route::get('/', 'Admin\AdminController@index')->name('admin.index');
-});
-
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+//=========================================================================================

@@ -16,6 +16,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return 'qwe';
+        return view('admin/layout');
     }
 }
