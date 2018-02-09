@@ -17,6 +17,16 @@
                     <li><a href="{{url('admin/product')}}">Просмотр товара</a></li>
                 </ul>
             </li>
+            <li class="submenu">
+                <a href="#">
+                    <i class="glyphicon glyphicon-list"></i> Категории
+                    <span class="caret pull-right"></span>
+                </a>
+                <!-- Sub menu -->
+                <ul>
+                    <li><a href="{{url('admin/category')}}">Просмотр категорий</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div> <!-- ADMIN SIDE NAV-->
