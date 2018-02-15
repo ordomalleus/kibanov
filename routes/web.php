@@ -22,6 +22,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
     Route::resource('product', 'Admin\ProductController');
     Route::resource('category', 'Admin\CategoryController');
+    Route::resource('attributes-directories', 'Admin\AttributesDirectoriesController');
+    Route::resource('attributes-directories-value', 'Admin\AttributesDirectoriesValueController');
+    Route::resource('product-group-attributes', 'Admin\ProductGroupAttributesController');
+    Route::resource('product-group-attributes-value', 'Admin\ProductGroupAttributesValueController');
 //    Route::get('/createCategory', 'Admin\ProductController@createCategory')->name('admin.index');
 });
 //=========================================================================================

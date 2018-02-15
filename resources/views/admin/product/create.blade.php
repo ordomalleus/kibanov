@@ -24,10 +24,10 @@
                     {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
                 </div>
 
-                <div class="form-group">
-                    {{ Form::label('attributes_id', 'id - атрибута') }}
-                    {{ Form::text('attributes_id', null, ['class' => 'form-control']) }}
-                </div>
+                {{--<div class="form-group">--}}
+                    {{--{{ Form::label('attributes_id', 'id - атрибута') }}--}}
+                    {{--{{ Form::text('attributes_id', null, ['class' => 'form-control']) }}--}}
+                {{--</div>--}}
 
                 <div class="form-group">
                     {{ Form::label('price', 'Цена') }}

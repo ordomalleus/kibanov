@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Category;
+use App\Model\AttributesDirectory;
 use Session;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class AttributesDirectoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $attributes = AttributesDirectory::all();
 
-        return view('admin.category.index', compact('categories'));
+        return view('admin.attributes.attributes-directories.index', compact('attributes'));
     }
 
     /**
@@ -29,30 +29,21 @@ class CategoryController extends Controller
      */
     public function create()
     {
-//        $categories = Category::pluck('name', 'id');
-//
-//        return view('admin.category.create', compact('categories'));
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $formInput = $request->except('parent_id');
 
-        // Если значение не строковый 'null' то добавим
-        // TODO: переделать на более понятное (смущает строковый null)
-        if ($request->parent_id !== 'null') {
-            $formInput['parent_id'] = $request->parent_id;
-        }
+        AttributesDirectory::create($request->all());
 
-        Category::create($formInput);
-
-        Session::flash('message', 'Категория добавлена');
+        Session::flash('message', 'Атрибут добавлен в справочник');
 
         return back();
     }
@@ -60,22 +51,18 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $categories = Category::all();
-
-        $products = Category::find($id)->products;
-
-        return view('admin.category.index', compact(['categories', 'products']));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -86,8 +73,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -98,7 +85,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -11,7 +11,7 @@
             @foreach($chunk as $product)
                 <div class="col-md-4">
                     <div class="admin-product">
-                        <h4>{{$product->name}}</h4>
+                        <h4><a href="{{url('admin/product', $product->id)}}">{{$product->name}}</a></h4>
                         <div class="img" style="background-image: url('{{url('products/images', $product->img_name)}}')">
                             {{--<img src="{{url('products/images', $product->img_name)}}" alt="{{$product->name}}">--}}
                         </div>

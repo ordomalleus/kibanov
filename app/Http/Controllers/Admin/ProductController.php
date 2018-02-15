@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\ProductGroupAttributes;
 use Session;
 
 use Illuminate\Http\Request;
@@ -77,7 +78,13 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        $productGroupAttributes = ProductGroupAttributes::all();
+
+        $categories = Category::pluck('name', 'id');
+
+        return view('admin.product.show', compact(['product', 'categories']));
     }
 
     /**
@@ -100,7 +107,34 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $formInput = $request->except('img_name');
+
+        // Валидатор
+        $this->validate($request,[
+            'name' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+//            'img_name' => 'image|mimes:png,jpg,jpeg'
+        ]);
+
+        // Загрузка изображения
+        // TODO: подумать над мульти картинками и месте хранения. Передалть на Storage
+        $image = $request->img_name;
+        if ($image) {
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move('products/images', $imageName);
+            $formInput['img_name'] = $imageName;
+            // удалим старый файл
+            unlink(public_path('products/images/' . $product->img_name));
+
+        }
+
+        $product->update($formInput);
+
+        Session::flash('message', 'Продукт сохранен');
+
+        return redirect()->back();
     }
 
     /**

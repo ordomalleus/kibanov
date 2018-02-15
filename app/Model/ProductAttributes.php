@@ -4,13 +4,13 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AttributesDirectory extends Model
+class ProductAttributes extends Model
 {
     /**
      * Поля таблиц разрешенные для массового присваивания
      * @var array
      */
     protected $fillable = [
-        'name'
+        'product_id', 'product_group_attributes_id'
     ];
 }

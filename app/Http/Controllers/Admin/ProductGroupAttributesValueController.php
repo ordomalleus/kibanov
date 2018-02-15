@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Category;
+use App\Model\AttributesDirectoryValue;
+use App\Model\ProductGroupAttributes;
+use App\Model\ProductGroupAttributesValue;
 use Session;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class ProductGroupAttributesValueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +19,22 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
 
-        return view('admin.category.index', compact('categories'));
+        $groupsValue = ProductGroupAttributesValue::with([
+            'productGroupAttributes',
+            'attributesDirectoryValue'
+        ])->orderBy('product_group_attributes_id')->get();
+
+        $productGroupAttributes = ProductGroupAttributes::pluck('name', 'id');
+
+        $attributesDirectoryValue = AttributesDirectoryValue::pluck('name', 'id');
+
+        return view('admin.attributes.product-group-attributes-value.index',
+            compact([
+                'groupsValue',
+                'productGroupAttributes',
+                'attributesDirectoryValue'
+            ]));
     }
 
     /**
@@ -29,9 +44,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-//        $categories = Category::pluck('name', 'id');
-//
-//        return view('admin.category.create', compact('categories'));
+        //
     }
 
     /**
@@ -42,17 +55,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $formInput = $request->except('parent_id');
+        ProductGroupAttributesValue::create($request->all());
 
-        // Если значение не строковый 'null' то добавим
-        // TODO: переделать на более понятное (смущает строковый null)
-        if ($request->parent_id !== 'null') {
-            $formInput['parent_id'] = $request->parent_id;
-        }
-
-        Category::create($formInput);
-
-        Session::flash('message', 'Категория добавлена');
+        Session::flash('message', 'Значение атрибута добавленно');
 
         return back();
     }
@@ -65,11 +70,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $categories = Category::all();
-
-        $products = Category::find($id)->products;
-
-        return view('admin.category.index', compact(['categories', 'products']));
+        //
     }
 
     /**

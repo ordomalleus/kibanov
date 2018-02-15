@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttributesDirectoryValuesTable extends Migration
+class CreateProductGroupAttributesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateAttributesDirectoryValuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attributes_directory_values', function (Blueprint $table) {
+        Schema::create('product_group_attributes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('attributes_directories_id');
             $table->string('type');
             $table->timestamps();
         });
@@ -28,6 +29,6 @@ class CreateAttributesDirectoryValuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attributes_directory_values');
+        Schema::dropIfExists('product_group_attributes');
     }
 }

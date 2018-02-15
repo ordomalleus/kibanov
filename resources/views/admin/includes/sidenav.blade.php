@@ -27,6 +27,21 @@
                     <li><a href="{{url('admin/category')}}">Просмотр категорий</a></li>
                 </ul>
             </li>
+            <li class="submenu">
+                <a href="#">
+                    <i class="glyphicon glyphicon-list"></i> Атрибты
+                    <span class="caret pull-right"></span>
+                </a>
+                <!-- Sub menu -->
+                <ul>
+                    <li><a href="{{url('admin/product-group-attributes')}}">Атрибуты товаров</a></li>
+                    <li><a href="{{url('admin/product-group-attributes-value')}}">Значения атрибутов</a></li>
+                    {{--<li><a href="{{url('admin/attributes')}}">Привязка атрибутов к товару</a></li>--}}
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{{url('admin/attributes-directories')}}">Справочник атрибутов</a></li>
+                    <li><a href="{{url('admin/attributes-directories-value')}}">Справочник значений атрибутов</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div> <!-- ADMIN SIDE NAV-->

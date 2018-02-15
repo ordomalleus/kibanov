@@ -11,15 +11,6 @@ class AttributesDirectoryValue extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'attributes_directories_id'
+        'name', 'type'
     ];
-
-    /**
-     * Динамическое свойство модели
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function attributesDirectory()
-    {
-        return $this->belongsTo(AttributesDirectory::class, 'attributes_directories_id');
-    }
 }
