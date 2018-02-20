@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Category;
 use App\Model\Product;
 use App\Model\ProductGroupAttributes;
+use App\Model\ProductAttributes;
 use Session;
 
 use Illuminate\Http\Request;
@@ -78,13 +79,13 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::find($id)->load('attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue');
 
         $productGroupAttributes = ProductGroupAttributes::all();
 
         $categories = Category::pluck('name', 'id');
 
-        return view('admin.product.show', compact(['product', 'categories']));
+        return view('admin.product.show', compact(['product', 'categories', 'productGroupAttributes']));
     }
 
     /**
@@ -96,6 +97,24 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    /**
+     * Привязывает атрибут к товару
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addAttribute(Request $request, $id) {
+
+        $formInput = $request->all();
+        $formInput['product_id'] = $id;
+
+        ProductAttributes::create($formInput);
+
+        Session::flash('message', 'Атрибут добавлен');
+
+        return redirect()->back();
     }
 
     /**

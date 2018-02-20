@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/', 'Admin\AdminController@index')->name('admin.index');
 
     Route::resource('product', 'Admin\ProductController');
+    Route::post('product/add-attribute/{id}', 'Admin\ProductController@addAttribute');
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('attributes-directories', 'Admin\AttributesDirectoriesController');
     Route::resource('attributes-directories-value', 'Admin\AttributesDirectoriesValueController');

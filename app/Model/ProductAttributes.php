@@ -13,4 +13,13 @@ class ProductAttributes extends Model
     protected $fillable = [
         'product_id', 'product_group_attributes_id'
     ];
+
+    /**
+     * Динамическое свойство модели
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function productGroupAttributes()
+    {
+        return $this->belongsTo(ProductGroupAttributes::class);
+    }
 }
