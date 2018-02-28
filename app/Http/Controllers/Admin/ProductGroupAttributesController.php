@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\AttributesDirectory;
 use App\Model\ProductGroupAttributes;
-use App\ProductGroupAttributesValue;
+use App\Model\ProductGroupAttributesValue;
+use App\Model\ProductAttributes;
 use Session;
 
 use Illuminate\Http\Request;
@@ -104,6 +105,21 @@ class ProductGroupAttributesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $attribute = ProductGroupAttributes::find($id);
+
+        // ищем значения атрибутов и удаляем их
+        ProductGroupAttributesValue::where('product_group_attributes_id', $id)->delete();
+
+        // находим привязанные к товару группу атрибутов и удаляем их
+        ProductAttributes::where('product_group_attributes_id', $id)->delete();
+
+        // удаляем атрибут товара
+        $attribute->delete();
+
+        Session::flash('message', 'Атрибут товара удален. 
+        Удалены все "значения атрибутоа товара" связанные с этим Атрибутом товара.
+        Удалены во всех товарах соответствующий атрибут товара.');
+
+        return redirect()->back();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\AttributesDirectoryValue;
+use App\Model\ProductGroupAttributesValue;
 use Session;
 
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class AttributesDirectoriesValueController extends Controller
         // TODO: вынести в таблицы
         // Тип значения атрибута
         $type = [
-            'Цвет' => 'Цвет', 'Размер' => 'Размер', 'Полнота' => 'Полнота'
+            'Цвет' => 'Цвет', 'Размер' => 'Размер', 'Полнота' => 'Полнота',
         ];
 
         return view('admin.attributes.attributes-directories-value.index', compact(['attributes', 'type']));
@@ -85,7 +86,14 @@ class AttributesDirectoriesValueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $attribute = AttributesDirectoryValue::find($id);
+        $formInput = $request->all();
+
+        $attribute->update($formInput);
+
+        Session::flash('message', 'Значения атрибута справочника изменено');
+
+        return redirect()->back();
     }
 
     /**
@@ -96,6 +104,15 @@ class AttributesDirectoriesValueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $attribute = AttributesDirectoryValue::find($id);
+        $ProductGroupAttributesValue = ProductGroupAttributesValue::where('attributes_directory_values_id', $id)->delete();
+
+
+        $attribute->delete();
+
+        Session::flash('message', 'Значение справочника атрибута удаленно. 
+        Удалены все "значения атрибутов товаров" связанные с этим справочником');
+
+        return back();
     }
 }

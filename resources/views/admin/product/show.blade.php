@@ -106,9 +106,9 @@
         @if(!empty($product->attributes))
             <table class="table table-hover">
                 <thead>
-                <tr>
-                    <th>Атрибуты товара</th>
-                </tr>
+                    <tr>
+                        <th>Атрибуты товара</th>
+                    </tr>
                 </thead>
                 <tbody>
                 @foreach($product->attributes as $attribute)
@@ -116,14 +116,20 @@
                         <td>
                             <table class="table table-hover">
                                 <thead>
-                                <tr>
-                                    <th>{{$attribute->productGroupAttributes->name}}</th>
-                                </tr>
+                                    <tr>
+                                        <th>{{$attribute->productGroupAttributes->name}}</th>
+                                        <th>
+                                            {!! Form::open(['action' => ['Admin\ProductController@deleteAttribute', $attribute->id],
+                                            'method' => 'delete', 'style' =>'display: inline-block']) !!}
+                                            <button type="submit" class="btn btn-danger">удалить</button>
+                                            {!! Form::close() !!}
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($attribute->productGroupAttributes->productGroupAttributesValue as $productGroupAttributesValue)
                                     <tr>
-                                        <td style="padding-left: 50px; text-align: left">{{$productGroupAttributesValue->attributesDirectoryValue->name}}</td>
+                                        <td colspan="2" style="padding-left: 50px; text-align: left">{{$productGroupAttributesValue->attributesDirectoryValue->name}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

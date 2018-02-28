@@ -104,6 +104,11 @@ class ProductGroupAttributesValueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $attribute = ProductGroupAttributesValue::find($id);
+        $attribute->delete();
+
+        Session::flash('message', 'Значение атрибута удаленно');
+
+        return back();
     }
 }

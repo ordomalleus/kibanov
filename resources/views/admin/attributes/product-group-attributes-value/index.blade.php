@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             {{ Form::label('price', 'Влеяние на цену') }}
-                            {{ Form::number('price', null, ['class' => 'form-control']) }}
+                            {{ Form::number('price', 0, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -55,6 +55,7 @@
                         <th>Тип атрибута товара</th>
                         <th>Атрибут значения справочника</th>
                         <th>Влияние на цену</th>
+                        <th>Действия</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,6 +66,11 @@
                             <td>{{$groupValue->productGroupAttributes->type}}</td>
                             <td>{{$groupValue->attributesDirectoryValue->name}}</td>
                             <td>{{$groupValue->price}}</td>
+                            <td>
+                                {!! Form::open(['route' => ['product-group-attributes-value.destroy', $groupValue->id], 'method' => 'delete']) !!}
+                                    <button type="submit" class="btn btn-danger">удалить</button>
+                                {!! Form::close() !!}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

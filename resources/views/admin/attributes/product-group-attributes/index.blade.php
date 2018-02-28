@@ -54,6 +54,7 @@
                         <th>Название</th>
                         <th>Название из справочника</th>
                         <th>Тип</th>
+                        <th>Действия</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,6 +64,12 @@
                             <td>{{$group->name}}</td>
                             <td>{{$group->attributesDirectory->name}}</td>
                             <td>{{$group->type}}</td>
+                            <td>
+                                {!! Form::open(['route' => ['product-group-attributes.destroy',
+                                $group->id], 'method' => 'delete', 'style' =>'display: inline-block']) !!}
+                                <button type="submit" class="btn btn-danger">удалить</button>
+                                {!! Form::close() !!}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
