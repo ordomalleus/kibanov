@@ -79,7 +79,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id)->load('attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue');
+        $product = Product::find($id)->loadMissing(
+            'attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue',
+            'attributes.productGroupAttributes.attributesDirectory'
+        );
 
         $productGroupAttributes = ProductGroupAttributes::all();
 
@@ -118,7 +121,11 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-
+    /**
+     * Удаляет атрибут у товара
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteAttribute($id)
     {
         ProductAttributes::find($id)->delete();

@@ -24,6 +24,7 @@ class AttributesDirectoriesValueController extends Controller
         // Тип значения атрибута
         $type = [
             'Цвет' => 'Цвет', 'Размер' => 'Размер', 'Полнота' => 'Полнота',
+            'Жесткость' => 'Жесткость'
         ];
 
         return view('admin.attributes.attributes-directories-value.index', compact(['attributes', 'type']));

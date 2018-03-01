@@ -27,7 +27,8 @@ class ProductGroupAttributesController extends Controller
         // TODO: вынести в таблицы
         // Тип значения атрибута
         $type = [
-            'Цвет' => 'Цвет', 'Размер' => 'Размер', 'Полнота' => 'Полнота'
+            'Цвет' => 'Цвет', 'Размер' => 'Размер', 'Полнота' => 'Полнота',
+            'Жесткость' => 'Жесткость'
         ];
 
         return view('admin.attributes.product-group-attributes.index',

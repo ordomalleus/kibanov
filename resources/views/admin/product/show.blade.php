@@ -8,6 +8,8 @@
 
     <div>
         <h3>{{$product->name}}</h3>
+        <img src="{{url('products/images', $product->img_name)}}" style="max-height: 300px;margin-bottom: 20px"
+             class="img-thumbnail" alt="Responsive image">
         <p>{{$product->description}}</p>
         <p>{{$product->price}}</p>
 
