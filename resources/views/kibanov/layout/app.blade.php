@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Foobar</title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    @yield('store')
 </head>
 <body>
 @yield('content')
