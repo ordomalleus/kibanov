@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Modal from 'react-modal';
 import Axios from 'axios';
 import ProductAttributes from './ProductAttributes'
 
 const customStyles = {
-    content : {
+    content: {
         padding: '0 0 30px 0',
         width: 600,
         maxHeight: '100%',
@@ -29,7 +29,12 @@ export default class ProductModal extends Component {
             // массив выбранных атрибутов
             selectAttributes: [],
             // окончательная цена
-            price: null
+            price: null,
+
+            // сообщение об удачном или нет добавлении в карзину
+            message: null,
+            showMessage: false,
+            messageSuccess: true,
         };
 
         this.closeModal = this.closeModal.bind(this);
@@ -79,20 +84,41 @@ export default class ProductModal extends Component {
 
     apiCartAdd(productCar) {
         return Axios.post('/cart/add', productCar);
-        // return Axios.get('api/qwe');
     }
 
     // срабатывает при добовлении товара в карзину
     async addProductToCart() {
         // формируем объект для карзины
         const productCar = {
-            ...this.state,
+            amount: this.state.amount,
+            selectAttributes: this.state.selectAttributes,
+            price: this.state.price,
             id: this.props.selectProduct.id,
             product: {...this.props.selectProduct},
-            priceOne: this.calcPrice(this.state.selectAttributes),
+            priceOne: this.calcPrice(this.state.selectAttributes)
         };
+        // отправляем на сервер товар для добавления в карзину
         const response = await this.apiCartAdd(productCar);
-        console.log(response);
+
+        // если успешно добавлен то добавим в карзину на клиенте
+        if (response.status === 200) {
+            this.showMessage(true);
+            // Посылакм на вверх для добавления в карзину
+            this.props.addToCart(response.data);
+        } else {
+            this.showMessage(false);
+        }
+    }
+
+    showMessage(status) {
+        this.setState({
+            message: status ? 'Товар добавлен в корзину' : 'Не смогли добавить товар, повторите попытку',
+            showMessage: true,
+            messageSuccess: status,
+        });
+        setTimeout(() => {
+            this.setState({showMessage: false})
+        }, 4000)
     }
 
     render() {
@@ -118,6 +144,10 @@ export default class ProductModal extends Component {
                 overlayClassName="overlay-product"
             >
                 <div className="modal-product-content">
+                    {this.state.showMessage ?
+                        <p className={['modal-product-message', this.state.messageSuccess ? 'success' : 'error'].join(' ')}>
+                            {this.state.message}
+                        </p> : ''}
                     <div
                         className="modal-product-img"
                         style={productImgStyle}>
@@ -128,7 +158,7 @@ export default class ProductModal extends Component {
                             {this.props.selectProduct && this.props.selectProduct.description}
                         </p>
                     </div>
-                    { this.props.selectProduct ? (
+                    {this.props.selectProduct ? (
                         <ProductAttributes
                             attributes={this.props.selectProduct.attributes}
                             onSelectAttributs={this.selectAttributes.bind(this)}
@@ -148,7 +178,7 @@ export default class ProductModal extends Component {
                             />
                         </div>
                         <div className='modal-product-cart'
-                            onClick={this.addProductToCart.bind(this)}>
+                             onClick={this.addProductToCart.bind(this)}>
                             В коризину
                         </div>
                     </div>

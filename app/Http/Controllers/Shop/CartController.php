@@ -26,13 +26,19 @@ class CartController extends Controller
 
         $product = Product::find($frontProduct['id']);
 
-        Cart::add($product->id, $product->name, $frontProduct['amount'], $frontProduct['priceOne'],[
-            'price' => $frontProduct['price'],
-            'selectAttributes' => $frontProduct['selectAttributes']
-        ]);
+        // формируем еденичнй заказ
+        $response = Cart::add(
+            $product->id,
+            $product->name,
+            $frontProduct['amount'],
+            $frontProduct['priceOne'],
+            [
+                'price' => $frontProduct['price'],
+                'selectAttributes' => $frontProduct['selectAttributes']
+            ]);
 
 //        Cart::destroy();
-
-        return Cart::content();
+        return $response;
+//        return Cart::content();
     }
 }

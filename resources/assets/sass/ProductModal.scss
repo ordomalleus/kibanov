@@ -17,6 +17,20 @@
     color: #000;
 
     .modal-product{
+      &-message {
+        position: fixed;
+        top: 20px;
+        left: auto;
+        width: 300px;
+        text-align: center;
+
+        &.success {
+          background: #63d263;
+        }
+        &.error {
+          background: #f58961;
+        }
+      }
       &-info {
         padding: 0 50px;
       }

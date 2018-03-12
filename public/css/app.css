@@ -8745,6 +8745,22 @@ section#general-9 .col-md-12 {
   color: #000;
 }
 
+.modal-product-content .modal-product-message {
+  position: fixed;
+  top: 20px;
+  left: auto;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-product-content .modal-product-message.success {
+  background: #63d263;
+}
+
+.modal-product-content .modal-product-message.error {
+  background: #f58961;
+}
+
 .modal-product-content .modal-product-info {
   padding: 0 50px;
 }

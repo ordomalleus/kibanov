@@ -49,6 +49,11 @@ export class AppCart extends Component {
         this.setState({modalProductIsOpen: false})
     }
 
+    // Добавление товара в карзину
+    addToCart(productCar) {
+        console.log(productCar);
+    }
+
     render() {
         return (
             <div>
@@ -58,6 +63,7 @@ export class AppCart extends Component {
                     modalIsOpen={this.state.modalProductIsOpen}
                     closeModal={this.closeProductModal}
                     selectProduct={this.state.selectProduct}
+                    addToCart={this.addToCart.bind(this)}
                 />
             </div>
         );
