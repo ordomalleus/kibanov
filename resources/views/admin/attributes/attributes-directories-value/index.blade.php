@@ -24,6 +24,11 @@
                         </div>
 
                         <div class="form-group">
+                            {{ Form::label('value', 'Доп. параметр') }}
+                            {{ Form::text('value', null, ['class' => 'form-control']) }}
+                        </div>
+
+                        <div class="form-group">
                             {{ Form::label('type', 'Тип атрибута') }}
                             {{ Form::select('type', $type, null, ['class' => 'form-control']) }}
                         </div>
@@ -47,6 +52,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Название</th>
+                        <th>Доп. параметр</th>
                         <th>Тип</th>
                         <th>Действия</th>
                     </tr>
@@ -56,6 +62,7 @@
                         <tr>
                             <td>{{$attribute->id}}</td>
                             <td>{{$attribute->name}}</td>
+                            <td>{{$attribute->value}}</td>
                             <td>{{$attribute->type}}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAtributesValueEdit-{{$attribute->id}}">
@@ -87,6 +94,11 @@
                             <div class="form-group">
                                 {{ Form::label('name', 'Название атрибута') }}
                                 {{ Form::text('name', $attribute->name, ['class' => 'form-control']) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label('value', 'Доп. параметр') }}
+                                {{ Form::text('value', $attribute->value, ['class' => 'form-control']) }}
                             </div>
 
                             <div class="form-group">

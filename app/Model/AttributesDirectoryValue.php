@@ -11,6 +11,6 @@ class AttributesDirectoryValue extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type'
+        'name', 'value', 'type'
     ];
 }

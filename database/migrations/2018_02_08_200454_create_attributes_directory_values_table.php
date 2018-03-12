@@ -16,6 +16,7 @@ class CreateAttributesDirectoryValuesTable extends Migration
         Schema::create('attributes_directory_values', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('value')->nullable();
             $table->string('type');
             $table->timestamps();
         });

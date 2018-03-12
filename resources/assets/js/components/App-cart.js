@@ -11,7 +11,7 @@ export class AppCart extends Component {
         // TODO: переделать хранилище на redux
         this.state = {
             // массив товаров на странице
-            products: window.store.products,
+            products: window.store && window.store.products,
             // выбранный товар
             selectProduct: null,
             // открыта модалка
@@ -20,7 +20,7 @@ export class AppCart extends Component {
 
         this.setCustomEventListener();
 
-        this.closeModal = this.closeModal.bind(this);
+        this.closeProductModal = this.closeProductModal.bind(this);
     }
 
     // Находим выбранный товар и стора
@@ -29,7 +29,7 @@ export class AppCart extends Component {
             if (product.id === id) {
                 this.setState({
                     selectProduct: product,
-                    modalIsOpen: true
+                    modalProductIsOpen: true
                 })
             }
         })
@@ -44,8 +44,9 @@ export class AppCart extends Component {
         })
     }
 
-    closeModal() {
-        this.setState({modalIsOpen: false})
+    // Закрытие модалки продукта
+    closeProductModal() {
+        this.setState({modalProductIsOpen: false})
     }
 
     render() {
@@ -54,8 +55,8 @@ export class AppCart extends Component {
                 <span>Корзина</span>
                 <span className='basket-amount'>10</span>
                 <ProductModal
-                    modalIsOpen={this.state.modalIsOpen}
-                    closeModal={this.closeModal}
+                    modalIsOpen={this.state.modalProductIsOpen}
+                    closeModal={this.closeProductModal}
                     selectProduct={this.state.selectProduct}
                 />
             </div>

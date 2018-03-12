@@ -1,0 +1,165 @@
+html, body {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  color: $global-color;
+  font-family: $global-font-family-avenir;
+  font-size: 16px;
+  @media (max-width: $screen-md-min) {
+    font-size: 14px;
+  }
+}
+
+section {
+  position: relative;
+
+  @media (min-width: $screen-md-min) {
+    padding-right: 80px;
+    padding-left: 80px;
+  }
+  &#general-1 {
+    background: url("../img/general-section-1-new.jpg") 50% 50% no-repeat;
+    background-size: cover;
+    padding-top: 10px;
+    margin-bottom: 10px;
+
+    @media (min-width: $screen-md-min) {
+      min-height: 700px;
+      margin-bottom: 80px;
+    }
+
+    .slogan {
+      position: absolute;
+      top: 40%;
+      width: calc(100% - 180px);
+      text-align: center;
+
+      @media (max-width: $screen-sm-max) {
+        width: 100%;
+      }
+
+      &-logan {
+        font-size: 80px;
+        line-height: 68px;
+        font-weight: bold;
+        font-family: $global-font-family-cormorant;
+
+        @media (max-width: $screen-xs-max) {
+          font-size: 50px;
+          line-height: 55px;
+        }
+      }
+      &-text {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: normal;
+      }
+    }
+  }
+  &#general-2 {
+    color: $global-color-second;
+  }
+  &#general-3 {
+    background: url("../img/general-section-3.jpg") 50% 50% no-repeat;
+    position: relative;
+    margin-bottom: 30px;
+
+    @media (min-width: $screen-md-min) {
+      min-height: 700px;
+      margin-bottom: 65px;
+    }
+
+    .general-text-3 {
+      margin-top: 125px;
+
+      @media (min-width: $screen-md-min) {
+        margin-top: 300px;
+      }
+    }
+  }
+  &#general-5 {
+    background: url("../img/general-section-5.jpg") 50% 100% no-repeat;
+    background-size: cover;
+    color: $global-color;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+
+    @media (min-width: $screen-md-min) {
+      min-height: 600px;
+      margin-bottom: 70px;
+    }
+
+    .general-5-title {
+      margin-top: 35px;
+      margin-bottom: 40px;
+      font-size: 36px;
+      line-height: 44px;
+      font-family: $global-font-family-cormorant;
+    }
+    .general-5-text-left {
+
+    }
+    .general-5-text-right {
+      text-align: right;
+
+      @media (max-width: $screen-md-min) {
+        text-align: left;
+      }
+    }
+  }
+  &#general-6 {
+    color: $global-color-second;
+    .general-6-text {
+      @media (max-width: $screen-md-min) {
+        margin-top: 40px;
+      }
+      p {
+        margin-top: 20px;
+      }
+    }
+  }
+  &#general-7 {
+    color: $global-color-second;
+    margin-bottom: 30px;
+    .title {
+      margin-bottom: 35px;
+      font-size: 45px;
+      line-height: 54px;
+      font-family: $global-font-family-cormorant;
+      @media (max-width: $screen-md-min) {
+        font-size: 24px;
+        line-height: 59px;
+      }
+    }
+  }
+  &#general-8 {
+    color: $global-color-second;
+    margin-bottom: 30px;
+    .general-8-text {
+      p:nth-child(1) {
+        font-family: $global-font-family-cormorant;
+        font-size: 34px;
+        line-height: 41px;
+        margin-bottom: 20px;
+      }
+      p:nth-child(3) {
+        margin-top: 20px;
+      }
+    }
+  }
+  &#general-9 {
+    background: url("../img/general-section-1.jpg") 50% 50% no-repeat;
+    background-size: cover;
+    padding-top: 40px;
+    .col-md-12 {
+      font-size: 45px;
+      line-height: 54px;
+    }
+  }
+}
+
+// меню
+@import "nav-menu";
+
+// продукт
+@import "product";

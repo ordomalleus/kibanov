@@ -1,0 +1,19 @@
+.product {
+  color: $global-color-second;
+  &-img {
+    img {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &-info {
+    &-title {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    &-price {
+      color: #000E6D;
+    }
+  }
+}

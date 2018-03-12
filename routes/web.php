@@ -14,7 +14,11 @@
 //Магазин
 Route::get('/', 'Shop\GeneralController@index')->name('general.index');
 Route::get('/catalog', 'Shop\CatalogController@index')->name('catalog.index');
-//=========================================================================================4
+
+Route::group(['prefix' => 'cart', 'middleware' => []], function (){
+    Route::post('add', 'Shop\CartController@addCart');
+});
+//=========================================================================================
 
 
 // Админ панель

@@ -1,0 +1,61 @@
+@font-face {
+  font-family: 'Avenir Next Cyr Medium';
+  src: url('./fonts/AvenirNextCyr-Medium.eot');
+  src: url('./fonts/AvenirNextCyr-Medium.eot?#iefix') format('embedded-opentype'),
+  url('./fonts/AvenirNextCyr-Medium.woff') format('woff'),
+  url('./fonts/AvenirNextCyr-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Cormorant SC Bold';
+  src: url('./fonts/CormorantSC-Bold.ttf') format('truetype');
+}
+
+$global-color: #fff;
+$global-color-second: #000;
+$global-font-family-avenir: 'Avenir Next Cyr Medium';
+$global-font-family-cormorant: 'Cormorant SC Bold';
+
+// Перетираме p bootstrap
+p {
+  margin: 0;
+  padding: 0;
+}
+
+// Класс для section на всю высоту
+.section-full {
+  height: 100%;
+}
+
+// Размер первой буквы текста
+.rise-text {
+  font-size: 45px;
+  line-height: 20px;
+  font-family: $global-font-family-cormorant;
+}
+
+.m-b-30 {
+  margin-bottom: 30px;
+}
+.m-t-30 {
+  margin-top: 30px;
+}
+.text-align-center {
+  text-align: center;
+}
+.text-align-left {
+  text-align: left;
+}
+.text-align-right {
+  text-align: right;
+}
+.section-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.3;
+}

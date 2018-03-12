@@ -1,0 +1,5 @@
+$bootstrap-sass-asset-helper: false;
+// Переопределенный путь до шрифтов
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "./libs/bootstrap/fonts/bootstrap/");
+// размер между колонками
+$grid-gutter-width: 20px;

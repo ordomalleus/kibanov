@@ -1,0 +1,78 @@
+// контейнер обертка ставится везде кроме general страницы
+.menu-container {
+  background: url("../img/general-section-1.jpg") 50% 100% no-repeat;
+  background-size: cover;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: bold;
+  font-family: $global-font-family-cormorant;
+
+  &-left, &-right {
+    display: flex;
+    align-items: center;
+  }
+
+  &-right{
+    justify-content: space-between;
+  }
+
+  &-logo {
+    width: 70px;
+    height: 90px;
+    background-image: url("../img/logo.png");
+
+    @media (min-width: $screen-md-min) {
+      margin-right: 65px;
+    }
+  }
+
+  &-list {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        display: inline-block;
+
+        a {
+          color: $global-color;
+          text-decoration: underline;
+          cursor: pointer;
+          padding: 10px;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  &-basket {
+    margin-right: 10px;
+    .basket-amount {
+      padding: 0 2px;
+      margin-left: 7px;
+      border-radius: 50%;
+      background-color: $global-color;
+      color: $global-color-second;
+    }
+  }
+
+  &-phone {
+    text-align: right;
+    .mode{
+      font-size: 12px;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}

@@ -9,7 +9,7 @@
 
 
 @section('content')
-    <section style="background-color: blue;padding-top: 10px">
+    <section class="menu-container">
         @include('kibanov.component.menu')
     </section>
     <section>
