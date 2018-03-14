@@ -57,12 +57,20 @@
 
   &-basket {
     margin-right: 10px;
+    .basket-app {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .basket-amount {
-      padding: 0 2px;
       margin-left: 7px;
       border-radius: 50%;
       background-color: $global-color;
       color: $global-color-second;
+      display: inline-block;
+      min-width: 20px;
+      min-height: 20px;
+      text-align: center;
     }
   }
 

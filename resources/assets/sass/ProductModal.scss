@@ -5,7 +5,7 @@
 }
 
 .modal-product {
-  background-color: #fff;
+  background-color: $global-color;
 
   &-content {
     position: relative;
@@ -14,7 +14,7 @@
     align-items: center;
     min-height: 100%;
     width: 100%;
-    color: #000;
+    color: $global-color-second;
 
     .modal-product{
       &-message {
@@ -78,7 +78,7 @@
               flex-wrap: wrap;
               font-size: 12px;
               .product-attributes-container-li {
-                max-width: 25%;
+                //max-width: 25%;
                 display: inline-block;
                 font-weight: normal;
                 text-decoration: none;
@@ -93,12 +93,12 @@
                   justify-content: center;
                   height: 30px;
                   width: 30px;
-                  border: 1px solid #ADADAD;
+                  border: 1px solid darken($global-color, 33%);
                 }
 
                 &-select {
                   .product-attributes-container-li-val {
-                    border: 2px solid #000;
+                    border: 2px solid $global-color-second;
                     font-weight: bold;
                   }
                 }
@@ -117,7 +117,7 @@
                   justify-content: center;
                   height: 30px;
                   width: 30px;
-                  border: 1px solid #ADADAD;
+                  border: 1px solid darken($global-color, 33%);
                   padding: 2px;
 
                   &-color {
@@ -129,7 +129,7 @@
 
                 &-select {
                   .product-attributes-container-li-val {
-                    border: 2px solid #000;
+                    border: 2px solid $global-color-second;
                   }
                 }
               }
@@ -150,7 +150,7 @@
           content: ' ';
           width: 25px;
           height: 1px;
-          background: #000;
+          background: $global-color-second;
           top: 12px;
           transform: rotate(45deg);
         }
@@ -159,7 +159,7 @@
           content: ' ';
           width: 1px;
           height: 25px;
-          background: #000;
+          background: $global-color-second;
           left: 50%;
           transform: rotate(45deg);
         }
@@ -180,7 +180,7 @@
             margin-right: 10px;
           }
           &-amount {
-            border: 1px solid #000;
+            border: 1px solid $global-color-second;
             padding: 10px;
             @media (max-width: $screen-xs-min) {
               padding: 5px;
@@ -199,7 +199,7 @@
           }
           &-cart {
             cursor: pointer;
-            border-color: #000;
+            border-color: $global-color-second;
             border-style: solid; /* Стиль рамки вокруг параграфа */
             border-width: 1px 1px 1px 0; /* Толщина границы */
             padding: 10px;

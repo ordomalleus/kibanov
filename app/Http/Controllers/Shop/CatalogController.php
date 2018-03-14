@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shop;
 use App\Http\Controllers\Controller;
 
 use App\Model\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CatalogController extends Controller
 {
@@ -23,6 +24,11 @@ class CatalogController extends Controller
             'attributes.productGroupAttributes.attributesDirectory'
         );
 
-        return view('kibanov/catalog', compact('products'));
+        // получаем карзину
+        // Метод flatten() преобразует многомерную коллекцию в одномерную:
+        // https://laravel.ru/docs/v5/collections#%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA-35
+        $cart = Cart::content()->flatten();
+
+        return view('kibanov/catalog', compact(['products', 'cart']));
     }
 }

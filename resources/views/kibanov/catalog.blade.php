@@ -3,7 +3,8 @@
 @section('store')
     <script>
         window.store = {};
-        window.store.products = @json($products)
+        window.store.products = @json($products);
+        window.store.cart = @json($cart);
     </script>
 @endsection
 

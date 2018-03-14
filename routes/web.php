@@ -17,6 +17,9 @@ Route::get('/catalog', 'Shop\CatalogController@index')->name('catalog.index');
 
 Route::group(['prefix' => 'cart', 'middleware' => []], function (){
     Route::post('add', 'Shop\CartController@addCart');
+    Route::post('plus', 'Shop\CartController@productCartPlus');
+    Route::post('minus', 'Shop\CartController@productCartMinus');
+    Route::post('delete', 'Shop\CartController@productCartDelete');
 });
 //=========================================================================================
 

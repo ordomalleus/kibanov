@@ -20,6 +20,11 @@ class CartController extends Controller
 
     }
 
+    /**
+     * Добавление товара в карзину
+     * @param Request $request
+     * @return mixed
+     */
     public function addCart(Request $request)
     {
         $frontProduct = $request->all();
@@ -33,12 +38,52 @@ class CartController extends Controller
             $frontProduct['amount'],
             $frontProduct['priceOne'],
             [
-                'price' => $frontProduct['price'],
-                'selectAttributes' => $frontProduct['selectAttributes']
+                'selectAttributes' => $frontProduct['selectAttributes'],
+                'product' => $frontProduct['product']
             ]);
 
-//        Cart::destroy();
         return $response;
-//        return Cart::content();
+    }
+
+    /**
+     * Изменение колличества товаров в карзине в плюс
+     * @param Request $request
+     * @return mixed
+     */
+    public function productCartPlus(Request $request)
+    {
+        $frontRequest = $request->all();
+
+        Cart::update($frontRequest['rowId'], $frontRequest['qty'] + 1);
+
+        return Cart::content()->flatten();
+    }
+
+    /**
+     * Изменение колличества товаров в карзине в минус
+     * @param Request $request
+     * @return mixed
+     */
+    public function productCartMinus(Request $request)
+    {
+        $frontRequest = $request->all();
+
+        Cart::update($frontRequest['rowId'], $frontRequest['qty'] - 1);
+
+        return Cart::content()->flatten();
+    }
+
+    /**
+     * Удаление товара из карзины
+     * @param Request $request
+     * @return mixed
+     */
+    public function productCartDelete(Request $request)
+    {
+        $frontRequest = $request->all();
+
+        Cart::remove($frontRequest['rowId']);
+
+        return Cart::content()->flatten();
     }
 }
