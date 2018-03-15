@@ -8622,6 +8622,32 @@ section#catalog .title {
   }
 }
 
+section#catalog .catalog-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+section#catalog .catalog-list-parent-href {
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+section#catalog .catalog-list-parent .catalog-list-child {
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style: none;
+}
+
+section#catalog .catalog-list-parent .catalog-list-child-href {
+  color: #000;
+}
+
+section#catalog .catalog-list-parent .catalog-list-child-href.active {
+  font-weight: bold;
+}
+
 .menu-container {
   background: url(/images/general-section-1.jpg?0df5df6ecb76b11103853bb2370ad380) 50% 100% no-repeat;
   background-size: cover;

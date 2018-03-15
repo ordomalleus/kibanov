@@ -13,7 +13,7 @@
 
 //Магазин
 Route::get('/', 'Shop\GeneralController@index')->name('general.index');
-Route::get('/catalog', 'Shop\CatalogController@index')->name('catalog.index');
+Route::get('/catalog/{id?}', 'Shop\CatalogController@index')->name('catalog.index');
 
 Route::group(['prefix' => 'cart', 'middleware' => []], function (){
     Route::post('add', 'Shop\CartController@addCart');

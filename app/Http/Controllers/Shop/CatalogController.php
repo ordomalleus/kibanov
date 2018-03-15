@@ -15,10 +15,20 @@ class CatalogController extends Controller
 
     }
 
-    public function index()
+    public function index($id = null)
     {
-        // получаем товары по 20штук
-        $products = Product::where('show', '=', 1)->paginate(3);
+        // первичный тайтл
+        $title = null;
+
+        if ($id) {
+            // получаем товары по 20штук
+            $products = Product::where('show', '=', 1)->where('category_id', '=', $id)->paginate(3);
+            // установим тайтл
+            $title = Category::find($id);
+        } else {
+            // получаем товары по 20штук
+            $products = Product::where('show', '=', 1)->paginate(3);
+        }
         // догружаем у товаров все связанные свойства
         $products->load(
             'attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue',
@@ -27,12 +37,17 @@ class CatalogController extends Controller
 
         // получаем карзину
         // Метод flatten() преобразует многомерную коллекцию в одномерную:
-        // https://laravel.ru/docs/v5/collections#%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA-35
         $cart = Cart::content()->flatten();
 
-        // получаем категории
-        $categorys = Category::where('parent_id', '=', null)->get();
+        // получаем категории с вложенными детьми 1 уровня
+        // TODO: узнать нужно ли делать рекурсию для детей (если вложеность будет более чем 1 уровня)
+        $categories = Category::where('parent_id', '=', null)->get();
+        $categories->transform(function ($item) {
+            $child = Category::where('parent_id', '=', $item->id)->get();
+            $item->child = $child->count() > 0 ? $child : null;
+            return $item;
+        });
 
-        return view('kibanov/catalog', compact(['products', 'cart', 'categorys']));
+        return view('kibanov/catalog', compact(['products', 'cart', 'categories', 'title']));
     }
 }

@@ -18,15 +18,43 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="title">Каталог</div>
-                    <ul>
-                        @foreach($categorys as $category)
-                            <li>{{$category->name}}</li>
+                    <ul class="catalog-list">
+                        @foreach($categories as $category)
+                            @if($category->child)
+                                <li class="catalog-list-parent">
+                                    <span class="catalog-list-parent-href">{{$category->name}}</span>
+                                    <ul class="catalog-list-child hidden">
+                                        @foreach($category->child as $child)
+                                            <li calss="catalog-list-child-li">
+                                                <a class="catalog-list-child-href{{!empty($title) && $child->id === $title->id ? ' active' : ''}}" href="{{url('catalog', $child->id)}}">
+                                                    {{$child->name}}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @else
+                                {{--TODO: кастыль для Аксессуаров, подумать и исправить--}}
+                                @if($category->id === 31)
+                                    <li calss="catalog-list-parent">
+                                        <a class="catalog-list-parent-href" href="{{url('catalog', $category->id)}}">{{$category->name}}</a>
+                                    </li>
+                                @else
+                                    <li calss="catalog-list-parent">
+                                        <span class="catalog-list-parent-href">{{$category->name}}</span>
+                                    </li>
+                                @endif
+                            @endif
                         @endforeach
                     </ul>
                 </div>
                 <div class="col-md-8">
                     <div class="col-md-12">
-                        <div class="text-align-center title">Популярные</div>
+                        @if(!empty($title))
+                            <div class="text-align-center title">{{$title->name}}</div>
+                        @else
+                            <div class="text-align-center title">Популярные</div>
+                        @endif
                     </div>
                     @foreach ($products as $product)
                         <div class="col-md-6">

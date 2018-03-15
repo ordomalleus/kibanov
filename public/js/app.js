@@ -29679,6 +29679,8 @@ try {
             event.target.dispatchEvent(newEvent);
         });
     }
+
+    // js для меню каталога
 } catch (err) {
     _didIteratorError = true;
     _iteratorError = err;
@@ -29690,6 +29692,50 @@ try {
     } finally {
         if (_didIteratorError) {
             throw _iteratorError;
+        }
+    }
+}
+
+var catalogs = document.getElementsByClassName('catalog-list-parent');
+
+var _loop = function _loop(catalog) {
+    // вешаем обработчик клика
+    catalog.addEventListener('click', function (event) {
+        // если нажали именно на родительском каталоге
+        if (event.target.classList.contains('catalog-list-parent-href')) {
+            var ulChild = catalog.getElementsByClassName('catalog-list-child');
+            ulChild[0].classList.toggle('hidden');
+        }
+    });
+    // удаляем класс hidden если попали в дочернюю категорию
+    var li = catalog.getElementsByClassName('active');
+    if (li.length > 0) {
+        var hidden = catalog.getElementsByClassName('hidden');
+        hidden[0].classList.remove('hidden');
+    }
+};
+
+var _iteratorNormalCompletion2 = true;
+var _didIteratorError2 = false;
+var _iteratorError2 = undefined;
+
+try {
+    for (var _iterator2 = catalogs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var catalog = _step2.value;
+
+        _loop(catalog);
+    }
+} catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+} finally {
+    try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+            _iterator2.return();
+        }
+    } finally {
+        if (_didIteratorError2) {
+            throw _iteratorError2;
         }
     }
 }

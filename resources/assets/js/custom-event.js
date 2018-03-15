@@ -8,3 +8,22 @@ for (let element of elements) {
         event.target.dispatchEvent(newEvent);
     });
 }
+
+// js для меню каталога
+const catalogs = document.getElementsByClassName('catalog-list-parent');
+for(let catalog of catalogs) {
+    // вешаем обработчик клика
+    catalog.addEventListener('click', (event) => {
+        // если нажали именно на родительском каталоге
+        if(event.target.classList.contains('catalog-list-parent-href')) {
+            const ulChild = catalog.getElementsByClassName('catalog-list-child');
+            ulChild[0].classList.toggle('hidden')
+        }
+    });
+    // удаляем класс hidden если попали в дочернюю категорию
+    const li = catalog.getElementsByClassName('active');
+    if (li.length > 0) {
+        const hidden = catalog.getElementsByClassName('hidden');
+        hidden[0].classList.remove('hidden');
+    }
+}
