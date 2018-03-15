@@ -1,6 +1,11 @@
 .product {
   color: $global-color-second;
   &-img {
+    //TODO: сделать точки на картинки и включить background вместо img
+    //min-height: 200px;
+    //background-position: 50% 50%;
+    //background-repeat: no-repeat;
+    //background-size: cover;
     img {
       width: 100%;
       margin-left: auto;

@@ -13,27 +13,46 @@
     <section class="menu-container">
         @include('kibanov.component.menu')
     </section>
-    <section>
+    <section id="catalog"}>
         <div class="container-fluid">
             <div class="row">
-                @foreach ($products as $product)
-                    <div class="col-md-4" style="color: #333">
-                        <div class="catalog-product">
-                            <h4 class="product-price-name" data-id-product="{{$product->id}}" style="min-height: 40px">
-                                {{$product->name}}
-                            </h4>
-                            <div class="img" style="background-image: url('{{url('products/images', $product->img_name)}}')">
-                            </div>
-                            <h5>Описание</h5>
-                            <p style="height: 50px; overflow: hidden">{{$product->description}}</p>
-                            <p>цена: {{$product->price}}</p>
-                        </div>
+                <div class="col-md-4">
+                    <div class="title">Каталог</div>
+                    <ul>
+                        @foreach($categorys as $category)
+                            <li>{{$category->name}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-12">
+                        <div class="text-align-center title">Популярные</div>
                     </div>
-                @endforeach
+                    @foreach ($products as $product)
+                        <div class="col-md-6">
+                            <div class="product">
+                                <div class="product-img" style="background-image: url('{{url('products/images', $product->img_name)}}')">
+{{--                                <div class="product-img" style="background-image: url('{{url('products/images', $product->img_name)}}')">--}}
+                                    <img src="{{url('products/images', $product->img_name)}}">
+                                </div>
+                                <div class="product-info">
+                                    <p class="product-info-title" data-id-product="{{$product->id}}">{{$product->name}}</p>
+                                    <p class="product-info-price">{{$product->price}} Р</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
     <section>
-        {{$products->render()}}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-8 text-align-right">
+                    {{$products->render()}}
+                </div>
+            </div>
+        </div>
     </section>
 @endsection

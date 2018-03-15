@@ -1,5 +1,5 @@
 // Вешаем кастомное событие при клике на товар для вызова модалки с показом товара
-const elements = document.getElementsByClassName('product-price-name');
+const elements = document.getElementsByClassName('product-info-title');
 for (let element of elements) {
     element.addEventListener('click', (event) => {
         // Создаем кастомное событие

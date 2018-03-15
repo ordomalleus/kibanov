@@ -4,6 +4,7 @@ import Axios from 'axios';
 
 import ProductModal from './ProductModal';
 import CartModal from './CartModal';
+import CheckoutModal from './CheckoutModal';
 
 export class AppCart extends Component {
 
@@ -19,9 +20,11 @@ export class AppCart extends Component {
             // открыта модалка
             modalIsOpen: false,
             // массив карзины
-            cartContent: window.store && window.store.cart ? window.store.cart : {},
+            cartContent: window.store && window.store.cart ? window.store.cart : [],
             // открыта модалка карзины
-            modalCartIsOpen: false
+            modalCartIsOpen: false,
+            // открыта модалка формы
+            modalCheckoutIsOpen: false
         };
 
         // Устанавливаем слушатель кастомного события
@@ -32,6 +35,9 @@ export class AppCart extends Component {
         this.openCartModal = this.openCartModal.bind(this);
         this.changeAmountCart = this.changeAmountCart.bind(this);
         this.changeDeleteCart = this.changeDeleteCart.bind(this);
+        this.sendCheckoutCart = this.sendCheckoutCart.bind(this);
+        this.closeCheckoutModal = this.closeCheckoutModal.bind(this);
+        this.sendCheckout = this.sendCheckout.bind(this);
     }
 
     // Находим выбранный товар и стора
@@ -117,6 +123,29 @@ export class AppCart extends Component {
         })
     }
 
+    closeCheckoutModal() {
+        this.setState({
+            modalCheckoutIsOpen: false
+        })
+    }
+
+    // Сработает при нажатии "Купить" в карзине
+    sendCheckoutCart() {
+        this.setState({
+            modalCartIsOpen: false,
+            modalCheckoutIsOpen: true
+        })
+    }
+
+    /**
+     * Сработает при валидной форме и при нажатии подтверлдить заказ
+     * @param formControl - данные с формы
+     * @returns {Promise.<void>}
+     */
+    async sendCheckout(formControl) {
+        console.log(formControl);
+    }
+
     render() {
         return (
             <div className="basket-app">
@@ -136,6 +165,12 @@ export class AppCart extends Component {
                     cartContent={this.state.cartContent}
                     changeAmountCart={this.changeAmountCart}
                     changeDeleteCart={this.changeDeleteCart}
+                    sendCheckout={this.sendCheckoutCart}
+                />
+                <CheckoutModal
+                    modalIsOpen={this.state.modalCheckoutIsOpen}
+                    closeModal={this.closeCheckoutModal}
+                    sendCheckout={this.sendCheckout}
                 />
             </div>
         );

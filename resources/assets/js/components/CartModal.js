@@ -24,6 +24,7 @@ export default class CartModal extends Component {
         this.state = {};
 
         this.closeModal = this.closeModal.bind(this);
+        this.sendCheckout = this.sendCheckout.bind(this);
     }
 
     // Закрываем модалку
@@ -41,13 +42,19 @@ export default class CartModal extends Component {
     }
 
     totalPrice() {
-        return this.props.cartContent.reduce((sum, val) => {
+        return this.props.cartContent && this.props.cartContent.reduce((sum, val) => {
             return sum + val.subtotal;
         }, 0)
     }
 
+    sendCheckout() {
+        // if (!this.props.cartContent.length) {
+        //     return;
+        // }
+        this.props.sendCheckout();
+    }
+
     render() {
-        console.log(this.props.cartContent);
         // позиция картинок в модалке
         const productImgStyle = (val) => {
             const product = val.options.product;
@@ -73,7 +80,7 @@ export default class CartModal extends Component {
             >
                 <div className="modal-cart-content">
                     <div className='modal-cart-title'>Корзина</div>
-                    {this.props.cartContent.map((val, i) => {
+                    {this.props.cartContent && this.props.cartContent.map((val, i) => {
                         return <div key={i} className="modal-cart-product">
                             <div
                                 className="modal-cart-product-img"
@@ -108,14 +115,18 @@ export default class CartModal extends Component {
                                 <div
                                     className='modal-cart-product-delete'
                                     onClick={this.deleteClick.bind(this, val.rowId)}>
-                                    удалить
+                                    Удалить
                                 </div>
                             </div>
                         </div>;
                     })}
                     <div className="modal-cart-total">
-                        <span className="modal-cart-total-price">{this.totalPrice()} Р</span>
-                        <span className="modal-cart-total-buy">Купить</span>
+                        <span className="modal-cart-total-price">Всего: {this.totalPrice()} Р</span>
+                        <span
+                            className="modal-cart-total-buy"
+                            onClick={this.sendCheckout}>
+                            Купить
+                        </span>
                     </div>
                     <div className='modal-cart-close' onClick={this.closeModal}/>
                 </div>

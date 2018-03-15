@@ -1,0 +1,117 @@
+.overlay-checkout {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);;
+}
+
+.modal-checkout {
+  background-color: $global-color;
+
+  &-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+    width: 100%;
+    color: $global-color-second;
+    padding: 25px 50px 50px 50px;
+
+    .modal-checkout{
+      &-title{
+        padding-bottom: 30px;
+        text-align: center;
+        font-size: 30px;
+      }
+      &-form{
+
+        .has-error {
+          font-size: 0.8rem;
+          color: red;
+        }
+        .required {
+          color: red;
+        }
+
+        &-group {
+          display: flex;
+          justify-content: space-between;
+          @media (max-width: $screen-xs-min) {
+            flex-direction: column;
+          }
+
+          &-one {
+            & label {
+              width: 100%;
+              font-weight: normal;
+              color: transparentize($global-color-second, 0.5);
+            }
+
+            & input {
+              width: 100%;
+              color: $global-color-second;
+              min-height: 50px;
+              padding-left: 10px;
+            }
+          }
+
+          &-child {
+            width: 48%;
+            display: flex;
+            justify-content: space-between;
+            @media (max-width: $screen-xs-min) {
+              width: 100%;
+            }
+          }
+
+          & label {
+            width: 48%;
+            font-weight: normal;
+            color: transparentize($global-color-second, 0.5);
+            @media (max-width: $screen-xs-min) {
+              width: 100%;
+            }
+          }
+
+          & input, & textarea {
+            width: 100%;
+            color: $global-color-second;
+            padding-left: 10px;
+            min-height: 50px;
+          }
+        }
+      }
+      &-close {
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        right: 25px;
+        top: 25px;
+        cursor: pointer;
+        &:after {
+          position: absolute;
+          content: ' ';
+          width: 25px;
+          height: 1px;
+          background: $global-color-second;
+          top: 12px;
+          transform: rotate(45deg);
+        }
+        &:before {
+          position: absolute;
+          content: ' ';
+          width: 1px;
+          height: 25px;
+          background: $global-color-second;
+          left: 50%;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}

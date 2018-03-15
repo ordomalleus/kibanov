@@ -8603,6 +8603,25 @@ section#general-9 .col-md-12 {
   line-height: 54px;
 }
 
+section#catalog {
+  color: #000;
+  margin-top: 30px;
+}
+
+section#catalog .title {
+  margin-bottom: 35px;
+  font-size: 45px;
+  line-height: 54px;
+  font-family: "Cormorant SC Bold";
+}
+
+@media (max-width: 992px) {
+  section#catalog .title {
+    font-size: 24px;
+    line-height: 59px;
+  }
+}
+
 .menu-container {
   background: url(/images/general-section-1.jpg?0df5df6ecb76b11103853bb2370ad380) 50% 100% no-repeat;
   background-size: cover;
@@ -9121,6 +9140,10 @@ section#general-9 .col-md-12 {
   }
 }
 
+.modal-cart-content .modal-cart-product-info-name {
+  font-weight: bold;
+}
+
 .modal-cart-content .modal-cart-product-info-attributes {
   font-size: 0.7rem;
   line-height: 0.9rem;
@@ -9146,6 +9169,7 @@ section#general-9 .col-md-12 {
 
 .modal-cart-content .modal-cart-product-control .modal-cart-product-subtotal {
   margin-right: 10px;
+  min-width: 115px;
 }
 
 @media (max-width: 767px) {
@@ -9246,6 +9270,156 @@ section#general-9 .col-md-12 {
 }
 
 .modal-cart-content .modal-cart-close:before {
+  position: absolute;
+  content: ' ';
+  width: 1px;
+  height: 25px;
+  background: #000;
+  left: 50%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.overlay-checkout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-checkout {
+  background-color: #fff;
+}
+
+.modal-checkout-content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 100%;
+  width: 100%;
+  color: #000;
+  padding: 25px 50px 50px 50px;
+}
+
+.modal-checkout-content .modal-checkout-title {
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.modal-checkout-content .modal-checkout-form .has-error {
+  font-size: 0.8rem;
+  color: red;
+}
+
+.modal-checkout-content .modal-checkout-form .required {
+  color: red;
+}
+
+.modal-checkout-content .modal-checkout-form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 480px) {
+  .modal-checkout-content .modal-checkout-form-group {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.modal-checkout-content .modal-checkout-form-group-one label {
+  width: 100%;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-checkout-content .modal-checkout-form-group-one input {
+  width: 100%;
+  color: #000;
+  min-height: 50px;
+  padding-left: 10px;
+}
+
+.modal-checkout-content .modal-checkout-form-group-child {
+  width: 48%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 480px) {
+  .modal-checkout-content .modal-checkout-form-group-child {
+    width: 100%;
+  }
+}
+
+.modal-checkout-content .modal-checkout-form-group label {
+  width: 48%;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 480px) {
+  .modal-checkout-content .modal-checkout-form-group label {
+    width: 100%;
+  }
+}
+
+.modal-checkout-content .modal-checkout-form-group input,
+.modal-checkout-content .modal-checkout-form-group textarea {
+  width: 100%;
+  color: #000;
+  padding-left: 10px;
+  min-height: 50px;
+}
+
+.modal-checkout-content .modal-checkout-close {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  cursor: pointer;
+}
+
+.modal-checkout-content .modal-checkout-close:after {
+  position: absolute;
+  content: ' ';
+  width: 25px;
+  height: 1px;
+  background: #000;
+  top: 12px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.modal-checkout-content .modal-checkout-close:before {
   position: absolute;
   content: ' ';
   width: 1px;

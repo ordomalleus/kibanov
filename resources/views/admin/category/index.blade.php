@@ -3,7 +3,7 @@
 @section('content')
     {{--Вывод категорий--}}
     <h3>Категории</h3>
-    {{--<pre>{{$foo}}</pre>--}}
+    {{--<pre>{{$categories->groupBy('parent_id')}}</pre>--}}
     <div class="navbar">
         <ul class="nav navbar-nav">
             @foreach($categories as $category)
@@ -35,7 +35,7 @@
 
                         <div class="form-group">
                             {{ Form::label('parent_id', 'Родитель категории') }}
-                            {{ Form::select('parent_id', collect(['null' => 'нет'])->merge($categories->pluck('name', 'id')) , null, ['class' => 'form-control']) }}
+                            {{ Form::select('parent_id', collect(['нет' => 'null'])->merge($categories->pluck('id', 'name'))->flip(), null, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="modal-footer">
