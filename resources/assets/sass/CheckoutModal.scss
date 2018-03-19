@@ -20,7 +20,7 @@
     min-height: 100%;
     width: 100%;
     color: $global-color-second;
-    padding: 25px 50px 50px 50px;
+    padding: 25px 50px 25px 50px;
 
     .modal-checkout{
       &-title{
@@ -57,6 +57,11 @@
               color: $global-color-second;
               min-height: 50px;
               padding-left: 10px;
+              background-color: $global-color;
+              background-image: none;
+              border: 1px solid $global-color-second;
+              box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+              transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
             }
           }
 
@@ -83,6 +88,25 @@
             color: $global-color-second;
             padding-left: 10px;
             min-height: 50px;
+            background-color: $global-color;
+            background-image: none;
+            border: 1px solid $global-color-second;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+          }
+        }
+        &-buy {
+          height: 50px;
+          padding: 0 25px;
+          align-self: flex-end;
+          background: transparent;
+          border: 1px solid $global-color-second;
+          cursor: pointer;
+
+          &[disabled] {
+            cursor: not-allowed;
+            color: lighten($global-color-second, 50%);
+            border-color: lighten($global-color-second, 50%);
           }
         }
       }

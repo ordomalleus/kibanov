@@ -5,7 +5,7 @@ import ProductAttributes from './ProductAttributes'
 
 const customStyles = {
     content: {
-        padding: '0 0 30px 0',
+        padding: '0',
         width: 600,
         maxHeight: '100%',
         overflow: 'auto'

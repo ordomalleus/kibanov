@@ -121,7 +121,7 @@ export default class CheckoutModal extends Component {
                                 Комментарий
                                 <Textarea name='comment' value=''/>
                             </label>
-                            <Button className="btn btn-success">Купить</Button>
+                            <Button className="modal-checkout-form-buy">Купить</Button>
                         </div>
                     </Form>
                     <div className='modal-checkout-close' onClick={this.closeModal}/>

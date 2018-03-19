@@ -1,5 +1,4 @@
 html, body {
-  height: 100%;
   min-height: 100%;
   width: 100%;
   color: $global-color;
@@ -197,6 +196,20 @@ section {
             }
           }
         }
+      }
+    }
+    // как выбирать обувь
+    .question-catalog {
+      padding-top: 120px;
+
+      &-title {
+        font-family: $global-font-family-cormorant;
+        font-size: 34px;
+        line-height: 41px;
+        margin-bottom: 20px;
+      }
+      &-text {
+        margin-top: 20px;
       }
     }
   }
