@@ -35,7 +35,7 @@ export default class CheckoutModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.form.getValues());
+        this.props.sendCheckout(this.form.getValues());
     }
 
     render() {
@@ -48,6 +48,10 @@ export default class CheckoutModal extends Component {
                 overlayClassName="overlay-checkout"
             >
                 <div className="modal-checkout-content">
+                    {!(this.props.orderMessage === null) ?
+                        <p className={['modal-checkout-message', this.props.orderMessage ? 'success' : 'error'].join(' ')}>
+                            {this.props.orderMessage ? 'Заказ сформирован, с вами скоро свяжутся' : 'Не смогли сформировать заказ по техническим причинам'}
+                        </p> : ''}
                     <div className='modal-checkout-title'>Куда доставить ?</div>
                     <Form
                         className="modal-checkout-form"

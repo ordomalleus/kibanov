@@ -64,7 +64,7 @@
 
                         <div class="form-group">
                             {{ Form::label('description', 'Описание товара') }}
-                            {{ Form::text('description', $product->description, ['class' => 'form-control']) }}
+                            {{ Form::textarea('description', $product->description, ['class' => 'form-control', 'rows' => '4']) }}
                         </div>
 
                         <div class="form-group">

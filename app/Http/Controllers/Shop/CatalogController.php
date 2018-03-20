@@ -22,12 +22,12 @@ class CatalogController extends Controller
 
         if ($id) {
             // получаем товары по 20штук
-            $products = Product::where('show', '=', 1)->where('category_id', '=', $id)->paginate(3);
+            $products = Product::where('show', '=', 1)->where('category_id', '=', $id)->paginate(20);
             // установим тайтл
             $title = Category::find($id);
         } else {
             // получаем товары по 20штук
-            $products = Product::where('show', '=', 1)->paginate(3);
+            $products = Product::where('show', '=', 1)->paginate(20);
         }
         // догружаем у товаров все связанные свойства
         $products->load(

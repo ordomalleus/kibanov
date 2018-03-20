@@ -48,9 +48,9 @@ export default class CartModal extends Component {
     }
 
     sendCheckout() {
-        // if (!this.props.cartContent.length) {
-        //     return;
-        // }
+        if (!this.props.cartContent.length) {
+            return;
+        }
         this.props.sendCheckout();
     }
 

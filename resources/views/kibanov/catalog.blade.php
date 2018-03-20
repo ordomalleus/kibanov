@@ -14,7 +14,7 @@
         @include('kibanov.component.menu')
     </section>
     <section id="catalog"}>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-4">
                     <div class="title">Каталог</div>
@@ -72,7 +72,7 @@
                     @foreach ($products as $product)
                         <div class="col-md-6">
                             <div class="product">
-                                <div class="product-img" style="background-image: url('{{url('products/images', $product->img_name)}}')">
+                                <div class="product-img">
 {{--                                <div class="product-img" style="background-image: url('{{url('products/images', $product->img_name)}}')">--}}
                                     <img src="{{url('products/images', $product->img_name)}}">
                                 </div>
@@ -88,7 +88,7 @@
         </div>
     </section>
     <section>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-8 text-align-right">
                     {{$products->render()}}

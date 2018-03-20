@@ -31,7 +31,7 @@
 
                 <div class="form-group">
                     {{ Form::label('price', 'Цена') }}
-                    {{ Form::text('price', null, ['class' => 'form-control']) }}
+                    {{ Form::text('price', 0, ['class' => 'form-control']) }}
                 </div>
 
                 <div class="form-group">

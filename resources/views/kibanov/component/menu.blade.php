@@ -5,10 +5,10 @@
                 <div class="nav-menu-logo"></div>
                 <div class="nav-menu-list hidden-sm hidden-xs">
                     <ul>
-                        <li><a href="{{url('/')}}">О Компании</a></li>
+                        <li><a href="{{url('/')}}">Главная</a></li>
                         <li><a href="{{url('/catalog')}}">Каталог</a></li>
                         <li><a>Магазины</a></li>
-                        <li><a>Помощь</a></li>
+                        <li><a>О компании</a></li>
                     </ul>
                 </div>
             </div>

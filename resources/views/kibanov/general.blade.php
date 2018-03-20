@@ -1,5 +1,12 @@
 @extends('kibanov.layout.app')
 
+@section('store')
+    <script>
+        window.store = {};
+        window.store.cart = @json($cart);
+    </script>
+@endsection
+
 @section('content')
     <section class="section-full" id="general-1">
         <div class="section-gradient"></div>
@@ -13,7 +20,7 @@
         </div>
     </section>
     <section id="general-2">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row m-b-30">
                 <div class="col-md-4"><span class="rise-text">И</span><span>стория товарной марки "Кибанов" началась в 1995 году, когда поклонник танца Андрей Кибанов организовал мастерскую "Балетная обувь от Кибанова". Основываясь на традициях и мастерстве цехов Пермского театра оперы и балета, бережно сохраняя классические технологии изготовления танцевальной обуви и в то же время развивая и совершенствуя их, применительно к современности, Андрею Кибанову удалось в сравнительно небольшой срок перерасти из мелкого ремесленника в фабриканта.</span>
                 </div>
@@ -63,7 +70,7 @@
     </section>
     <section id="general-3">
         <div class="section-gradient"></div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-8 m-b-30 general-text-3"><span class="rise-text">К</span><span>аждому танцующему необходимо не только красиво передавать действо, но и грамотно выстраивать положение корпуса, рук и ног. Правильная работа корпуса, рук, головы зависит в большей степени от стараний, усилий, физических возможностей актера, а вот правильная постановка стопы возможна только в качественной профессиональной обуви для танцев. Причем специальная обувь нужна не только для выступления, но и для тренировок.</span>
                 </div>
@@ -71,7 +78,7 @@
         </div>
     </section>
     <section id="general-4">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row m-b-30">
                 <div class="col-md-6">
                     <div class="product">
@@ -92,7 +99,7 @@
     </section>
     <section id="general-5">
         <div class="section-gradient"></div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12 text-align-center general-5-title">Ведущие заказчики:</div>
                 <div class="col-md-5 general-5-text-left">Государственный театр оперы и балета «Астана Опера»<br/>
@@ -119,7 +126,7 @@
         </div>
     </section>
     <section id="general-6">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row m-b-30">
                 <div class="col-md-4">
                     <div class="product">
@@ -142,7 +149,7 @@
         </div>
     </section>
     <section id="general-7">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12 text-align-center title">Аксессуары</div>
                 <div class="col-md-6">
@@ -163,7 +170,7 @@
         </div>
     </section>
     <section id="general-8">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-6 general-8-text"><p>как выбирать танцевальную обувь</p>
                     <p>Несколько советов, которые помогут облегчить выбор:<br/> Обувь должна быть изготовлена из
@@ -196,7 +203,7 @@
     </section>
     <section class="section-full" id="general-9">
         <div class="section-gradient"></div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12 text-align-center">Адреса магазинов</div>
             </div>

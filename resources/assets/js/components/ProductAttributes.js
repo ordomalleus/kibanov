@@ -153,7 +153,8 @@ export default class ProductAttributes extends Component {
                 type: val.product_group_attributes.type,
                 name: val.product_group_attributes.name,
                 val: valAttrObj.attributes_directory_value.name,
-                price: valAttrObj.price
+                price: valAttrObj.price,
+                options: valAttrObj.attributes_directory_value.value
             };
 
             result.push(objResult);

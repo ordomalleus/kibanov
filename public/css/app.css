@@ -9735,6 +9735,22 @@ section#catalog .question-catalog-text {
   padding: 25px 50px 25px 50px;
 }
 
+.modal-checkout-content .modal-checkout-message {
+  position: fixed;
+  top: 20px;
+  left: auto;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-checkout-content .modal-checkout-message.success {
+  background: #63d263;
+}
+
+.modal-checkout-content .modal-checkout-message.error {
+  background: #f58961;
+}
+
 .modal-checkout-content .modal-checkout-title {
   padding-bottom: 30px;
   text-align: center;

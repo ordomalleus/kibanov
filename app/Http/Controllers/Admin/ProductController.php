@@ -68,7 +68,7 @@ class ProductController extends Controller
 
         Session::flash('message', 'Продукт сохранен');
 
-        return redirect()->route('admin.index');
+        return redirect()->back();
     }
 
     /**

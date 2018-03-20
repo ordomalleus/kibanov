@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
 
@@ -24,7 +24,9 @@ export class AppCart extends Component {
             // открыта модалка карзины
             modalCartIsOpen: false,
             // открыта модалка формы
-            modalCheckoutIsOpen: false
+            modalCheckoutIsOpen: false,
+            // сообщение о добавлении заказа: null - нет сообщения, true - удачно создался заказ, false - не смогли создать заказ
+            modalCheckoutOrderMessage: null
         };
 
         // Устанавливаем слушатель кастомного события
@@ -91,7 +93,7 @@ export class AppCart extends Component {
      * @param flag - флаг : добавить 1 / убрать 1
      * @returns {Promise.<void>}
      */
-    async changeAmountCart(product, flag){
+    async changeAmountCart(product, flag) {
         // TODO: рефакторнуть, вынисти в одно условие
         if (flag) {
             // Запрос в АПИ на добовление 1 товара
@@ -143,7 +145,30 @@ export class AppCart extends Component {
      * @returns {Promise.<void>}
      */
     async sendCheckout(formControl) {
-        console.log(formControl);
+        // меняем значение без вызова рендера
+        this.state.modalCheckoutOrderMessage = null;
+
+        const order = {
+            ordersInfoId: formControl,
+            // TODO: добавить флаг при выборе на форме
+            delivery: true
+        };
+
+        try {
+            const response = await Axios.post('/orders/add', order);
+
+            if (response.status === 200) {
+                this.setState({modalCheckoutOrderMessage: true});
+            } else {
+                this.setState({modalCheckoutOrderMessage: false});
+            }
+        } catch (e) {
+            this.setState({modalCheckoutOrderMessage: false});
+        }
+
+        setTimeout(() => {
+            this.setState({modalCheckoutOrderMessage: null})
+        }, 5000)
     }
 
     render() {
@@ -169,6 +194,7 @@ export class AppCart extends Component {
                 />
                 <CheckoutModal
                     modalIsOpen={this.state.modalCheckoutIsOpen}
+                    orderMessage={this.state.modalCheckoutOrderMessage}
                     closeModal={this.closeCheckoutModal}
                     sendCheckout={this.sendCheckout}
                 />
@@ -178,5 +204,5 @@ export class AppCart extends Component {
 }
 
 if (document.getElementById('app-cart')) {
-    ReactDOM.render(<AppCart />, document.getElementById('app-cart'));
+    ReactDOM.render(<AppCart/>, document.getElementById('app-cart'));
 }

@@ -7,14 +7,24 @@
                     Управление</a></li>
             <li class="submenu">
                 <a href="#">
+                    <i class="glyphicon glyphicon-list"></i> Заказы
+                    <span class="caret pull-right"></span>
+                </a>
+                <!-- Sub menu -->
+                <ul>
+                    <li><a href="{{url('admin/orders')}}">Все заказы</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#">
                     <i class="glyphicon glyphicon-list"></i> Товар
                     <span class="caret pull-right"></span>
                 </a>
                 <!-- Sub menu -->
                 <ul>
-                    {{--<li><a href="{{route('admin/product/create')}}">Добавить товар</a></li>--}}
                     <li><a href="{{url('admin/product/create')}}">Добавить товар</a></li>
                     <li><a href="{{url('admin/product')}}">Просмотр товара</a></li>
+                    {{--<li><a href="#">Товар на главной странице</a></li>--}}
                 </ul>
             </li>
             <li class="submenu">
