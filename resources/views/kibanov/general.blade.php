@@ -205,8 +205,70 @@
         <div class="section-gradient"></div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-align-center">Адреса магазинов</div>
+                <div class="col-md-12 text-align-center title">Адреса магазинов</div>
+                <div class="col-md-12 shops-container-ul">
+                    <ul class="shops-ul">
+                        <li class="shops-li active" data-gis-id="map-perm">
+                            <span class="shops-li-title">г. Пермь</span>
+                            <div class="shops-li-text">
+                                <span>
+                                    г. Пермь, ул. Советская, д. 22
+                                    <br/>тел. +7(342) 212-83-41
+                                    <br/>Мы "В контакте": vk.com/scena.perm
+                                </span>
+                            </div>
+                        </li>
+                        <li class="shops-li" data-gis-id="map-chelabinsk">
+                            <span class="shops-li-title">г. Челябинск</span>
+                            <div class="shops-li-text">
+                                <span>
+                                    г. Челябинск, пр. Ленина, д. 77
+                                    <br/>тел. +7(351) 265-44-73
+                                    <br/>Мы "В контакте": -------
+                                </span>
+                            </div>
+                        </li>
+                        <li class="shops-li" data-gis-id="map-spb">
+                            <span class="shops-li-title">г. Санкт-Петербург</span>
+                            <div class="shops-li-text">
+                                <span>
+                                    г. САНКТ-ПЕТЕРБУРГ, ул. Гороховая, д. 57
+                                    <br/>тел. +7(911) 971-63-44
+                                    <br/>Мы "В контакте": -----
+                                </span>
+                            </div>
+                        </li>
+                        <li class="shops-li" data-gis-id="map-moscou">
+                            <span class="shops-li-title">г. Москва</span>
+                            <div class="shops-li-text">
+                                <span>
+                                    г. Москва, ул. Героев Панфиловцев, д. 8к1
+                                    <br/>тел. +7(495) 766-79-10
+                                    <br/>Мы "В контакте": ----
+                                </span>
+                            </div>
+                        </li>
+                        <li class="shops-li" data-gis-id="map-ekb">
+                            <span class="shops-li-title">г. Екатеринбург</span>
+                            <div class="shops-li-text">
+                                <span>
+                                    г. Екатеринбург, ул. Мамина-Сибиряка, д. 102
+                                    <br/>тел. +7(343) 355-23-08
+                                    <br/>Мы "В контакте": vk.com/scenaekat
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div>
+                        <div id="map-perm" class="gis-map-container" style="width:100%; min-height:400px"></div>
+                        <div id="map-chelabinsk" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
+                        <div id="map-spb" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
+                        <div id="map-moscou" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
+                        <div id="map-ekb" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full&lazy=true"></script>
 @endsection

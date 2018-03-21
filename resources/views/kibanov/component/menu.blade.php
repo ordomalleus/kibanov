@@ -7,8 +7,8 @@
                     <ul>
                         <li><a href="{{url('/')}}">Главная</a></li>
                         <li><a href="{{url('/catalog')}}">Каталог</a></li>
-                        <li><a>Магазины</a></li>
-                        <li><a>О компании</a></li>
+                        <li><a href="{{url('/shops')}}">Магазины</a></li>
+                        <li><a href="{{url('/about')}}">О компании</a></li>
                     </ul>
                 </div>
             </div>

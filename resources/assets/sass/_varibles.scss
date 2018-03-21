@@ -25,7 +25,7 @@ p {
 
 // Класс для section на всю высоту
 .section-full {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 // Размер первой буквы текста

@@ -27,3 +27,100 @@ for(let catalog of catalogs) {
         hidden[0].classList.remove('hidden');
     }
 }
+
+// js для переключения карт
+const mapArr = [
+    {
+        id: 'map-perm',
+        centerMap: [58.01732, 56.24686],
+        centerPopup: [58.01732, 56.24686],
+        popupText: 'г. Пермь, ул. Советская, д. 22',
+        map: null
+    },
+    {
+        id: 'map-chelabinsk',
+        centerMap: [55.159117, 61.377238],
+        centerPopup: [55.159117, 61.377238],
+        popupText: 'г. Челябинск, пр. Ленина, д. 77',
+        map: null
+    },
+    {
+        id: 'map-spb',
+        centerMap: [59.925955, 30.325629],
+        centerPopup: [59.925955, 30.325629],
+        popupText: 'г. САНКТ-ПЕТЕРБУРГ, ул. Гороховая, д. 57',
+        map: null
+    },
+    {
+        id: 'map-moscou',
+        centerMap: [55.854793, 37.439266],
+        centerPopup: [55.854793, 37.439266],
+        popupText: 'г. Москва, ул. Героев Панфиловцев, д. 8к1',
+        map: null
+    },
+    {
+        id: 'map-ekb',
+        centerMap: [56.835394, 60.619246],
+        centerPopup: [56.835394, 60.619246],
+        popupText: 'г. Екатеринбург, ул. Мамина-Сибиряка, д. 102',
+        map: null
+    }
+];
+const crateMap = (id = 'map-perm') => {
+    const targetId = mapArr.filter((item) => {
+        if (item.id === id) {
+            return item;
+        }
+    })[0];
+
+
+    if (window.DG) {
+        DG.then(function () {
+            let map;
+
+            // логика для предотврощени повтороного создания карты
+            // TODO: покапать апи и найти метод удаления, чтоб по нормальному перестраивать карту
+            if (targetId.map !== null) {
+                map = targetId.map;
+            } else {
+                map = targetId.map = DG.map(targetId.id, {
+                    center: targetId.centerMap,
+                    zoom: 17
+                });
+
+                DG.marker(targetId.centerPopup).addTo(map);
+                DG.popup()
+                    .setLatLng(targetId.centerPopup)
+                    .setContent(targetId.popupText)
+                    .openOn(map);
+            }
+        });
+    }
+};
+
+const map = document.getElementsByClassName('shops-li');
+for (let element of map) {
+    element.addEventListener('click', (event) => {
+        // убираем активный класс
+        document.getElementsByClassName('shops-li active')[0].classList.remove('active');
+        // добавляем текущей ноде активный класс
+        event.currentTarget.classList.add('active');
+
+        // получаем id контейнера карты
+        const mapId = event.currentTarget.dataset.gisId;
+
+        // добавляем всем контейнерам
+        const mapContainer = document.getElementsByClassName('gis-map-container');
+        for (let elemCon of mapContainer) {
+            if(!elemCon.classList.contains('hidden')) {
+                elemCon.classList.add('hidden');
+            }
+        }
+        // удаляем у одного контейнера скрытие
+        document.getElementById(mapId).classList.remove('hidden');
+        // по новой строит карту
+        crateMap(mapId);
+    });
+}
+// первичный вызов карты
+crateMap();

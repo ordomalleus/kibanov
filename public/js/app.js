@@ -29771,6 +29771,8 @@ try {
 
         _loop(catalog);
     }
+
+    // js для переключения карт
 } catch (err) {
     _didIteratorError2 = true;
     _iteratorError2 = err;
@@ -29785,6 +29787,138 @@ try {
         }
     }
 }
+
+var mapArr = [{
+    id: 'map-perm',
+    centerMap: [58.01732, 56.24686],
+    centerPopup: [58.01732, 56.24686],
+    popupText: 'г. Пермь, ул. Советская, д. 22',
+    map: null
+}, {
+    id: 'map-chelabinsk',
+    centerMap: [55.159117, 61.377238],
+    centerPopup: [55.159117, 61.377238],
+    popupText: 'г. Челябинск, пр. Ленина, д. 77',
+    map: null
+}, {
+    id: 'map-spb',
+    centerMap: [59.925955, 30.325629],
+    centerPopup: [59.925955, 30.325629],
+    popupText: 'г. САНКТ-ПЕТЕРБУРГ, ул. Гороховая, д. 57',
+    map: null
+}, {
+    id: 'map-moscou',
+    centerMap: [55.854793, 37.439266],
+    centerPopup: [55.854793, 37.439266],
+    popupText: 'г. Москва, ул. Героев Панфиловцев, д. 8к1',
+    map: null
+}, {
+    id: 'map-ekb',
+    centerMap: [56.835394, 60.619246],
+    centerPopup: [56.835394, 60.619246],
+    popupText: 'г. Екатеринбург, ул. Мамина-Сибиряка, д. 102',
+    map: null
+}];
+var crateMap = function crateMap() {
+    var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'map-perm';
+
+    var targetId = mapArr.filter(function (item) {
+        if (item.id === id) {
+            return item;
+        }
+    })[0];
+
+    if (window.DG) {
+        DG.then(function () {
+            var map = void 0;
+
+            // логика для предотврощени повтороного создания карты
+            // TODO: покапать апи и найти метод удаления, чтоб по нормальному перестраивать карту
+            if (targetId.map !== null) {
+                map = targetId.map;
+            } else {
+                map = targetId.map = DG.map(targetId.id, {
+                    center: targetId.centerMap,
+                    zoom: 17
+                });
+
+                DG.marker(targetId.centerPopup).addTo(map);
+                DG.popup().setLatLng(targetId.centerPopup).setContent(targetId.popupText).openOn(map);
+            }
+        });
+    }
+};
+
+var map = document.getElementsByClassName('shops-li');
+var _iteratorNormalCompletion3 = true;
+var _didIteratorError3 = false;
+var _iteratorError3 = undefined;
+
+try {
+    for (var _iterator3 = map[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        var _element = _step3.value;
+
+        _element.addEventListener('click', function (event) {
+            // убираем активный класс
+            document.getElementsByClassName('shops-li active')[0].classList.remove('active');
+            // добавляем текущей ноде активный класс
+            event.currentTarget.classList.add('active');
+
+            // получаем id контейнера карты
+            var mapId = event.currentTarget.dataset.gisId;
+
+            // добавляем всем контейнерам
+            var mapContainer = document.getElementsByClassName('gis-map-container');
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
+
+            try {
+                for (var _iterator4 = mapContainer[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var elemCon = _step4.value;
+
+                    if (!elemCon.classList.contains('hidden')) {
+                        elemCon.classList.add('hidden');
+                    }
+                }
+                // удаляем у одного контейнера скрытие
+            } catch (err) {
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                        _iterator4.return();
+                    }
+                } finally {
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
+                    }
+                }
+            }
+
+            document.getElementById(mapId).classList.remove('hidden');
+            // по новой строит карту
+            crateMap(mapId);
+        });
+    }
+    // первичный вызов карты
+} catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+} finally {
+    try {
+        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+            _iterator3.return();
+        }
+    } finally {
+        if (_didIteratorError3) {
+            throw _iteratorError3;
+        }
+    }
+}
+
+crateMap();
 
 /***/ }),
 /* 164 */

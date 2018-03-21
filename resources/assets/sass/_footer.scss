@@ -1,0 +1,29 @@
+.footer-container {
+  background: url("../img/footer.jpg") 50% 50% no-repeat;
+  background-size: cover;
+  min-height: 250px;
+
+  .title {
+    margin-top: 35px;
+    margin-bottom: 40px;
+    font-size: 36px;
+    line-height: 44px;
+    font-family: $global-font-family-cormorant;
+  }
+
+  .address-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .address-content {
+      margin-right: 10px;
+      margin-bottom: 10px;
+      width: 190px;
+      @media (max-width: $screen-xs) {
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+}

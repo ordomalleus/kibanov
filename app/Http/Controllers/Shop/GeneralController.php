@@ -21,4 +21,20 @@ class GeneralController extends Controller
 
         return view('kibanov/general', compact(['cart']));
     }
+
+    public function about()
+    {
+        // получаем карзину
+        $cart = Cart::content()->flatten();
+
+        return view('kibanov/about', compact(['cart']));
+    }
+
+    public function shops()
+    {
+        // получаем карзину
+        $cart = Cart::content()->flatten();
+
+        return view('kibanov/shops', compact(['cart']));
+    }
 }

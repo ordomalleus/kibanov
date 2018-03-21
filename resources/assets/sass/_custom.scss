@@ -82,7 +82,6 @@ section {
     color: $global-color;
     margin-bottom: 30px;
     padding-bottom: 20px;
-
     @media (min-width: $screen-md-min) {
       min-height: 600px;
       margin-bottom: 70px;
@@ -147,15 +146,62 @@ section {
     }
   }
   &#general-9 {
-    background: url("../img/general-section-1.jpg") 50% 50% no-repeat;
+    background: url("../img/general-section-3.jpg") 50% 50% no-repeat;
     background-size: cover;
     padding-top: 40px;
-    .col-md-12 {
+    .title {
       font-size: 45px;
       line-height: 54px;
+      margin-bottom: 50px;
+    }
+    .shops-container-ul {
+      margin-bottom: 30px;
+
+      .shops-ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: $screen-sm) {
+          flex-direction: column;
+        }
+
+        .shops-li {
+          display: inline-block;
+          cursor: pointer;
+          @media (max-width: $screen-sm) {
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+          }
+
+          &.active {
+            .shops-li-title {
+              display: none;
+            }
+            .shops-li-text {
+              display: block;
+            }
+          }
+
+          &-title {
+            text-align: center;
+            text-decoration: underline;
+          }
+          &-text {
+            display: none;
+            background: $global-color;
+            color: $global-color-second;
+            padding: 20px;
+          }
+        }
+      }
+      .gis-map-container {
+      }
     }
   }
-
   &#catalog {
     color: $global-color-second;
     margin-top: 30px;
@@ -213,6 +259,111 @@ section {
       }
     }
   }
+  &#about-1 {
+    color: $global-color-second;
+
+    .img-container {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &#about-2 {
+    background: url("../img/general-section-5.jpg") 50% 100% no-repeat;
+    background-size: cover;
+    color: $global-color;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+
+    @media (min-width: $screen-md-min) {
+      min-height: 600px;
+      margin-bottom: 70px;
+    }
+
+    .about-2-title {
+      margin-top: 35px;
+      margin-bottom: 40px;
+      font-size: 36px;
+      line-height: 44px;
+      font-family: $global-font-family-cormorant;
+    }
+    .about-2-text-left {
+
+    }
+    .about-2-text-right {
+      text-align: right;
+
+      @media (max-width: $screen-md-min) {
+        text-align: left;
+      }
+    }
+  }
+  &#about-3 {
+    color: $global-color-second;
+
+    .img-container {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &#shops {
+    background: url("../img/general-section-3.jpg") 50% 50% no-repeat;
+    background-size: cover;
+    padding-top: 40px;
+    .title {
+      font-size: 45px;
+      line-height: 54px;
+      margin-bottom: 30px;
+    }
+
+    .shops-container-ul {
+      margin-bottom: 30px;
+      .shops-ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: $screen-sm) {
+          flex-direction: column;
+        }
+
+        .shops-li {
+          display: inline-block;
+          cursor: pointer;
+          @media (max-width: $screen-sm) {
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+          }
+
+          &.active {
+            .shops-li-title {
+              display: none;
+            }
+            .shops-li-text {
+              display: block;
+            }
+          }
+
+          &-title {
+            text-align: center;
+            text-decoration: underline;
+          }
+          &-text {
+            display: none;
+            background: $global-color;
+            color: $global-color-second;
+            padding: 20px;
+          }
+        }
+      }
+      .gis-map-container {
+      }
+    }
+  }
 }
 
 // меню
@@ -220,3 +371,6 @@ section {
 
 // продукт
 @import "product";
+
+// футер
+@import "footer";

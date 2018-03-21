@@ -22,6 +22,7 @@ class AdminController extends Controller
         return view('admin/layout');
     }
 
+    // Добавляет товар на сайт из файла
     public function files() {
         $files = Storage::disk('local')->get('products/foo.txt');
 
