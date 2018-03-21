@@ -8745,7 +8745,7 @@ p {
 }
 
 .section-full {
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .rise-text {
@@ -8971,6 +8971,8 @@ section#general-9 {
   background: url(/images/general-section-3.jpg?5573f339be286095749176e424432621) 50% 50% no-repeat;
   background-size: cover;
   padding-top: 40px;
+  height: auto;
+  min-height: 100vh;
 }
 
 section#general-9 .title {
