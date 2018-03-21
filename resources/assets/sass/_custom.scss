@@ -313,6 +313,8 @@ section {
     background: url("../img/general-section-3.jpg") 50% 50% no-repeat;
     background-size: cover;
     padding-top: 40px;
+    height: auto;
+    min-height: 100vh;
     .title {
       font-size: 45px;
       line-height: 54px;
