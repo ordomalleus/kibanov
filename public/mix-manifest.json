@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/img/about-1.jpg": "/img/about-1.jpg",
+    "/img/about-3.png": "/img/about-3.png",
     "/img/footer.jpg": "/img/footer.jpg",
     "/img/general-section-1-new.jpg": "/img/general-section-1-new.jpg",
     "/img/general-section-1.jpg": "/img/general-section-1.jpg",
@@ -19,9 +21,5 @@
     "/img/general-section-7-bal-2.jpg": "/img/general-section-7-bal-2.jpg",
     "/img/general-section-8-bal-1.jpg": "/img/general-section-8-bal-1.jpg",
     "/img/logo-old.png": "/img/logo-old.png",
-    "/img/logo.png": "/img/logo.png",
-    "/img/about-1.jpg": "/img/about-1.jpg",
-    "/img/about-3.png": "/img/about-3.png",
-    "/img/about-3.jpg": "/img/about-3.jpg",
-    "/img/8db1d10146ccd7b63e0be1b6ede55899.png": "/img/8db1d10146ccd7b63e0be1b6ede55899.png"
+    "/img/logo.png": "/img/logo.png"
 }
