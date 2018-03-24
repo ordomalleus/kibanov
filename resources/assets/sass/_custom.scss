@@ -70,6 +70,9 @@ section {
     background: url("../img/general-section-3.jpg") 50% 50% no-repeat;
     position: relative;
     margin-bottom: 30px;
+    @media (max-width: $screen-md) {
+      background-position: 70% 35%;
+    }
 
     @media (min-width: $screen-md-min) {
       min-height: 700px;

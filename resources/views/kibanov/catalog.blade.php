@@ -72,7 +72,7 @@
                     @foreach ($products->chunk(2) as $chunk)
                         <div class="row">
                             @foreach($chunk as $product)
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
                                     <div class="product">
                                         <div class="product-img">
         {{--                                <div class="product-img" style="background-image: url('{{url('products/images', $product->img_name)}}')">--}}

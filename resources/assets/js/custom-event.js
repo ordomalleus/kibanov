@@ -46,16 +46,16 @@ const mapArr = [
     },
     {
         id: 'map-spb',
-        centerMap: [59.925955, 30.325629],
-        centerPopup: [59.925955, 30.325629],
-        popupText: 'г. САНКТ-ПЕТЕРБУРГ, ул. Гороховая, д. 57',
+        centerMap: [59.932624, 30.333821],
+        centerPopup: [59.932624, 30.333821],
+        popupText: 'г. САНКТ-ПЕТЕРБУРГ, ул. Крылова, д. 3',
         map: null
     },
     {
-        id: 'map-moscou',
-        centerMap: [55.854793, 37.439266],
-        centerPopup: [55.854793, 37.439266],
-        popupText: 'г. Москва, ул. Героев Панфиловцев, д. 8к1',
+        id: 'map-kazan',
+        centerMap: [55.79574, 49.128767],
+        centerPopup: [55.79574, 49.128767],
+        popupText: 'г. Казань, ул. Карла Маркса, д. 48',
         map: null
     },
     {
@@ -63,6 +63,20 @@ const mapArr = [
         centerMap: [56.835394, 60.619246],
         centerPopup: [56.835394, 60.619246],
         popupText: 'г. Екатеринбург, ул. Мамина-Сибиряка, д. 102',
+        map: null
+    },
+    {
+        id: 'map-eshkarola',
+        centerMap: [56.633311, 47.890007],
+        centerPopup: [56.633311, 47.890007],
+        popupText: 'г. Йошкар-Ола, ул. Комсомольская, д. 130',
+        map: null
+    },
+    {
+        id: 'map-krasnodar',
+        centerMap: [45.023034, 38.973993],
+        centerPopup: [45.023034, 38.973993],
+        popupText: 'г. Краснодар, ул. Ленина, д. 54',
         map: null
     }
 ];

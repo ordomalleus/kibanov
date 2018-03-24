@@ -39,7 +39,7 @@
                                 <span>
                                     г. Челябинск, пр. Ленина, д. 77
                                     <br/>тел. +7(351) 265-44-73
-                                    <br/>Мы "В контакте": -------
+                                    <br/>Мы "В контакте":
                                 </span>
                             </div>
                         </li>
@@ -47,19 +47,19 @@
                             <span class="shops-li-title">г. Санкт-Петербург</span>
                             <div class="shops-li-text">
                                 <span>
-                                    г. САНКТ-ПЕТЕРБУРГ, ул. Гороховая, д. 57
+                                    г. САНКТ-ПЕТЕРБУРГ, ул. Крылова, д. 3
                                     <br/>тел. +7(911) 971-63-44
-                                    <br/>Мы "В контакте": -----
+                                    <br/>Мы "В контакте":
                                 </span>
                             </div>
                         </li>
-                        <li class="shops-li" data-gis-id="map-moscou">
-                            <span class="shops-li-title">г. Москва</span>
+                        <li class="shops-li" data-gis-id="map-kazan">
+                            <span class="shops-li-title">г. Казань</span>
                             <div class="shops-li-text">
                                 <span>
-                                    г. Москва, ул. Героев Панфиловцев, д. 8к1
-                                    <br/>тел. +7(495) 766-79-10
-                                    <br/>Мы "В контакте": ----
+                                    г. Казань, ул. Карла Маркса, д. 48
+                                    <br/>тел. +7(987) 406-38-19
+                                    <br/>Мы "В контакте":
                                 </span>
                             </div>
                         </li>
@@ -73,13 +73,35 @@
                                 </span>
                             </div>
                         </li>
+                        <li class="shops-li" data-gis-id="map-eshkarola">
+                            <span class="shops-li-title">г. Йошкар-Ола</span>
+                            <div class="shops-li-text">
+                                <span>
+                                    г. Йошкар-Ола, ул. Комсомольская, д. 130
+                                    <br/>тел. +7(987) 704-97-27
+                                    <br/>Мы "В контакте":
+                                </span>
+                            </div>
+                        </li>
+                        <li class="shops-li" data-gis-id="map-krasnodar">
+                            <span class="shops-li-title">г. Краснодар</span>
+                            <div class="shops-li-text">
+                                <span>
+                                    г. Краснодар, ул. Ленина, д. 54
+                                    <br/>тел. +7(918) 019-18-42
+                                    <br/>Мы "В контакте":
+                                </span>
+                            </div>
+                        </li>
                     </ul>
                     <div>
                         <div id="map-perm" class="gis-map-container" style="width:100%; min-height:400px"></div>
                         <div id="map-chelabinsk" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
                         <div id="map-spb" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
-                        <div id="map-moscou" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
+                        <div id="map-kazan" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
                         <div id="map-ekb" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
+                        <div id="map-eshkarola" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
+                        <div id="map-krasnodar" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
                     </div>
                 </div>
             </div>
