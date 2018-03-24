@@ -12,14 +12,38 @@
   line-height: 19px;
   font-weight: bold;
   font-family: $global-font-family-cormorant;
+  @media (max-width: $screen-md) {
+    flex-direction: column-reverse;
+  }
 
   &-left, &-right {
     display: flex;
     align-items: center;
+    @media (max-width: $screen-md) {
+      width: 100%;
+    }
+  }
+
+  &-left {
+    transition: height ease-out 0.2s;
+    @media (max-width: $screen-md) {
+      height: 160px;
+      overflow: hidden;
+    }
+    &.hidden-menu-sm {
+      @media (max-width: $screen-md) {
+        overflow: hidden;
+        height: 0;
+      }
+    }
   }
 
   &-right{
     justify-content: space-between;
+    @media (max-width: $screen-md) {
+      min-height: 70px;
+      justify-content: flex-end;
+    }
   }
 
   &-logo {
@@ -30,9 +54,15 @@
     @media (min-width: $screen-md-min) {
       margin-right: 65px;
     }
+    @media (max-width: $screen-md) {
+      margin-right: auto;
+    }
   }
 
   &-list {
+    @media (max-width: $screen-md) {
+      width: 100%;
+    }
     ul {
       margin: 0;
       padding: 0;
@@ -40,6 +70,11 @@
 
       li {
         display: inline-block;
+        @media (max-width: $screen-md) {
+          display: block;
+          text-align: center;
+          padding: 10px;
+        }
 
         a {
           color: $global-color;

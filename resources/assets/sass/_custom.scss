@@ -27,6 +27,14 @@ section {
       margin-bottom: 80px;
     }
 
+    // для меню при мобилке добавляет цвет
+    .background-nav-menu-sm {
+      @media (max-width: $screen-md) {
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+      }
+    }
+
     .slogan {
       position: absolute;
       top: 40%;

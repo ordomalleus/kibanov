@@ -73,7 +73,6 @@ const crateMap = (id = 'map-perm') => {
         }
     })[0];
 
-
     if (window.DG) {
         DG.then(function () {
             let map;
@@ -97,7 +96,6 @@ const crateMap = (id = 'map-perm') => {
         });
     }
 };
-
 const map = document.getElementsByClassName('shops-li');
 for (let element of map) {
     element.addEventListener('click', (event) => {
@@ -124,3 +122,12 @@ for (let element of map) {
 }
 // первичный вызов карты
 crateMap();
+
+
+
+// переключения меню в мобильной версии
+const menu = document.getElementById('toggle-menu');
+menu.addEventListener('click', (event) => {
+    document.getElementsByClassName('nav-menu-left')[0].classList.toggle('hidden-menu-sm');
+    document.getElementsByClassName('nav-menu')[0].classList.toggle('background-nav-menu-sm');
+});
