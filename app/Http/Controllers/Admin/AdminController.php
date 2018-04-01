@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Storage;
 use App\Model\Product;
+use Illuminate\View\View;
 
 class AdminController extends Controller
 {
@@ -50,5 +51,15 @@ class AdminController extends Controller
 
 
         return dd($arrProduct);
+    }
+
+    // показ страницы экспорта одежды
+    public function exportClothesView()
+    {
+        return view('admin/exports/clothes/index');
+    }
+    public function exportClothesBegin()
+    {
+        return 'asd';
     }
 }

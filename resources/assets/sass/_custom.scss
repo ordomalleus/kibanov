@@ -68,6 +68,7 @@ section {
   }
   &#general-3 {
     background: url("../img/general-section-3.jpg") 50% 50% no-repeat;
+    background-size: cover;
     position: relative;
     margin-bottom: 30px;
     @media (max-width: $screen-md) {
@@ -218,14 +219,20 @@ section {
   &#catalog {
     color: $global-color-second;
     margin-top: 30px;
+    @media (max-width: $screen-md) {
+      margin: 0;
+    }
+
     .title {
       margin-bottom: 35px;
       font-size: 45px;
       line-height: 54px;
       font-family: $global-font-family-cormorant;
-      @media (max-width: $screen-md-min) {
+      @media (max-width: $screen-md) {
+        text-align: center;
         font-size: 24px;
         line-height: 59px;
+        margin: 0;
       }
     }
 
@@ -236,6 +243,11 @@ section {
       list-style: none;
 
       &-parent {
+        @media (max-width: $screen-md) {
+          //text-align: center;
+          //border: 1px solid #333;
+        }
+
         &-href {
           color: $global-color-second;
           text-decoration: underline;

@@ -1,6 +1,11 @@
 
 // window._ = require('lodash');
 
+// TODO: полифилы для ie 11
+require("babel-polyfill");
+require("custom-event-polyfill");
+require("classlist-polyfill");
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This

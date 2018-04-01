@@ -43,6 +43,8 @@
         font-size: 30px;
       }
       &-form{
+        // TODO: фикс ie11
+        max-width: 100%;
 
         .has-error {
           font-size: 0.8rem;

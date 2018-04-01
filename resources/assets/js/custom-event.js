@@ -3,7 +3,10 @@ const elements = document.getElementsByClassName('product-info-title');
 for (let element of elements) {
     element.addEventListener('click', (event) => {
         // Создаем кастомное событие
-        const newEvent = new Event('showProduct', {bubbles: true, cancelable: true});
+        // const newEvent = new Event('showProduct', {bubbles: true, cancelable: true});
+        // TODO: для ie11
+        const newEvent = new CustomEvent('showProduct', {bubbles: true, cancelable: true});
+
         // кидаем событие с нужного элемента
         event.target.dispatchEvent(newEvent);
     });
@@ -17,7 +20,9 @@ for(let catalog of catalogs) {
         // если нажали именно на родительском каталоге
         if(event.target.classList.contains('catalog-list-parent-href')) {
             const ulChild = catalog.getElementsByClassName('catalog-list-child');
-            ulChild[0].classList.toggle('hidden')
+            if(ulChild[0]) {
+                ulChild[0].classList.toggle('hidden');
+            }
         }
     });
     // удаляем класс hidden если попали в дочернюю категорию

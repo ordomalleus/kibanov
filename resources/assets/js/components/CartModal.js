@@ -11,7 +11,7 @@ const customStyles = {
 };
 
 // Путь до картинок
-const pathToImagesProduct = window.location.origin + '/products/images/';
+const pathToImagesProduct = window.location.origin + '/products/images/120x120/';
 
 /**
  * Компонент показа карзины

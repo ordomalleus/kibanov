@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="text-align-center title">Адресса магазинов</div>
+                <div class="text-align-center title">Адреса магазинов</div>
             </div>
             <div class="col-md-12">
                 <div class="address-container">
@@ -16,7 +16,7 @@
                         <br/>+7 (351) 265 44 73
                     </div>
                     <div class="address-content">
-                        г. Санкт-Петербург,  ул. Крылова, 4
+                        г. Санкт-Петербург,  ул. Крылова, 2
                         <br/>+7 911 971 63 44
                     </div>
                     <div class="address-content">

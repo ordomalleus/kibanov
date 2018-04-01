@@ -1,4 +1,42 @@
 let mix = require('laravel-mix');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+// Оптимизация картинок
+// https://github.com/JeffreyWay/laravel-mix/issues/1192
+const ImageminPlugin     = require('imagemin-webpack-plugin').default;
+const CopyWebpackPlugin  = require('copy-webpack-plugin');
+const imageminMozjpeg    = require('imagemin-mozjpeg');
+mix.webpackConfig({
+    plugins: [
+        //Compress images
+        new CopyWebpackPlugin([{
+            from: 'resources/assets/img', // FROM
+            to: 'img/', // TO
+        }]),
+        new ImageminPlugin({
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            pngquant: {
+                quality: '80'
+            },
+            plugins: [
+                imageminMozjpeg({
+                    quality: 65,
+                    //Set the maximum memory to use in kbytes
+                    maxMemory: 1000 * 200
+                })
+            ]
+        })
+    ],
+});
+
+// бандл анализатор запус "npm run devAnalyzer"
+if(process.env.NODE_ENV === 'developmentAnalyzer') {
+    mix.webpackConfig({
+        plugins: [
+            new BundleAnalyzerPlugin()
+        ],
+    });
+}
 
 /*
  |--------------------------------------------------------------------------
@@ -14,4 +52,6 @@ let mix = require('laravel-mix');
 mix.react('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
-mix.copy(['resources/assets/img/**.*'], 'public/img');
+
+// TODO: переделал картинки с оптимизацией на плагины выше
+// mix.copy(['resources/assets/img/**.*'], 'public/img');

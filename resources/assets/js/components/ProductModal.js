@@ -13,7 +13,7 @@ const customStyles = {
 };
 
 // Путь до картинок
-const pathToImagesProduct = window.location.origin + '/products/images/';
+const pathToImagesProduct = window.location.origin + '/products/images/_x400/';
 
 /**
  * Компонент показа еденичного товара

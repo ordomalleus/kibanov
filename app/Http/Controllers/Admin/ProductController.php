@@ -10,6 +10,7 @@ use Session;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController extends Controller
 {
@@ -60,7 +61,28 @@ class ProductController extends Controller
         $image = $request->img_name;
         if ($image) {
             $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // сохраняем оригинал
             $image->move('products/images', $imageName);
+
+            // Копируем и меням под 120x120
+            copy(public_path() . '/products/images/' . $imageName,
+                public_path() . '/products/images/120x120/' . $imageName);
+            Image::make(public_path() . '/products/images/120x120/' . $imageName)->fit(120, 120)->save();
+
+            // Копируем и меням под 400x400
+            copy(public_path() . '/products/images/' . $imageName,
+                public_path() . '/products/images/400x400/' . $imageName);
+            Image::make(public_path() . '/products/images/400x400/' . $imageName)->fit(400, 400)->save();
+
+            // Копируем и меням под _x400 (макс длина 600px высота автоматом)
+            copy(public_path() . '/products/images/' . $imageName,
+                public_path() . '/products/images/_x400/' . $imageName);
+            Image::make(public_path() . '/products/images/_x400/' . $imageName)
+                ->resize(600, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save();
+
             $formInput['img_name'] = $imageName;
         }
 
@@ -160,11 +182,36 @@ class ProductController extends Controller
         $image = $request->img_name;
         if ($image) {
             $imageName = time() . '_' . $image->getClientOriginalName();
+            // сохраняем оригинальное изображение
             $image->move('products/images', $imageName);
-            $formInput['img_name'] = $imageName;
-            // удалим старый файл
-            unlink(public_path('products/images/' . $product->img_name));
 
+            // Копируем и меням под 120x120
+            copy(public_path() . '/products/images/' . $imageName,
+                public_path() . '/products/images/120x120/' . $imageName);
+            Image::make(public_path() . '/products/images/120x120/' . $imageName)->fit(120, 120)->save();
+            // Копируем и меням под 400x400
+            copy(public_path() . '/products/images/' . $imageName,
+                public_path() . '/products/images/400x400/' . $imageName);
+            Image::make(public_path() . '/products/images/400x400/' . $imageName)->fit(400, 400)->save();
+            // Копируем и меням под _x400 (макс длина 600px высота автоматом)
+            copy(public_path() . '/products/images/' . $imageName,
+                public_path() . '/products/images/_x400/' . $imageName);
+            Image::make(public_path() . '/products/images/_x400/' . $imageName)
+                ->resize(600, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save();
+
+            try {
+                // удалим старые файлы
+                unlink(public_path('products/images/' . $product->img_name));
+                unlink(public_path('products/images/120x120/' . $product->img_name));
+                unlink(public_path('products/images/400x400/' . $product->img_name));
+                unlink(public_path('products/images/_x400/' . $product->img_name));
+            } catch (\Exception $e) {
+                // TODO: как то обработать или нет
+            }
+
+            $formInput['img_name'] = $imageName;
         }
 
         $product->update($formInput);

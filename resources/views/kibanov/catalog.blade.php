@@ -36,18 +36,18 @@
                             @else
                                 {{--TODO: кастыль для Аксессуаров, подумать и исправить--}}
                                 @if($category->id === 31)
-                                    <li calss="catalog-list-parent">
+                                    <li class="catalog-list-parent">
                                         <a class="catalog-list-parent-href" href="{{url('catalog', $category->id)}}">{{$category->name}}</a>
                                     </li>
                                 @else
-                                    <li calss="catalog-list-parent">
+                                    <li class="catalog-list-parent">
                                         <span class="catalog-list-parent-href">{{$category->name}}</span>
                                     </li>
                                 @endif
                             @endif
                         @endforeach
                     </ul>
-                    <div class="question-catalog">
+                    <div class="question-catalog hidden-sm hidden-xs">
                         <div class="question-catalog-title">как выбирать танцевальную обувь</div>
                         <p class="question-catalog-text">
                             Несколько советов, которые помогут облегчить выбор:
@@ -76,7 +76,7 @@
                                     <div class="product">
                                         <div class="product-img">
         {{--                                <div class="product-img" style="background-image: url('{{url('products/images', $product->img_name)}}')">--}}
-                                            <img src="{{url('products/images', $product->img_name)}}">
+                                            <img src="{{url('products/images/400x400/', $product->img_name)}}">
                                         </div>
                                         <div class="product-info">
                                             <p class="product-info-title" data-id-product="{{$product->id}}">{{$product->name}}</p>

@@ -33,7 +33,13 @@ Route::group(['prefix' => 'orders', 'middleware' => []], function (){
 // Админ панель
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function (){
     Route::get('/', 'Admin\AdminController@index')->name('admin.index');
+
+
+    // Работа по экспорту файлов
     Route::get('/files', 'Admin\AdminController@files')->name('admin.files');
+    Route::get('/exports/clothes', 'Admin\AdminController@exportClothesView')->name('admin.exports.clothes');
+    Route::post('/exports/clothes/begin', 'Admin\AdminController@exportClothesBegin')->name('admin.exports.clothes.begin');
+
 
     Route::resource('product', 'Admin\ProductController');
     Route::post('product/add-attribute/{id}', 'Admin\ProductController@addAttribute');
