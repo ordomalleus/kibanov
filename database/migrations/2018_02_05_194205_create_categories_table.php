@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('parent_id')->nullable();
+            $table->integer('priority')->nullable()->default(0);
             $table->timestamps();
         });
     }

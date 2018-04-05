@@ -14,7 +14,7 @@
         </ul>
     </div>
 
-    {{--Добавление товара--}}
+    {{--Добавление категорию--}}
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCategory">
         Добавить категорию
     </button>
@@ -37,6 +37,11 @@
                             {{ Form::label('parent_id', 'Родитель категории') }}
                             {{ Form::select('parent_id', collect(['нет' => 'null'])->merge($categories->pluck('id', 'name'))->flip(), null, ['class' => 'form-control']) }}
                         </div>
+
+                        <div class="form-group">
+                            {{ Form::label('priority', 'Порядковый номер') }}
+                            {{ Form::number('priority', 0, ['class' => 'form-control']) }}
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
@@ -50,8 +55,47 @@
     {{--Показ товаров в категории--}}
     @if(!empty($products))
         <section>
-            <h5>Товар</h5>
+            <h4>Категория: {{$selectCategory->name}}</h4>
 
+            {{--Редактировать категорию--}}
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCategoryEdit">
+                Редактировать категорию
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="modalCategoryEdit" tabindex="-1" role="dialog" aria-labelledby="modalCategoryEditLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        {!! Form::open(['route' => ['category.update', $selectCategory->id], 'method' => 'put']) !!}
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modalCategoryLabel">Добавление категории</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                {{ Form::label('name', 'Название категории') }}
+                                {{ Form::text('name', $selectCategory->name, ['class' => 'form-control']) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label('parent_id', 'Родитель категории') }}
+                                {{ Form::select('parent_id', collect(['нет' => 'null'])->merge($categories->pluck('id', 'name'))->flip(), $selectCategory->parent_id, ['class' => 'form-control']) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label('priority', 'Порядковый номер') }}
+                                {{ Form::number('priority', $selectCategory->priority, ['class' => 'form-control']) }}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+
+            <h5>Товар</h5>
             <table class="table table-hover">
                 <thead>
                     <tr>

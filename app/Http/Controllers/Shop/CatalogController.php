@@ -41,9 +41,9 @@ class CatalogController extends Controller
 
         // получаем категории с вложенными детьми 1 уровня
         // TODO: узнать нужно ли делать рекурсию для детей (если вложеность будет более чем 1 уровня)
-        $categories = Category::where('parent_id', '=', null)->get();
+        $categories = Category::where('parent_id', '=', null)->orderBy('priority')->get();
         $categories->transform(function ($item) {
-            $child = Category::where('parent_id', '=', $item->id)->get();
+            $child = Category::where('parent_id', '=', $item->id)->orderBy('priority')->get();
             $item->child = $child->count() > 0 ? $child : null;
             return $item;
         });

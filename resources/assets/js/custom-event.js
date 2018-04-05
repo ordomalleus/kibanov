@@ -53,7 +53,7 @@ const mapArr = [
         id: 'map-spb',
         centerMap: [59.932624, 30.333821],
         centerPopup: [59.932624, 30.333821],
-        popupText: 'г. САНКТ-ПЕТЕРБУРГ, ул. Крылова, д. 3',
+        popupText: 'г. САНКТ-ПЕТЕРБУРГ, ул. Крылова, д. 2',
         map: null
     },
     {

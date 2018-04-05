@@ -67,9 +67,11 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-        $products = Category::find($id)->products;
+        $selectCategory = Category::find($id);
 
-        return view('admin.category.index', compact(['categories', 'products']));
+        $products = $selectCategory->products;
+
+        return view('admin.category.index', compact(['categories', 'selectCategory', 'products']));
     }
 
     /**
@@ -92,7 +94,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $formInput = $request->except('parent_id');
+
+        // Если значение не строковый 'null' то добавим
+        // TODO: переделать на более понятное (смущает строковый null)
+        if ($request->parent_id !== 'null') {
+            $formInput['parent_id'] = $request->parent_id;
+        } else {
+            $formInput['parent_id'] = null;
+        }
+
+        $selectCategory = Category::find($id);
+        $selectCategory->update($formInput);
+
+        Session::flash('message', 'Категория изменена');
+
+        return back();
     }
 
     /**
