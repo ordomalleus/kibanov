@@ -37,7 +37,7 @@ class OrdersController extends Controller
         $order = [
             'orders_info_id' => json_encode($frontOrder['ordersInfoId']),
             'orders_products_id' => $cart->toJson(),
-            'delivery' => $frontOrder['delivery'] ? 1 : 0,
+            'delivery' => $frontOrder['delivery'],
             'order_status_id' => null,
             'unique_id' => Hash::make($frontOrder['ordersInfoId']['fio'] . '_' . time())
         ];

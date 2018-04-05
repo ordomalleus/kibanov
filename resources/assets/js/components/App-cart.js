@@ -142,16 +142,16 @@ export class AppCart extends Component {
     /**
      * Сработает при валидной форме и при нажатии подтверлдить заказ
      * @param formControl - данные с формы
+     * @param delivery - какая форма выбрана
      * @returns {Promise.<void>}
      */
-    async sendCheckout(formControl) {
+    async sendCheckout(formControl, delivery) {
         // меняем значение без вызова рендера
         this.state.modalCheckoutOrderMessage = null;
 
         const order = {
             ordersInfoId: formControl,
-            // TODO: добавить флаг при выборе на форме
-            delivery: true
+            delivery: delivery
         };
 
         try {
@@ -166,6 +166,7 @@ export class AppCart extends Component {
             this.setState({modalCheckoutOrderMessage: false});
         }
 
+        // скрываем сообщение через 5 сек
         setTimeout(() => {
             this.setState({modalCheckoutOrderMessage: null})
         }, 5000)

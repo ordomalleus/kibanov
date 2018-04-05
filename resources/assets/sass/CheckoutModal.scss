@@ -42,9 +42,69 @@
         text-align: center;
         font-size: 30px;
       }
+      &-select {
+
+        &-group {
+          display: inline-flex;
+          align-items: center;
+          cursor: pointer;
+          margin-right: 10px;
+
+          &-flag {
+            box-sizing: border-box;
+            display: inline-block;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-right: 5px;
+
+            &-outer-circle {
+              box-sizing: border-box;
+              height: 20px;
+              left: 0;
+              position: absolute;
+              top: 0;
+              transition: border-color ease 280ms;
+              width: 20px;
+              border-width: 2px;
+              border-style: solid;
+              border-radius: 50%;
+              border-color: rgba(0,0,0,.54);
+            }
+            &-inner-circle {
+              border-radius: 50%;
+              box-sizing: border-box;
+              height: 20px;
+              left: 0;
+              position: absolute;
+              top: 0;
+              transition: transform ease 280ms,background-color ease 280ms;
+              width: 20px;
+              transform: scale(.001);
+              background-color: #ff4081;
+            }
+
+            &.select {
+              .modal-checkout-select-group-flag {
+                &-outer-circle {
+                  border-color: #ff4081;
+                }
+                &-inner-circle {
+                  transform: scale(.5);
+                }
+              }
+            }
+          }
+          &-name {
+            display: inline-block;
+          }
+        }
+      }
       &-form{
         // TODO: фикс ie11
         max-width: 100%;
+        width: 100%;
 
         .has-error {
           font-size: 0.8rem;
@@ -62,13 +122,14 @@
           }
 
           &-one {
-            & label {
+            & label, & .label-form {
               width: 100%;
+              margin-bottom: 5px;
               font-weight: normal;
               color: transparentize($global-color-second, 0.5);
             }
 
-            & input {
+            & input, & select {
               width: 100%;
               color: $global-color-second;
               min-height: 50px;

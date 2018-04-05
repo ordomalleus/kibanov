@@ -18,6 +18,23 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
+                @if($order->delivery === 0)
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Значение</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><th>Ф.И.О.</th><td>{{json_decode($order->orders_info_id)->fio}}</td></tr>
+                        <tr><th>Магазин доставки</th><td>{{json_decode($order->orders_info_id)->city}}</td></tr>
+                        <tr><th>E-mail</th><td>{{json_decode($order->orders_info_id)->mail}}</td></tr>
+                        <tr><th>Контактный телефон</th><td>{{json_decode($order->orders_info_id)->phone}}</td></tr>
+                        <tr><th>Комментарий</th><td>{{json_decode($order->orders_info_id)->comment}}</td></tr>
+                        </tbody>
+                    </table>
+                @endif
                 @if($order->delivery === 1)
                     <table class="table table-bordered">
                         <thead>
