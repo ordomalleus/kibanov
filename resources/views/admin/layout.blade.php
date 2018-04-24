@@ -35,6 +35,7 @@
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+{{--<script src="{{ asset('js/admin/admin.js') }}"></script>--}}
 <script>
     $(document).ready(function () {
         $(".submenu > a").click(function (e) {

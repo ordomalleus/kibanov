@@ -38,7 +38,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     // Работа по экспорту файлов
     Route::get('/files', 'Admin\AdminController@files')->name('admin.files');
     Route::get('/exports/clothes', 'Admin\AdminController@exportClothesView')->name('admin.exports.clothes');
+    // получаем экспорт одежды
     Route::post('/exports/clothes/begin', 'Admin\AdminController@exportClothesBegin')->name('admin.exports.clothes.begin');
+    // получаем уникальные значения размера одежды
+    Route::get('/exports/clothes/size', 'Admin\AdminController@getAllClothesAttributesSize')->name('admin.exports.clothes.size');
+    // получаем уникальные значения цвета одежды
+    Route::get('/exports/clothes/color', 'Admin\AdminController@getAllClothesAttributesColor')->name('admin.exports.clothes.color');
+    // получаем экспорт обуви
+    Route::get('/exports/shoes/begin', 'Admin\AdminController@exportShoesBegin')->name('admin.exports.shoes.begin');
+    // получаем уникальные значения размера обуви
+    Route::get('/exports/shoes/size', 'Admin\AdminController@getAllShoesAttributesSize')->name('admin.exports.shoes.size');
+    // получаем уникальные значения цвета обуви
+    Route::get('/exports/shoes/color', 'Admin\AdminController@getAllShoesAttributesColor')->name('admin.exports.shoes.color');
+    // получаем уникальные значения полноты обуви
+    Route::get('/exports/shoes/volume', 'Admin\AdminController@getAllShoesAttributesVolume')->name('admin.exports.shoes.volume');
+    // получаем уникальные значения жескости обуви
+    Route::get('/exports/shoes/hardness', 'Admin\AdminController@getAllShoesAttributesHardness')->name('admin.exports.shoes.hardness');
 
 
     Route::resource('product', 'Admin\ProductController');
