@@ -17,6 +17,7 @@ class CreateAttributesDirectoryValuesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('value')->nullable();
+            $table->string('title')->nullable();
             $table->string('type');
             $table->timestamps();
         });

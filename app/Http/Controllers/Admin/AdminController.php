@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Model\Product;
 use App\Model\Category;
+use App\Model\AttributesDirectoryValue;
+use App\Model\ProductGroupAttributes;
 use Illuminate\View\View;
 
 class AdminController extends Controller
@@ -69,7 +71,8 @@ class AdminController extends Controller
         $formInput = $request->export_name;
 
         // получаем одежду
-        $data = \Excel::selectSheetsByIndex(0)->load(storage_path('app/public/baza.xls'), function ($reader){
+        $data = \Excel::selectSheetsByIndex(0)->load(storage_path('app/public/baza.xls'), function ($reader) {
+            $reader->takeRows(500);
             $result = $reader->all()->toArray();
         })->get();
 
@@ -87,7 +90,7 @@ class AdminController extends Controller
             'size' => []
         ];
         foreach ($data as $row => $val) {
-            if ($val['Наименование'] !== $tempName) {
+            if (trim($val['Наименование']) !== $tempName) {
                 // сохраним временный объект в результирующий массив и занулим массивы
                 // TODO: кастыльное решение так то
                 if ($row !== 0) {
@@ -96,21 +99,21 @@ class AdminController extends Controller
                     $tempObj['size'] = [];
                 }
 
-                $tempName = $val['Наименование'];
+                $tempName = trim($val['Наименование']);
 
-                $tempObj['name'] = $val['Наименование'];
+                $tempObj['name'] = trim($val['Наименование']);
                 $tempObj['price'] = $val['Цена'] === null ? 0 : $val['Цена'];
                 $tempObj['group'] = $val['Группа'];
                 $tempObj['brand'] = $val['Бренд'];
                 $tempObj['color'][] = $val['Цвет'];
-                $tempObj['size'][] = $val['Размеры'] . ' - ' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
+                $tempObj['size'][] = $val['Размеры'] . ' --- ' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
             } else {
                 // проверяем есть ли цвет в массиве
                 if (!in_array($val['Цвет'], $tempObj['color'])) {
                     $tempObj['color'][] = $val['Цвет'];
                 }
                 // проверяем есть ли размер и высчитаем его цену
-                $sizeString = $val['Размеры'] . ' - ' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
+                $sizeString = $val['Размеры'] . ' --- ' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
                 if (!in_array($sizeString, $tempObj['size'])) {
                     $tempObj['size'][] = $sizeString;
                 }
@@ -124,6 +127,7 @@ class AdminController extends Controller
         $dd = [];
         // создаем модели
         foreach ($result as $value) {
+
             // заполняем описпние
             $description = '';
             foreach ($value['color'] as $val) {
@@ -142,11 +146,35 @@ class AdminController extends Controller
                 'show' => 1,
                 'brand' => $value['brand'],
                 'price' => $value['price'],
-                'category_id' => $this->getCategory($value['group'])
+                'category_id' => $this->getCategory($value['group']),
+                'AttributesDirectoryValue' => $value['AttributesDirectoryValue']
             ];
-            Product::create($arr);
+            $newProduct = Product::create($arr);
             $dd[] = $arr;
+
+            //Создаем Атрибут товара - Цвет
+            $attrProductID = ProductGroupAttributes::create([
+                'name' => $value['name'] . '___Цвет',
+                'attributes_directories_id' => 1,
+                'type' => 'Цвет'
+            ]);
+
+            // Создаем значения цвета атрибуты
+            foreach ($value['color'] as $val) {
+                $AttributesDirectoryValue = AttributesDirectoryValue::where('name', '=', $val)->get()[0];
+                if ($AttributesDirectoryValue->type === 'Цвет') {
+                    ProductGroupAttributesValue::create([
+                        'product_group_attributes_id' => $attrProductID->id,
+                        'attributes_directory_values_id' => $AttributesDirectoryValue->id,
+                        'price' => 0
+                    ]);
+                }
+            }
+
+
         }
+
+        dd($dd);
 
         return $dd;
     }
@@ -184,7 +212,7 @@ class AdminController extends Controller
     public function getAllClothesAttributesSize()
     {
         // получаем одежду
-        $data = \Excel::selectSheetsByIndex(0)->load(storage_path('app/public/baza.xls'), function ($reader){
+        $data = \Excel::selectSheetsByIndex(0)->load(storage_path('app/public/baza.xls'), function ($reader) {
             $result = $reader->all()->toArray();
         })->get();
 
@@ -206,7 +234,7 @@ class AdminController extends Controller
     public function getAllClothesAttributesColor()
     {
         // получаем одежду
-        $data = \Excel::selectSheetsByIndex(0)->load(storage_path('app/public/baza.xls'), function ($reader){
+        $data = \Excel::selectSheetsByIndex(0)->load(storage_path('app/public/baza.xls'), function ($reader) {
             $result = $reader->all()->toArray();
         })->get();
 
@@ -231,7 +259,7 @@ class AdminController extends Controller
         $formInput = $request->export_name;
 
         // получаем одежду
-        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader){
+        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader) {
             $result = $reader->all()->toArray();
         })->get();
 
@@ -351,7 +379,7 @@ class AdminController extends Controller
     public function getAllShoesAttributesSize()
     {
         // получаем одежду
-        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader){
+        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader) {
             $result = $reader->all()->toArray();
         })->get();
 
@@ -373,7 +401,7 @@ class AdminController extends Controller
     public function getAllShoesAttributesColor()
     {
         // получаем одежду
-        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader){
+        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader) {
             $result = $reader->all()->toArray();
         })->get();
 
@@ -394,7 +422,7 @@ class AdminController extends Controller
     public function getAllShoesAttributesVolume()
     {
         // получаем одежду
-        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader){
+        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader) {
             $result = $reader->all()->toArray();
         })->get();
 
@@ -415,7 +443,7 @@ class AdminController extends Controller
     public function getAllShoesAttributesHardness()
     {
         // получаем одежду
-        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader){
+        $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader) {
             $result = $reader->all()->toArray();
         })->get();
 
