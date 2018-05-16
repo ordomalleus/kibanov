@@ -11,7 +11,7 @@ class ProductGroupAttributesValue extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'product_group_attributes_id', 'attributes_directory_values_id', 'price'
+        'product_group_attributes_id', 'attributes_directory_values_id', 'price'
     ];
 
     /**

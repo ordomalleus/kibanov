@@ -1,20 +1,29 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-// Функция сортировки (ставит в начле если есть: Размер -> Цвет -> все остальное )
+// Функция сортировки (ставит в начле если есть: Размер(списком) -> Цвет(списком) -> все остальное )
 const sort = (a, b) => {
-    if (a.product_group_attributes.type === 'Размер' && b.product_group_attributes.type === 'Цвет') {
+    if ((a.product_group_attributes.type === 'Размер одежды'
+            || a.product_group_attributes.type === 'Размер одежды списком')
+        && (b.product_group_attributes.type === 'Цвет'
+            || b.product_group_attributes.type === 'Цвет списком')) {
         return -1;
     }
-    if (a.product_group_attributes.type === 'Цвет' && b.product_group_attributes.type === 'Размер') {
+    if ((a.product_group_attributes.type === 'Цвет'
+            || a.product_group_attributes.type === 'Цвет списком')
+        && (b.product_group_attributes.type === 'Размер одежды'
+            || b.product_group_attributes.type === 'Размер одежды списком')) {
         return 1;
     }
-    if (a.product_group_attributes.type === 'Размер') {
+    if (a.product_group_attributes.type === 'Размер одежды'
+        || a.product_group_attributes.type === 'Размер одежды') {
         return -1;
     }
-    if (a.product_group_attributes.type === 'Цвет') {
+    if (a.product_group_attributes.type === 'Цвет'
+        || a.product_group_attributes.type === 'Цвет списком') {
         return -1;
     }
-    if (b.product_group_attributes.type === 'Цвет') {
+    if (b.product_group_attributes.type === 'Цвет'
+        || b.product_group_attributes.type === 'Цвет списком') {
         return 1;
     }
     return a - b;
@@ -32,19 +41,19 @@ export default class ProductAttributes extends Component {
         this.state = {
             // сортируем артирбуты и добовляем новые поля
             attributes: [...this.props.attributes]
-                .sort(sort)
-                .map((val) => {
-                    const newAttrVal = val.product_group_attributes.product_group_attributes_value.map((valAttr, i) => {
-                        // устанавливаем у 1 элемента выбор
-                        const select = i === 0 ? true : false;
-                        return {...valAttr, select}
-                    });
-                    // заменяем масив новым
-                    // TODO: найти лучше решение
-                    val.product_group_attributes.product_group_attributes_value = newAttrVal;
+            .sort(sort)
+            .map((val) => {
+                const newAttrVal = val.product_group_attributes.product_group_attributes_value.map((valAttr, i) => {
+                    // устанавливаем у 1 элемента выбор
+                    const select = i === 0 ? true : false;
+                    return { ...valAttr, select }
+                });
+                // заменяем масив новым
+                // TODO: найти лучше решение
+                val.product_group_attributes.product_group_attributes_value = newAttrVal;
 
-                    return val;
-                })
+                return val;
+            })
         };
 
         // Устанаовим первичные значения
@@ -61,9 +70,9 @@ export default class ProductAttributes extends Component {
                         ...val, product_group_attributes: {
                             ...val.product_group_attributes,
                             product_group_attributes_value: val.product_group_attributes.product_group_attributes_value
-                                .map((attrVal, iAtVal) => {
-                                    return {...attrVal, select: iAtVal === iAttrVal ? true : false};
-                                })
+                            .map((attrVal, iAtVal) => {
+                                return { ...attrVal, select: iAtVal === iAttrVal ? true : false };
+                            })
                         }
                     }
                 }
@@ -81,9 +90,11 @@ export default class ProductAttributes extends Component {
         const groupAttributesValue = val.product_group_attributes.product_group_attributes_value;
 
         switch (val.product_group_attributes.type) {
-            case 'Размер':
+            case 'Размер одежды':
+            case 'Размер обуви':
                 return <div key={val.id} className="product-attributes-container">
-                    <p className="product-attributes-container-name">{groupAttributes.type}</p>
+                    {/*<p className="product-attributes-container-name">{groupAttributes.type}</p>*/}
+                    <p className="product-attributes-container-name">Размер</p>
                     <ul className="product-attributes-container-ul product-attributes-container-size">
                         {groupAttributesValue.map((attrVal, iAttrVal) => {
                             return <li key={attrVal.id}
@@ -107,11 +118,12 @@ export default class ProductAttributes extends Component {
                             return <li key={attrVal.id}
                                        onClick={this.reselectAttribute.bind(this, iVal, iAttrVal)}
                                        className={'product-attributes-container-li' +
-                                       (attrVal.select ? ' product-attributes-container-li-select' : '')}>
+                                       (attrVal.select ? ' product-attributes-container-li-select' : '')}
+                                       title={attrVal.attributes_directory_value.name}>
                                 <span
                                     className='product-attributes-container-li-val'>
                                     <span
-                                        style={{backgroundColor: attrVal.attributes_directory_value.value}}
+                                        style={{ backgroundColor: attrVal.attributes_directory_value.value }}
                                         className='product-attributes-container-li-val-color'
                                     />
                                 </span>
@@ -120,8 +132,24 @@ export default class ProductAttributes extends Component {
                     </ul>
                 </div>;
             default:
+                const typeString = (type) => {
+                    let result = '';
+                    switch (type) {
+                        case 'Цвет списком':
+                            result = 'Цвет';
+                            break;
+                        case 'Размер одежды списком':
+                            result = 'Размер';
+                            break;
+                        default:
+                            result = type
+                    }
+                    return result;
+                };
+
                 return <div key={val.id} className="product-attributes-container">
-                    <p className="product-attributes-container-name">{groupAttributes.type}</p>
+                    {/*<p className="product-attributes-container-name">{groupAttributes.type}</p>*/}
+                    <p className="product-attributes-container-name">{typeString(groupAttributes.type)}</p>
                     <ul className="product-attributes-container-ul">
                         {groupAttributesValue.map((attrVal, iAttrVal) => {
                             return <li key={attrVal.id}

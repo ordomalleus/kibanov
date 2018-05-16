@@ -10,6 +10,8 @@ use App\Model\Product;
 use App\Model\Category;
 use App\Model\AttributesDirectoryValue;
 use App\Model\ProductGroupAttributes;
+use App\Model\ProductAttributes;
+use App\Model\ProductGroupAttributesValue;
 use Illuminate\View\View;
 
 class AdminController extends Controller
@@ -72,7 +74,7 @@ class AdminController extends Controller
 
         // получаем одежду
         $data = \Excel::selectSheetsByIndex(0)->load(storage_path('app/public/baza.xls'), function ($reader) {
-            $reader->takeRows(500);
+//            $reader->takeRows(500);
             $result = $reader->all()->toArray();
         })->get();
 
@@ -106,14 +108,14 @@ class AdminController extends Controller
                 $tempObj['group'] = $val['Группа'];
                 $tempObj['brand'] = $val['Бренд'];
                 $tempObj['color'][] = $val['Цвет'];
-                $tempObj['size'][] = $val['Размеры'] . ' --- ' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
+                $tempObj['size'][] = $val['Размеры'] . '---' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
             } else {
                 // проверяем есть ли цвет в массиве
                 if (!in_array($val['Цвет'], $tempObj['color'])) {
                     $tempObj['color'][] = $val['Цвет'];
                 }
                 // проверяем есть ли размер и высчитаем его цену
-                $sizeString = $val['Размеры'] . ' --- ' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
+                $sizeString = $val['Размеры'] . '---' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
                 if (!in_array($sizeString, $tempObj['size'])) {
                     $tempObj['size'][] = $sizeString;
                 }
@@ -146,32 +148,78 @@ class AdminController extends Controller
                 'show' => 1,
                 'brand' => $value['brand'],
                 'price' => $value['price'],
-                'category_id' => $this->getCategory($value['group']),
-                'AttributesDirectoryValue' => $value['AttributesDirectoryValue']
+                'category_id' => $this->getCategory($value['group'])
             ];
             $newProduct = Product::create($arr);
             $dd[] = $arr;
 
-            //Создаем Атрибут товара - Цвет
-            $attrProductID = ProductGroupAttributes::create([
-                'name' => $value['name'] . '___Цвет',
-                'attributes_directories_id' => 1,
-                'type' => 'Цвет'
-            ]);
+            // ==================================Атрибут_Цвет=================================
 
-            // Создаем значения цвета атрибуты
-            foreach ($value['color'] as $val) {
-                $AttributesDirectoryValue = AttributesDirectoryValue::where('name', '=', $val)->get()[0];
-                if ($AttributesDirectoryValue->type === 'Цвет') {
-                    ProductGroupAttributesValue::create([
-                        'product_group_attributes_id' => $attrProductID->id,
-                        'attributes_directory_values_id' => $AttributesDirectoryValue->id,
-                        'price' => 0
-                    ]);
+            if ($value['color'][0]) {
+                //Создаем Атрибут товара - Цвет
+                $attrProductID = ProductGroupAttributes::create([
+                    'name' => $value['name'] . '___Цвет',
+                    'attributes_directories_id' => 1,
+                    'type' => 'Цвет'
+                ]);
+                // Создаем значения цвета атрибуты
+                foreach ($value['color'] as $val) {
+                    $AttributesDirectoryValue = AttributesDirectoryValue::where('name', '=', $val)->first();
+                    if ($AttributesDirectoryValue && $AttributesDirectoryValue->type === 'Цвет') {
+                        ProductGroupAttributesValue::create([
+                            'product_group_attributes_id' => $attrProductID->id,
+                            'attributes_directory_values_id' => $AttributesDirectoryValue->id,
+                            'price' => 0
+                        ]);
+                    }
                 }
+                // Создаем Привязку товара к атрибуту
+                ProductAttributes::create([
+                    'product_id' => $newProduct->id,
+                    'product_group_attributes_id' => $attrProductID->id
+                ]);
             }
 
+            // ==================================Атрибут_Размер=================================
 
+            // Узнаем тип размера: 'Размер одежды' или 'Размер одежды списком'
+            if ($value['size'][0]) {
+                $explodeSize = explode('---', $value['size'][0]);
+                if ($explodeSize[0]) {
+                    $arrrBd = AttributesDirectoryValue::where('name', '=', $explodeSize[0])->first();
+                    if ($arrrBd) {
+                        $firstSize = $arrrBd;
+                        //Создаем Атрибут товара - Размер
+                        $attrProductIdSize = ProductGroupAttributes::create([
+                            'name' => $value['name'] . '___Размер',
+                            'attributes_directories_id' => $firstSize->type === 'Размер одежды' ? 3 : 4,
+                            'type' => $firstSize->type
+                        ]);
+                        // Создаем значения цвета атрибуты
+                        foreach ($value['size'] as $val) {
+                            // Разбиваем значение на 2
+                            $valSizePrice = explode('---', $val);
+
+                            if ($valSizePrice[0]) {
+
+                                $AttributesDirectoryValue = AttributesDirectoryValue::where('name', '=', $valSizePrice[0])->get()[0];
+
+                                ProductGroupAttributesValue::create([
+                                    'product_group_attributes_id' => $attrProductIdSize->id,
+                                    'attributes_directory_values_id' => $AttributesDirectoryValue->id,
+                                    'price' => $valSizePrice[1]
+                                ]);
+
+                            }
+                        }
+                        // Создаем Привязку товара к атрибуту
+                        ProductAttributes::create([
+                            'product_id' => $newProduct->id,
+                            'product_group_attributes_id' => $attrProductIdSize->id
+                        ]);
+                    }
+                }
+            }
         }
 
         dd($dd);
@@ -201,6 +249,7 @@ class AdminController extends Controller
             47 => 'Одежда для разогрева',
             48 => 'Нижнее бельё',
             49 => 'Комбинезоны',
+            50 => 'Одежда для бальных танцев'
         ];
 
         return array_search($value, $arr);
@@ -218,7 +267,7 @@ class AdminController extends Controller
 
         $size = [];
         foreach ($data as $row => $val) {
-            if (!in_array($val['Размеры'], $size)) {
+            if (!in_array($val['Размеры'], $size, true)) {
                 $size[] = $val['Размеры'];
             }
         }
@@ -240,7 +289,7 @@ class AdminController extends Controller
 
         $color = [];
         foreach ($data as $row => $val) {
-            if (!in_array($val['Цвет'], $color)) {
+            if (!in_array($val['Цвет'], $color, true)) {
                 $color[] = $val['Цвет'];
             }
         }
@@ -260,6 +309,7 @@ class AdminController extends Controller
 
         // получаем одежду
         $data = \Excel::selectSheetsByIndex(1)->load(storage_path('app/public/baza.xls'), function ($reader) {
+//            $reader->takeRows(500);
             $result = $reader->all()->toArray();
         })->get();
 
@@ -299,7 +349,7 @@ class AdminController extends Controller
                 $tempObj['group'] = $val['Группа'];
                 $tempObj['brand'] = $val['Бренд'];
                 $tempObj['color'][] = $val['Цвет'];
-                $tempObj['size'][] = $val['Размеры'] . ' - ' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
+                $tempObj['size'][] = $val['Размеры'] . '---' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
                 if ($val['Полнота'] !== null) {
                     $tempObj['volume'][] = $val['Полнота'];
                 }
@@ -312,7 +362,7 @@ class AdminController extends Controller
                     $tempObj['color'][] = $val['Цвет'];
                 }
                 // проверяем есть ли размер и высчитаем его цену
-                $sizeString = $val['Размеры'] . ' - ' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
+                $sizeString = $val['Размеры'] . '---' . (($val['Цена'] === null ? $tempObj['price'] : $val['Цена']) - $tempObj['price']);
                 if (!in_array($sizeString, $tempObj['size'])) {
                     $tempObj['size'][] = $sizeString;
                 }
@@ -366,9 +416,138 @@ class AdminController extends Controller
                 'price' => $value['price'],
                 'category_id' => $this->getCategory($value['group'])
             ];
-//            Product::create($arr);
+            $newProduct = Product::create($arr);
             $dd[] = $arr;
+
+            // ==================================Атрибут_Цвет=================================
+//            if ($value['color'][0]) {
+//                $arrrBd = AttributesDirectoryValue::where('name', '=', $value['color'][0])->first();
+//                if ($arrrBd) {
+//                    //Создаем Атрибут товара - Цвет
+//                    $attrProductID = ProductGroupAttributes::create([
+//                        'name' => $value['name'] . '___Цвет',
+//                        'attributes_directories_id' => $arrrBd->type === 'Цвет' ? 1 : 2,
+//                        'type' => $arrrBd->type
+//                    ]);
+//                    // Создаем значения цвета атрибуты
+//                    foreach ($value['color'] as $val) {
+//                        $AttributesDirectoryValue = AttributesDirectoryValue::where('name', '=', $val)->first();
+//                        if ($AttributesDirectoryValue && $AttributesDirectoryValue->type === 'Цвет') {
+//                            ProductGroupAttributesValue::create([
+//                                'product_group_attributes_id' => $attrProductID->id,
+//                                'attributes_directory_values_id' => $AttributesDirectoryValue->id,
+//                                'price' => 0
+//                            ]);
+//                        }
+//                    }
+//                    // Создаем Привязку товара к атрибуту
+//                    ProductAttributes::create([
+//                        'product_id' => $newProduct->id,
+//                        'product_group_attributes_id' => $attrProductID->id
+//                    ]);
+//                }
+//            }
+
+            // ==================================Атрибут_Размер=================================
+            // Узнаем тип размера: 'Размер обуви' или 100500
+//            if ($value['size'][0]) {
+//                $explodeSize = explode('---', $value['size'][0]);
+//                if ($explodeSize[0]) {
+//                    $arrrBd = AttributesDirectoryValue::where('name', '=', $explodeSize[0])->first();
+//                    if ($arrrBd) {
+//                        $firstSize = $arrrBd;
+//                        //Создаем Атрибут товара - Размер
+//                        $attrProductIdSize = ProductGroupAttributes::create([
+//                            'name' => $value['name'] . '___Размер',
+//                            'attributes_directories_id' => $firstSize->type === 'Размер обуви' ? 5 : 100500,
+//                            'type' => $firstSize->type
+//                        ]);
+//                        // Создаем значения размера атрибуты
+//                        foreach ($value['size'] as $val) {
+//                            // Разбиваем значение на 2
+//                            $valSizePrice = explode('---', $val);
+//
+//                            if ($valSizePrice[0]) {
+//
+//                                $AttributesDirectoryValue = AttributesDirectoryValue::where('name', '=', $valSizePrice[0])->first();
+//
+//                                ProductGroupAttributesValue::create([
+//                                    'product_group_attributes_id' => $attrProductIdSize->id,
+//                                    'attributes_directory_values_id' => $AttributesDirectoryValue->id,
+//                                    'price' => $valSizePrice[1]
+//                                ]);
+//
+//                            }
+//                        }
+//                        // Создаем Привязку товара к атрибуту
+//                        ProductAttributes::create([
+//                            'product_id' => $newProduct->id,
+//                            'product_group_attributes_id' => $attrProductIdSize->id
+//                        ]);
+//                    }
+//                }
+//            }
+
+            // ==================================Атрибут_Полнота=================================
+//            if ($value['volume'][0]) {
+//                $arrrBd = AttributesDirectoryValue::where('name', '=', $value['volume'][0])->first();
+//                if ($arrrBd) {
+//                    //Создаем Атрибут товара - Цвет
+//                    $attrProductID = ProductGroupAttributes::create([
+//                        'name' => $value['name'] . '___Полнота',
+//                        'attributes_directories_id' => $arrrBd->type === 'Полнота' ? 6 : 100501,
+//                        'type' => $arrrBd->type
+//                    ]);
+//                    // Создаем значения полноты атрибуты
+//                    foreach ($value['volume'] as $val) {
+//                        $AttributesDirectoryValue = AttributesDirectoryValue::where('name', '=', $val)->first();
+//                        if ($AttributesDirectoryValue) {
+//                            ProductGroupAttributesValue::create([
+//                                'product_group_attributes_id' => $attrProductID->id,
+//                                'attributes_directory_values_id' => $AttributesDirectoryValue->id,
+//                                'price' => 0
+//                            ]);
+//                        }
+//                    }
+//                    // Создаем Привязку товара к атрибуту
+//                    ProductAttributes::create([
+//                        'product_id' => $newProduct->id,
+//                        'product_group_attributes_id' => $attrProductID->id
+//                    ]);
+//                }
+//            }
+
+            // ==================================Атрибут_Жескость=================================
+//            if ($value['hardness'][0]) {
+//                $arrrBd = AttributesDirectoryValue::where('name', '=', $value['hardness'][0])->first();
+//                if ($arrrBd) {
+//                    //Создаем Атрибут товара - Цвет
+//                    $attrProductID = ProductGroupAttributes::create([
+//                        'name' => $value['name'] . '___Жескость',
+//                        'attributes_directories_id' => $arrrBd->type === 'Жескость' ? 7 : 100502,
+//                        'type' => $arrrBd->type
+//                    ]);
+//                    // Создаем значения полноты атрибуты
+//                    foreach ($value['hardness'] as $val) {
+//                        $AttributesDirectoryValue = AttributesDirectoryValue::where('name', '=', $val)->first();
+//                        if ($AttributesDirectoryValue) {
+//                            ProductGroupAttributesValue::create([
+//                                'product_group_attributes_id' => $attrProductID->id,
+//                                'attributes_directory_values_id' => $AttributesDirectoryValue->id,
+//                                'price' => 0
+//                            ]);
+//                        }
+//                    }
+//                    // Создаем Привязку товара к атрибуту
+//                    ProductAttributes::create([
+//                        'product_id' => $newProduct->id,
+//                        'product_group_attributes_id' => $attrProductID->id
+//                    ]);
+//                }
+//            }
         }
+
+        dd($dd);
 
         return $dd;
     }
@@ -385,7 +564,7 @@ class AdminController extends Controller
 
         $size = [];
         foreach ($data as $row => $val) {
-            if (!in_array($val['Размеры'], $size)) {
+            if (!in_array($val['Размеры'], $size, true)) {
                 $size[] = $val['Размеры'];
             }
         }
@@ -407,7 +586,7 @@ class AdminController extends Controller
 
         $color = [];
         foreach ($data as $row => $val) {
-            if (!in_array($val['Цвет'], $color)) {
+            if (!in_array($val['Цвет'], $color, true)) {
                 $color[] = $val['Цвет'];
             }
         }
@@ -428,7 +607,7 @@ class AdminController extends Controller
 
         $color = [];
         foreach ($data as $row => $val) {
-            if ($val['Полнота'] !== null && !in_array($val['Полнота'], $color)) {
+            if ($val['Полнота'] !== null && !in_array($val['Полнота'], $color, true)) {
                 $color[] = $val['Полнота'];
             }
         }
@@ -449,7 +628,7 @@ class AdminController extends Controller
 
         $color = [];
         foreach ($data as $row => $val) {
-            if ($val['Жесткость'] !== null && !in_array($val['Жесткость'], $color)) {
+            if ($val['Жесткость'] !== null && !in_array($val['Жесткость'], $color, true)) {
                 $color[] = $val['Жесткость'];
             }
         }
