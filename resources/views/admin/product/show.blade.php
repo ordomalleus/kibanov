@@ -73,6 +73,11 @@
                         </div>
 
                         <div class="form-group">
+                            {{ Form::label('brand', 'Бренд товара') }}
+                            {{ Form::text('brand', $product->brand, ['class' => 'form-control']) }}
+                        </div>
+
+                        <div class="form-group">
                             {{ Form::label('price', 'Цена') }}
                             {{ Form::text('price', $product->price, ['class' => 'form-control']) }}
                         </div>

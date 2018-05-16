@@ -107,7 +107,7 @@
                 <tbody>
                     @foreach($products as $product)
                         <tr>
-                            <td>{{$product->name}}</td>
+                            <td><a href="{{url('admin/product', $product->id)}}">{{$product->name}}</a></td>
                             <td>{{$product->price}}</td>
                             <td>{{$product->show}}</td>
                         </tr>

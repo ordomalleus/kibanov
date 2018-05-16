@@ -139,6 +139,8 @@ export default class ProductAttributes extends Component {
                             result = 'Цвет';
                             break;
                         case 'Размер одежды списком':
+                        case 'Размер обуви списком':
+                        case 'Размер аксессуаров':
                             result = 'Размер';
                             break;
                         default:
