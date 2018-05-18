@@ -35,7 +35,6 @@ class AdminController extends Controller
             if (count(ProductGroupAttributes::where('id', '=', $attr->product_group_attributes_id)->get()) == 0) {
                 $result[] = $attr->id;
                 ProductAttributes::destroy($result);
-
             }
         }
 
