@@ -26,6 +26,24 @@ class AdminController extends Controller
         return view('admin/layout');
     }
 
+    public function rebuildProductAttributes() {
+        $attrs = ProductAttributes::all();
+
+        $result = [];
+
+        foreach ($attrs as $attr) {
+            if (count(ProductGroupAttributes::where('id', '=', $attr->product_group_attributes_id)->get()) == 0) {
+                $result[] = $attr->id;
+                ProductAttributes::destroy($result);
+
+            }
+        }
+
+        dd($result);
+
+        return 'Ok';
+    }
+
     // Добавляет товар на сайт из файла
     public function files()
     {

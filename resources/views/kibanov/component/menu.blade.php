@@ -20,8 +20,8 @@
                 <div class="nav-menu-basket">
                     <div id="app-cart"></div>
                 </div>
-                <div class="nav-menu-phone hidden-sm hidden-xs"><p>7(495)766-79-10</p>
-                    <p class="mode">Режим работы: 08:00 до 23:00</p>
+                <div class="nav-menu-phone hidden-sm hidden-xs"><p>7(342)212-79-56</p>
+                    <p class="mode">Режим работы: 08:00 мск до 17:00 мск</p>
                 </div>
                 <div class="hidden-md hidden-lg">
                     <div id="toggle-menu">Меню</div>

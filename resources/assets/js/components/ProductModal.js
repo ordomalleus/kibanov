@@ -179,7 +179,7 @@ export default class ProductModal extends Component {
                         </div>
                         <div className='modal-product-cart'
                              onClick={this.addProductToCart.bind(this)}>
-                            В коризину
+                            В корзину
                         </div>
                     </div>
                     <div className='modal-product-close' onClick={this.closeModal}/>

@@ -2,28 +2,19 @@ import React, { Component } from 'react';
 
 // Функция сортировки (ставит в начле если есть: Размер(списком) -> Цвет(списком) -> все остальное )
 const sort = (a, b) => {
-    if ((a.product_group_attributes.type === 'Размер одежды'
-            || a.product_group_attributes.type === 'Размер одежды списком')
-        && (b.product_group_attributes.type === 'Цвет'
-            || b.product_group_attributes.type === 'Цвет списком')) {
+    if (a.product_group_attributes.type === 'Размер' && b.product_group_attributes.type === 'Цвет') {
         return -1;
     }
-    if ((a.product_group_attributes.type === 'Цвет'
-            || a.product_group_attributes.type === 'Цвет списком')
-        && (b.product_group_attributes.type === 'Размер одежды'
-            || b.product_group_attributes.type === 'Размер одежды списком')) {
+    if (a.product_group_attributes.type === 'Цвет' && b.product_group_attributes.type === 'Размер') {
         return 1;
     }
-    if (a.product_group_attributes.type === 'Размер одежды'
-        || a.product_group_attributes.type === 'Размер одежды') {
+    if (a.product_group_attributes.type === 'Размер') {
         return -1;
     }
-    if (a.product_group_attributes.type === 'Цвет'
-        || a.product_group_attributes.type === 'Цвет списком') {
+    if (a.product_group_attributes.type === 'Цвет') {
         return -1;
     }
-    if (b.product_group_attributes.type === 'Цвет'
-        || b.product_group_attributes.type === 'Цвет списком') {
+    if (b.product_group_attributes.type === 'Цвет') {
         return 1;
     }
     return a - b;
@@ -90,11 +81,11 @@ export default class ProductAttributes extends Component {
         const groupAttributesValue = val.product_group_attributes.product_group_attributes_value;
 
         switch (val.product_group_attributes.type) {
-            case 'Размер одежды':
-            case 'Размер обуви':
+            case 'Размер':
                 return <div key={val.id} className="product-attributes-container">
-                    {/*<p className="product-attributes-container-name">{groupAttributes.type}</p>*/}
-                    <p className="product-attributes-container-name">Размер</p>
+                    <p className="product-attributes-container-name">
+                        {groupAttributes.title ? groupAttributes.title : groupAttributes.type}
+                    </p>
                     <ul className="product-attributes-container-ul product-attributes-container-size">
                         {groupAttributesValue.map((attrVal, iAttrVal) => {
                             return <li key={attrVal.id}
@@ -112,7 +103,9 @@ export default class ProductAttributes extends Component {
                 break;
             case 'Цвет':
                 return <div key={val.id} className="product-attributes-container">
-                    <p className="product-attributes-container-name">{groupAttributes.type}</p>
+                    <p className="product-attributes-container-name">
+                        {groupAttributes.title ? groupAttributes.title : groupAttributes.type}
+                    </p>
                     <ul className="product-attributes-container-ul product-attributes-container-color">
                         {groupAttributesValue.map((attrVal, iAttrVal) => {
                             return <li key={attrVal.id}
@@ -132,26 +125,12 @@ export default class ProductAttributes extends Component {
                     </ul>
                 </div>;
             default:
-                const typeString = (type) => {
-                    let result = '';
-                    switch (type) {
-                        case 'Цвет списком':
-                            result = 'Цвет';
-                            break;
-                        case 'Размер одежды списком':
-                        case 'Размер обуви списком':
-                        case 'Размер аксессуаров':
-                            result = 'Размер';
-                            break;
-                        default:
-                            result = type
-                    }
-                    return result;
-                };
 
                 return <div key={val.id} className="product-attributes-container">
                     {/*<p className="product-attributes-container-name">{groupAttributes.type}</p>*/}
-                    <p className="product-attributes-container-name">{typeString(groupAttributes.type)}</p>
+                    <p className="product-attributes-container-name">
+                        {groupAttributes.title ? groupAttributes.title : groupAttributes.type}
+                    </p>
                     <ul className="product-attributes-container-ul">
                         {groupAttributesValue.map((attrVal, iAttrVal) => {
                             return <li key={attrVal.id}
@@ -181,6 +160,7 @@ export default class ProductAttributes extends Component {
 
             const objResult = {
                 type: val.product_group_attributes.type,
+                title: val.product_group_attributes.title,
                 name: val.product_group_attributes.name,
                 val: valAttrObj.attributes_directory_value.name,
                 price: valAttrObj.price,

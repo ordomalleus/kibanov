@@ -65,7 +65,7 @@
                     <thead>
                         <tr>
                             <th>Товар</th>
-                            <th>Модель</th>
+                            <th>Бренд</th>
                             <th>Количество</th>
                             <th>Цена за единицу</th>
                             <th>Итого</th>
@@ -85,7 +85,11 @@
                                             </a>
                                             @foreach($item->options->selectAttributes as $attr)
                                                 <div style="padding-left: 20px">
-                                                    <span>- {{$attr->type}}: </span>
+                                                    @if (isset($attr->title))
+                                                        <span>- {{$attr->title}}: </span>
+                                                    @else
+                                                        <span>- {{$attr->type}}: </span>
+                                                    @endif
                                                     <span>{{$attr->val}}</span>
                                                     @if (isset($attr->options))
                                                         <span> | ({{$attr->options}})</span>
@@ -95,7 +99,13 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>------</td>
+                                <td>
+                                    @if(isset($item->options->productBd->brand))
+                                        {{$item->options->productBd->brand}}
+                                    @else
+                                        -----
+                                    @endif
+                                </td>
                                 <td>{{$item->qty}}</td>
                                 <td>{{$item->price}} р.</td>
                                 <td>{{$item->subtotal}} р.</td>
@@ -112,12 +122,6 @@
                     </tbody>
                 </table>
             </div>
-            {{--<div role="tabpanel" class="tab-pane" id="messages">--}}
-
-            {{--</div>--}}
-            {{--<div role="tabpanel" class="tab-pane" id="settings">--}}
-
-            {{--</div>--}}
         </div>
     </div>
 

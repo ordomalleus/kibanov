@@ -29,18 +29,7 @@
                                     г. Пермь, ул. Советская, д. 22
                                     <br/>Пн-Пт:10-19 Сб:11-18 Вс:11-16
                                     <br/>тел. +7(342) 212-83-41
-                                    <br/>Мы "В контакте": <a href="https://vk.com/scena.perm" target="_blank">https://vk.com/scena.perm</a>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="shops-li" data-gis-id="map-chelabinsk">
-                            <span class="shops-li-title">г. Челябинск</span>
-                            <div class="shops-li-text">
-                                <span>
-                                    г. Челябинск, пр. Ленина, д. 77
-                                    <br/>Пн-Пт:10-20 Сб-Вс:11-18
-                                    <br/>тел. +7(351) 265-44-73
-                                    <br/>Мы "В контакте": <a href="https://vk.com/scena.cheliabinsk" target="_blank">https://vk.com/scena.cheliabinsk</a>
+                                    <br/>Мы во "ВКонтакте": <a href="https://vk.com/scena.perm" target="_blank">https://vk.com/scena.perm</a>
                                 </span>
                             </div>
                         </li>
@@ -51,18 +40,7 @@
                                     г. САНКТ-ПЕТЕРБУРГ, ул. Крылова, д. 2
                                     <br/>Пн-Пт:11-21 Сб-Вс:11-18
                                     <br/>тел. +7(911) 971-63-44
-                                    <br/>Мы "В контакте": <a href="https://vk.com/vse.dlia.tanca" target="_blank">https://vk.com/vse.dlia.tanca</a>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="shops-li" data-gis-id="map-kazan">
-                            <span class="shops-li-title">г. Казань</span>
-                            <div class="shops-li-text">
-                                <span>
-                                    г. Казань, ул. Карла Маркса, д. 48
-                                    <br/>Пн-Пт:10-20 Сб-Вс:11-18
-                                    <br/>тел. +7(987) 406-38-19
-                                    <br/>Мы "В контакте": <a href="https://vk.com/vach.tanec" target="_blank">https://vk.com/vach.tanec</a>
+                                    <br/>Мы во "ВКонтакте": <a href="https://vk.com/vse.dlia.tanca" target="_blank">https://vk.com/vse.dlia.tanca</a>
                                 </span>
                             </div>
                         </li>
@@ -73,7 +51,29 @@
                                     г. Екатеринбург, ул. Мамина-Сибиряка, д. 102
                                     <br/>Пн-Пт:10-20 Сб:11-18 Вс:11-16
                                     <br/>тел. +7(343) 355-23-08
-                                    <br/>Мы "В контакте": <a href="https://vk.com/scenaekat" target="_blank">https://vk.com/scenaekat</a>
+                                    <br/>Мы во "ВКонтакте": <a href="https://vk.com/scenaekat" target="_blank">https://vk.com/scenaekat</a>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="shops-li" data-gis-id="map-kazan">
+                            <span class="shops-li-title">г. Казань</span>
+                            <div class="shops-li-text">
+                                <span>
+                                    г. Казань, ул. Карла Маркса, д. 48
+                                    <br/>Пн-Пт:10-20 Сб-Вс:11-18
+                                    <br/>тел. +7(987) 406-38-19
+                                    <br/>Мы во "ВКонтакте": <a href="https://vk.com/vach.tanec" target="_blank">https://vk.com/vach.tanec</a>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="shops-li" data-gis-id="map-chelabinsk">
+                            <span class="shops-li-title">г. Челябинск</span>
+                            <div class="shops-li-text">
+                                <span>
+                                    г. Челябинск, пр. Ленина, д. 77
+                                    <br/>Пн-Пт:10-20 Сб-Вс:11-18
+                                    <br/>тел. +7(351) 265-44-73
+                                    <br/>Мы во "ВКонтакте": <a href="https://vk.com/scena.cheliabinsk" target="_blank">https://vk.com/scena.cheliabinsk</a>
                                 </span>
                             </div>
                         </li>
@@ -84,7 +84,7 @@
                                     г. Йошкар-Ола, ул. Комсомольская, д. 130
                                     <br/>Пн-Пт:10-19 Сб:11-18 Вс:11-17
                                     <br/>тел. +7(987) 704-97-27
-                                    <br/>Мы "В контакте":
+                                    <br/>Мы во "ВКонтакте": <a href="https://vk.com/scenajoshkarola" target="_blank">https://vk.com/scenajoshkarola</a>
                                 </span>
                             </div>
                         </li>
@@ -95,17 +95,17 @@
                                     г. Краснодар, ул. Ленина, д. 54
                                     <br/>Пн-Пт:10-20 Сб-Вс:11-18
                                     <br/>тел. +7(918) 019-18-42
-                                    <br/>Мы "В контакте": <a href="https://vk.com/scenakrasnodar" target="_blank">https://vk.com/scenakrasnodar</a>
+                                    <br/>Мы во "ВКонтакте": <a href="https://vk.com/scenakrasnodar" target="_blank">https://vk.com/scenakrasnodar</a>
                                 </span>
                             </div>
                         </li>
                     </ul>
                     <div>
                         <div id="map-perm" class="gis-map-container" style="width:100%; min-height:400px"></div>
-                        <div id="map-chelabinsk" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
                         <div id="map-spb" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
-                        <div id="map-kazan" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
                         <div id="map-ekb" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
+                        <div id="map-kazan" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
+                        <div id="map-chelabinsk" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
                         <div id="map-eshkarola" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
                         <div id="map-krasnodar" class="gis-map-container hidden" style="width:100%; min-height:400px"></div>
                     </div>

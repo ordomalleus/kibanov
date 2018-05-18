@@ -39,7 +39,10 @@ class CartController extends Controller
             $frontProduct['priceOne'],
             [
                 'selectAttributes' => $frontProduct['selectAttributes'],
-                'product' => $frontProduct['product']
+                'product' => $frontProduct['product'],
+                'productBd' => [
+                    'brand' => $product->brand
+                ]
             ]);
 
         return $response;

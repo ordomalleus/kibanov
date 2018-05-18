@@ -20,23 +20,17 @@ class ProductGroupAttributesController extends Controller
      */
     public function index()
     {
-        $groups = ProductGroupAttributes::with('attributesDirectory')->get();
-
-        $attributesDirectories = AttributesDirectory::pluck('name', 'id');
+        $groups = ProductGroupAttributes::all();
 
         // TODO: вынести в таблицы
         // Тип значения атрибута
         $type = [
-            'Цвет' => 'Цвет', 'Цвет списком' => 'Цвет списком', 'Размер одежды' => 'Размер одежды',
-            'Размер одежды списком' => 'Размер одежды списком', 'Размер обуви' => 'Размер обуви',
-            'Размер обуви списком' => 'Размер обуви списком', 'Размер аксессуаров' => 'Размер аксессуаров',
-            'Полнота' => 'Полнота', 'Жесткость' => 'Жесткость'
+            'Цвет' => 'Цвет', 'Размер' => 'Размер', 'Список' => 'Список',
         ];
 
         return view('admin.attributes.product-group-attributes.index',
             compact([
                 'groups',
-                'attributesDirectories',
                 'type'
             ]));
     }

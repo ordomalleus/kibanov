@@ -18,9 +18,9 @@ class OrdersController extends Controller
         if ($request->has('orderBy')) {
             $orderBy = $request->input('orderBy');
             $ask = $request->input('asc');
-            $orders = Orders::where('id', '>', 0)->orderBy($orderBy, $ask === 'asc' ? 'asc' : 'desc')->paginate(5);
+            $orders = Orders::where('id', '>', 0)->orderBy($orderBy, $ask === 'asc' ? 'asc' : 'desc')->paginate(10);
         } else {
-            $orders = Orders::where('id', '>', 0)->orderBy('id', 'desc')->paginate(5);
+            $orders = Orders::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
         }
 
         return view('admin.orders.index', compact('orders'));

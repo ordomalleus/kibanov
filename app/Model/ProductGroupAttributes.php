@@ -11,17 +11,8 @@ class ProductGroupAttributes extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'attributes_directories_id', 'type'
+        'name', 'title', 'type'
     ];
-
-    /**
-     * Динамическое свойство модели
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function attributesDirectory()
-    {
-        return $this->belongsTo(AttributesDirectory::class, 'attributes_directories_id');
-    }
 
     /**
      * Динамическое свойство модели

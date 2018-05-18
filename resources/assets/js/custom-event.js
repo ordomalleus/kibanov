@@ -51,7 +51,7 @@ const mapArr = [
     },
     {
         id: 'map-spb',
-        centerMap: [59.932624, 30.333821],
+        centerMap: [59.933700, 30.333821],
         centerPopup: [59.932624, 30.333821],
         popupText: 'г. САНКТ-ПЕТЕРБУРГ, ул. Крылова, д. 2',
         map: null
@@ -103,7 +103,8 @@ const crateMap = (id = 'map-perm') => {
             } else {
                 map = targetId.map = DG.map(targetId.id, {
                     center: targetId.centerMap,
-                    zoom: 17
+                    // если карта Питера то отдалим зум
+                    zoom: id === 'map-spb' ? 16 : 17
                 });
 
                 DG.marker(targetId.centerPopup).addTo(map);

@@ -34,6 +34,7 @@ Route::group(['prefix' => 'orders', 'middleware' => []], function (){
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function (){
     Route::get('/', 'Admin\AdminController@index')->name('admin.index');
 
+    Route::get('/files/rebuild', 'Admin\AdminController@rebuildProductAttributes');
 
     // Работа по экспорту файлов
     Route::get('/files', 'Admin\AdminController@files')->name('admin.files');
@@ -60,7 +61,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::post('product/add-attribute/{id}', 'Admin\ProductController@addAttribute');
     Route::delete('product/delete-attribute/{id}', 'Admin\ProductController@deleteAttribute');
     Route::resource('category', 'Admin\CategoryController');
-    Route::resource('attributes-directories', 'Admin\AttributesDirectoriesController');
     Route::resource('attributes-directories-value', 'Admin\AttributesDirectoriesValueController');
     Route::resource('product-group-attributes', 'Admin\ProductGroupAttributesController');
     Route::resource('product-group-attributes-value', 'Admin\ProductGroupAttributesValueController');

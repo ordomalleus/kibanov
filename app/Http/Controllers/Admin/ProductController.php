@@ -102,8 +102,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id)->loadMissing(
-            'attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue',
-            'attributes.productGroupAttributes.attributesDirectory'
+            'attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue'
         );
 
         $productGroupAttributes = ProductGroupAttributes::all();

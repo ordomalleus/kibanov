@@ -48,7 +48,6 @@
                     <li><a href="{{url('admin/product-group-attributes-value')}}">Значения атрибутов</a></li>
                     {{--<li><a href="{{url('admin/attributes')}}">Привязка атрибутов к товару</a></li>--}}
                     <li role="separator" class="divider"></li>
-                    <li><a href="{{url('admin/attributes-directories')}}">Справочник атрибутов</a></li>
                     <li><a href="{{url('admin/attributes-directories-value')}}">Справочник значений атрибутов</a></li>
                 </ul>
             </li>

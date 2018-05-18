@@ -88,11 +88,12 @@ export default class CartModal extends Component {
                             <div className="modal-cart-product-info">
                                 <div className="modal-cart-product-info-name">{val.name}</div>
                                 <div className="modal-cart-product-info-attributes">
+                                    {console.log(val.options.selectAttributes)}
                                     {val.options.selectAttributes.map((selAttr, i) => {
                                         return <div
                                             key={i}
                                             className="info-attribute-container">
-                                            <span>- {selAttr.type}: </span>
+                                            <span>- {selAttr.title ? selAttr.title : selAttr.type}: </span>
                                             <span>{selAttr.val}</span>
                                         </div>
                                     })}

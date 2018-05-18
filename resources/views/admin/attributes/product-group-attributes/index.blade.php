@@ -24,8 +24,8 @@
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('attributes_directories_id', 'Название из справочника атрибутов') }}
-                            {{ Form::select('attributes_directories_id', $attributesDirectories, null, ['class' => 'form-control']) }}
+                            {{ Form::label('title', 'Title') }}
+                            {{ Form::text('title', null, ['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
@@ -52,7 +52,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Название</th>
-                        <th>Название из справочника</th>
+                        <th>Title</th>
                         <th>Тип</th>
                         <th>Действия</th>
                     </tr>
@@ -62,7 +62,7 @@
                         <tr>
                             <td>{{$group->id}}</td>
                             <td>{{$group->name}}</td>
-                            <td>{{$group->attributesDirectory->name}}</td>
+                            <td>{{$group->title}}</td>
                             <td>{{$group->type}}</td>
                             <td>
                                 {!! Form::open(['route' => ['product-group-attributes.destroy',
