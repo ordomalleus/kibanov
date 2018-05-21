@@ -9677,6 +9677,60 @@ section#shops .shops-container-ul .shops-ul .shops-li-text {
   border: 2px solid #000;
 }
 
+.modal-product-content .modal-product-img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+@media (max-width: 480px) {
+  .modal-product-content .modal-product-img {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.modal-product-content .modal-product-img__lists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  .modal-product-content .modal-product-img__lists {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+.modal-product-content .modal-product-img__lists .lists__container {
+  cursor: pointer;
+  border: 1px solid #000;
+  margin-bottom: 2px;
+  opacity: 0.6;
+}
+
+.modal-product-content .modal-product-img__lists .lists__container:hover {
+  opacity: 1;
+}
+
+.modal-product-content .modal-product-img__lists .lists__container:last-child {
+  margin-bottom: 0;
+}
+
 .modal-product-content .modal-product-close {
   height: 25px;
   width: 25px;

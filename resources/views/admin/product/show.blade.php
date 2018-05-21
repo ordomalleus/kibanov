@@ -91,8 +91,26 @@
                                 </div>
                             @endif
 
-                            {{ Form::label('img_name', 'Картинка для товара') }}
+                            {{ Form::label('img_name', 'Основная картинка товара') }}
                             {{ Form::file('img_name', ['class' => 'form-control']) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{--если есть картинки покажем их--}}
+                            @if(count($product->productImages) > 0)
+                                <div class="product-images">
+                                    @foreach( $product->productImages as $productImage)
+                                        <div class="product-images__image">
+                                            <img src="{{url('products/images/_x400', $productImage->img_name)}}" alt="" style="width: 120px">
+                                            <div class="product-images__delete" data-images-id="{{$productImage->id}}">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+                            {{ Form::label('product_images', 'Дополнительные картинки') }}
+                            {{ Form::file('product_images[]', ['multiple' => 'multiple', 'class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">

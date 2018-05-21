@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\ProductImages;
 use App\Model\ProductGroupAttributes;
 use App\Model\ProductAttributes;
 use Session;
@@ -102,7 +103,8 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id)->loadMissing(
-            'attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue'
+            'attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue',
+            'productImages'
         );
 
         $productGroupAttributes = ProductGroupAttributes::all();
@@ -157,6 +159,29 @@ class ProductController extends Controller
     }
 
     /**
+     * Удаляет дополнительную картинку
+     * @param $id - дополнительной картинки
+     * @return $this|\Illuminate\Http\JsonResponse
+     */
+    public function deleteImage($id)
+    {
+        try {
+
+            $product = ProductImages::find($id);
+
+            unlink(public_path('products/images/_x400/' . $product->img_name));
+
+            ProductImages::destroy($id);
+
+            return response()->json('ok');
+
+        } catch (\Exception $e) {
+            // TODO: что то сделать
+            return response()->setStatusCode(500);
+        }
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -166,7 +191,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-        $formInput = $request->except('img_name');
+        $formInput = $request->except('img_name', 'product_images');
 
         // Валидатор
         $this->validate($request, [
@@ -211,6 +236,35 @@ class ProductController extends Controller
             }
 
             $formInput['img_name'] = $imageName;
+        }
+
+        // Если есть доп картинки то загрузим их в _x400 и создадим модели
+        if ($request->product_images && count($request->product_images) > 0) {
+            $productImages = $request->product_images;
+
+            // Сохраним имена файлов для создания моделей
+            $productImagesNames = [];
+
+            foreach ($productImages as $productImage) {
+                $imageName = time() . '_' . $productImage->getClientOriginalName();
+                $productImagesNames[] = $imageName;
+
+                // Сохраняем файл
+                $productImage->move('products/images/_x400', $imageName);
+                // Форматируем картинку
+                Image::make(public_path() . '/products/images/_x400/' . $imageName)
+                    ->resize(600, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save();
+            }
+
+            // Создаем модели
+            foreach ($productImagesNames as $productImagesName) {
+                ProductImages::create([
+                    'product_id' => $id,
+                    'img_name' => $productImagesName
+                ]);
+            }
         }
 
         $product->update($formInput);

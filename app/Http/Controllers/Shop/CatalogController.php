@@ -31,7 +31,8 @@ class CatalogController extends Controller
         }
         // догружаем у товаров все связанные свойства
         $products->load(
-            'attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue'
+            'attributes.productGroupAttributes.productGroupAttributesValue.attributesDirectoryValue',
+            'productImages'
         );
 
         // получаем карзину

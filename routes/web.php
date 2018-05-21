@@ -60,6 +60,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('product', 'Admin\ProductController');
     Route::post('product/add-attribute/{id}', 'Admin\ProductController@addAttribute');
     Route::delete('product/delete-attribute/{id}', 'Admin\ProductController@deleteAttribute');
+    Route::delete('product/delete-image/{id}', 'Admin\ProductController@deleteImage');
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('attributes-directories-value', 'Admin\AttributesDirectoriesValueController');
     Route::resource('product-group-attributes', 'Admin\ProductGroupAttributesController');

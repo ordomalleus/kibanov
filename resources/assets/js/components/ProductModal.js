@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal';
 import Axios from 'axios';
-import ProductAttributes from './ProductAttributes'
+import ProductAttributes from './ProductAttributes';
+import ProductImages from './ProductImages';
 
 const customStyles = {
     content: {
@@ -11,9 +12,6 @@ const customStyles = {
         overflow: 'auto'
     }
 };
-
-// Путь до картинок
-const pathToImagesProduct = window.location.origin + '/products/images/_x400/';
 
 /**
  * Компонент показа еденичного товара
@@ -123,18 +121,6 @@ export default class ProductModal extends Component {
 
     render() {
 
-        // позиция картинок в модалке
-        const productImgStyle = {
-            backgroundImage: this.props.selectProduct && 'url(' + pathToImagesProduct + this.props.selectProduct.img_name + ')',
-            backgroundPosition: '50% 50%',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            // backgroundSize: 'contain',
-            width: '100%',
-            height: '400px'
-            // height: '250px'
-        };
-
         return (
             <Modal
                 isOpen={this.props.modalIsOpen}
@@ -148,10 +134,9 @@ export default class ProductModal extends Component {
                         <p className={['modal-product-message', this.state.messageSuccess ? 'success' : 'error'].join(' ')}>
                             {this.state.message}
                         </p> : ''}
-                    <div
-                        className="modal-product-img"
-                        style={productImgStyle}>
-                    </div>
+                    <ProductImages
+                        selectProduct={this.props.selectProduct}
+                    />
                     <div className="modal-product-info">
                         <h4 className="modal-product-name">{this.props.selectProduct && this.props.selectProduct.name}</h4>
                         <p className="modal-product-description">

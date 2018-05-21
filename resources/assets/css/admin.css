@@ -706,3 +706,17 @@ body {
     background-position: center center;
     background-size: cover;
 }
+
+.product-images .product-images__image {
+    display: inline-block;
+    position: relative;
+}
+
+.product-images .product-images__delete {
+    position: absolute;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+}
