@@ -3,6 +3,11 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    # Разрешаем все виды запросов
+    <Limit GET POST PUT DELETE>
+        Allow from all
+    </Limit>
+
     RewriteEngine On
 
     # Handle Authorization Header
