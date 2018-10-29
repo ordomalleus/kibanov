@@ -55,6 +55,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/exports/shoes/volume', 'Admin\AdminController@getAllShoesAttributesVolume')->name('admin.exports.shoes.volume');
     // получаем уникальные значения жескости обуви
     Route::get('/exports/shoes/hardness', 'Admin\AdminController@getAllShoesAttributesHardness')->name('admin.exports.shoes.hardness');
+    // TODO: временный для поиска всех товаров с брендом SOLO
+    Route::get('/exports/show-solo', 'Admin\AdminController@getAllSoloBrand')->name('admin.exports.solo');
+
 
 
     Route::resource('product', 'Admin\ProductController');

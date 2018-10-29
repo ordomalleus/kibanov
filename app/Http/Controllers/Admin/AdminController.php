@@ -653,4 +653,49 @@ class AdminController extends Controller
         dd($color);
         return $color;
     }
+
+    /**
+     * Получаем все товары с брендом SOLO
+     */
+    public function getAllSoloBrand()
+    {
+        $data = Product::where('brand', 'Solo')->get();
+
+        $result = [
+            'Массив Товаров' => [],
+            'Массив Атрибутов товара' => [],
+            'Массив Группы атрибутов товара' => [],
+            'Массив Группы атрибутов товара значений' => []
+        ];
+
+        foreach ($data as $row) {
+            $result['Массив Товаров'][] = $row;
+
+            // Группа атрибутов
+            $productAtributes = ProductAttributes::where('product_id', $row->id)->get();
+
+
+            // Группа атрибутов
+            foreach ($productAtributes as $productAtribute) {
+                $result['Массив Атрибутов товара'][] = $productAtribute;
+
+                $product_group_attributes_id =
+                    ProductGroupAttributes::where('id', $productAtribute->product_group_attributes_id)->get();
+
+                foreach ($product_group_attributes_id as $product_group_attributes) {
+                    $result['Массив Группы атрибутов товара'][] = $product_group_attributes;
+
+                    $ProductGroupAttributesValue =
+                        ProductGroupAttributesValue::where('product_group_attributes_id', $product_group_attributes->id)->get();
+
+                    foreach ($ProductGroupAttributesValue as $ProductGroupAttributesVal) {
+
+                        $result['Массив Группы атрибутов товара значений'][] = $ProductGroupAttributesVal->id;
+                    }
+                }
+            }
+        }
+
+        dd($result);
+    }
 }
