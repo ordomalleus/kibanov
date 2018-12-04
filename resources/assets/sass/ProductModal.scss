@@ -144,16 +144,21 @@
         display: flex;
         align-items: flex-end;
         justify-content: flex-end;
+        flex-direction: column;
         @media (max-width: $screen-xs-min) {
           justify-content: center;
+          flex-direction: row;
         }
         &__lists {
           display: flex;
           flex-direction: column;
+          flex: 0 0 85%;
+          overflow: auto;
           @media (max-width: $screen-xs-min) {
             flex-direction: row;
           }
           .lists__container {
+            flex: 0 0 75px;
             cursor: pointer;
             border: 1px solid $global-color-second;
             margin-bottom: 2px;

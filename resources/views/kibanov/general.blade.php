@@ -2,7 +2,10 @@
 
 @section('store')
     <script>
-        window.store = {};
+        window.store = {
+            products: {}
+        };
+        window.store.products.data = @json($products);
         window.store.cart = @json($cart);
     </script>
 @endsection
@@ -25,19 +28,39 @@
                 <div class="col-md-4"><span class="rise-text">И</span><span>стория товарной марки "Кибанов" началась в 1995 году, когда поклонник танца Андрей Кибанов организовал мастерскую "Балетная обувь от Кибанова". Основываясь на традициях и мастерстве цехов Пермского театра оперы и балета, бережно сохраняя классические технологии изготовления танцевальной обуви и в то же время развивая и совершенствуя их. Андрею Кибанову удалось в сравнительно небольшой срок перерасти из мелкого ремесленника в фабриканта.</span>
                 </div>
                 <div class="col-md-8">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-2-bal-1.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>--}}
+                            {{--<p class="product-info-price">410 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-2-bal-1.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>
-                            <p class="product-info-price">410 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[0]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[0]->id}}">{{$products[0]->name}}</p>
+                            <p class="product-info-price">{{$products[0]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row m-b-30">
                 <div class="col-md-4 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-2-bal-2.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>--}}
+                            {{--<p class="product-info-price">410 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-2-bal-2.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>
-                            <p class="product-info-price">410 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[1]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[1]->id}}">{{$products[1]->name}}</p>
+                            <p class="product-info-price">{{$products[1]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
