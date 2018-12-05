@@ -36,11 +36,11 @@
 
                     <div class="product">
                         <div class="product-img">
-                            <img src="{{url('products/images/', $products[0]->img_name)}}">
+                            <img src="{{url('products/images/', $products[3]->img_name)}}">
                         </div>
                         <div class="product-info">
-                            <p class="product-info-title" data-id-product="{{$products[0]->id}}">{{$products[0]->name}}</p>
-                            <p class="product-info-price">{{$products[0]->price}} Р</p>
+                            <p class="product-info-title" data-id-product="{{$products[3]->id}}">{{$products[3]->name}}</p>
+                            <p class="product-info-price">{{$products[3]->price}} Р</p>
                         </div>
                     </div>
                 </div>
@@ -55,35 +55,65 @@
 
                     <div class="product">
                         <div class="product-img">
-                            <img src="{{url('products/images/', $products[1]->img_name)}}">
+                            <img src="{{url('products/images/', $products[6]->img_name)}}">
                         </div>
                         <div class="product-info">
-                            <p class="product-info-title" data-id-product="{{$products[1]->id}}">{{$products[1]->name}}</p>
-                            <p class="product-info-price">{{$products[1]->price}} Р</p>
+                            <p class="product-info-title" data-id-product="{{$products[6]->id}}">{{$products[6]->name}}</p>
+                            <p class="product-info-price">{{$products[6]->price}} Р</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-2-bal-3.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>--}}
+                            {{--<p class="product-info-price">410 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-2-bal-3.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>
-                            <p class="product-info-price">410 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[7]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[7]->id}}">{{$products[7]->name}}</p>
+                            <p class="product-info-price">{{$products[7]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-2-bal-4.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>--}}
+                            {{--<p class="product-info-price">410 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-2-bal-4.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>
-                            <p class="product-info-price">410 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[9]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[9]->id}}">{{$products[9]->name}}</p>
+                            <p class="product-info-price">{{$products[9]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row m-b-30">
                 <div class="col-md-4">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-2-bal-5.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>--}}
+                            {{--<p class="product-info-price">410 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-2-bal-5.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Балетки для танцев МБО</p>
-                            <p class="product-info-price">410 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[4]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[4]->id}}">{{$products[4]->name}}</p>
+                            <p class="product-info-price">{{$products[4]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-8 m-t-30"><span class="rise-text">Ф</span><span>абрика Кибанова выпускает богатый ассортимент обуви для исполнителей самых разных жанров: классического танца, народно-характерного, джаза, степа и фламенко, бального танца, цирковых представлений и шоу. Обувь "От Кибанова" отличается высоким качеством, комфортностью, производится только из натуральных материалов, позволяющих дышать ногам — главному инструменту всех танцоров,  и, что очень важно, доступна по цене.</span>
@@ -104,17 +134,37 @@
         <div class="container">
             <div class="row m-b-30">
                 <div class="col-md-6 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-4-bal-1.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Джазовые полуботинки</p>--}}
+                            {{--<p class="product-info-price">5500 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-4-bal-1.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Джазовые полуботинки</p>
-                            <p class="product-info-price">5500 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[2]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[2]->id}}">{{$products[2]->name}}</p>
+                            <p class="product-info-price">{{$products[2]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-4-bal-2.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Джазовые полуботинки текстильные</p>--}}
+                            {{--<p class="product-info-price">5500 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-4-bal-2.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Джазовые полуботинки текстильные</p>
-                            <p class="product-info-price">5500 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[1]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[1]->id}}">{{$products[1]->name}}</p>
+                            <p class="product-info-price">{{$products[1]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -154,17 +204,37 @@
         <div class="container">
             <div class="row m-b-30">
                 <div class="col-md-4 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-6-bal-1.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Пуанты сувенирные</p>--}}
+                            {{--<p class="product-info-price">5500 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-6-bal-1.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Пуанты сувенирные</p>
-                            <p class="product-info-price">5500 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[11]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[11]->id}}">{{$products[11]->name}}</p>
+                            <p class="product-info-price">{{$products[11]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-6-bal-2.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Ботинки клоуна</p>--}}
+                            {{--<p class="product-info-price">5500 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-6-bal-2.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Ботинки клоуна</p>
-                            <p class="product-info-price">5500 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[5]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[5]->id}}">{{$products[5]->name}}</p>
+                            <p class="product-info-price">{{$products[5]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 general-6-text">
@@ -181,15 +251,27 @@
                 <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="product">
                         <div class="product-img"><img src="img/general-section-7-bal-1.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Пуанты</p>
-                            <p class="product-info-price">410 Р</p></div>
+                        <div class="product-info">
+                            {{--<p class="product-info-title">Пуанты</p>--}}
+                            {{--<p class="product-info-price">410 Р</p>--}}
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-7-bal-2.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Пуанты</p>--}}
+                            {{--<p class="product-info-price">410 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-7-bal-2.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Пуанты</p>
-                            <p class="product-info-price">410 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[10]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[10]->id}}">{{$products[10]->name}}</p>
+                            <p class="product-info-price">{{$products[10]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -209,17 +291,37 @@
                     <p>Театральная фабрика Кибанова одевает и обувает вот уже много лет танцоров классического и современного танца, в нашей обуви артисты достигли самых высоких вершин танцевального искусства.</p>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-8-bal-1.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Пуанты</p>--}}
+                            {{--<p class="product-info-price">410 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-8-bal-1.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Пуанты</p>
-                            <p class="product-info-price">410 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[0]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[0]->id}}">{{$products[0]->name}}</p>
+                            <p class="product-info-price">{{$products[0]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-6">
+                    {{--<div class="product">--}}
+                        {{--<div class="product-img"><img src="img/general-section-8-bal-1.jpg"></div>--}}
+                        {{--<div class="product-info"><p class="product-info-title">Пуанты</p>--}}
+                            {{--<p class="product-info-price">410 Р</p></div>--}}
+                    {{--</div>--}}
+
                     <div class="product">
-                        <div class="product-img"><img src="img/general-section-8-bal-1.jpg"></div>
-                        <div class="product-info"><p class="product-info-title">Пуанты</p>
-                            <p class="product-info-price">410 Р</p></div>
+                        <div class="product-img">
+                            <img src="{{url('products/images/', $products[8]->img_name)}}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-info-title" data-id-product="{{$products[8]->id}}">{{$products[8]->name}}</p>
+                            <p class="product-info-price">{{$products[8]->price}} Р</p>
+                        </div>
                     </div>
                 </div>
             </div>
