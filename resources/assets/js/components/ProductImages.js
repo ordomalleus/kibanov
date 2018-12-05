@@ -37,12 +37,7 @@ export default class ProductImages extends Component {
         const productImgStyle = {
             backgroundImage: this.props.selectProduct &&
             this.state.allImages.length &&
-            'url(' + pathToImagesProduct + this.state.allImages[this.state.selectImage] + ')',
-            backgroundPosition: '50% 50%',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            width: '100%',
-            height: '400px'
+            'url(' + pathToImagesProduct + this.state.allImages[this.state.selectImage] + ')'
         };
 
         return (
