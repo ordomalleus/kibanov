@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 m-b-30">
-                    <img class="img-container" src="img/about-3.png">
+                    <img class="img-container" src="img/bal_new.jpg">
                 </div>
             </div>
         </div>

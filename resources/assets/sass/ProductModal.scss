@@ -188,8 +188,8 @@
         &:after {
           position: absolute;
           content: ' ';
-          width: 25px;
-          height: 1px;
+          width: 27px;
+          height: 4px;
           background: $global-color-second;
           top: 12px;
           transform: rotate(45deg);
@@ -197,8 +197,8 @@
         &:before {
           position: absolute;
           content: ' ';
-          width: 1px;
-          height: 25px;
+          width: 4px;
+          height: 27px;
           background: $global-color-second;
           left: 50%;
           transform: rotate(45deg);
