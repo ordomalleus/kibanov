@@ -67,9 +67,12 @@ export default class CheckoutModal extends Component {
     }
 
     handleSubmit(event) {
-        const delivery = this.state.selectDelivery.val;
         event.preventDefault();
-        this.props.sendCheckout(this.form[delivery].getValues(), delivery);
+        const delivery = this.state.selectDelivery.val;
+        // Получаем сборное ФИО
+        const fio = `${this.form[delivery].getValues()['fio-n']} ${this.form[delivery].getValues()['fio-n']} ${this.form[delivery].getValues()['fio-n']}`;
+        // Поднимаем форму на вверх
+        this.props.sendCheckout({...this.form[delivery].getValues(), fio}, delivery);
     }
 
     getForm(node) {
@@ -98,8 +101,20 @@ export default class CheckoutModal extends Component {
                     onSubmit={this.handleSubmit}>
                     <div className="modal-checkout-form-group-one">
                         <label>
-                            <span className="required">*</span>Ф.И.О.
-                            <Input value='' name='fio' validations={[required]}/>
+                            <span className="required">*</span>Имя
+                            <Input value='' name='fio-n' validations={[required]}/>
+                        </label>
+                    </div>
+                    <div className="modal-checkout-form-group-one">
+                        <label>
+                            <span className="required">*</span>Фамилия
+                            <Input value='' name='fio-f' validations={[required]}/>
+                        </label>
+                    </div>
+                    <div className="modal-checkout-form-group-one">
+                        <label>
+                            <span className="required">*</span>Отчество
+                            <Input value='' name='fio-o' validations={[required]}/>
                         </label>
                     </div>
                     <div className="modal-checkout-form-group-one">
@@ -137,6 +152,18 @@ export default class CheckoutModal extends Component {
                                 validations={[required, lt]}/>
                         </label>
                     </div>
+                    <div className="modal-checkout-form-group-one">
+                        <label>
+                            Согласие на обработку личных данных
+                            <Input
+                                style={{width: '20px', height: '20px', minHeight: 'auto'}}
+                                value='true'
+                                name='oferta'
+                                type="checkbox"
+                                checked="checked"
+                            />
+                        </label>
+                    </div>
                     <div className="modal-checkout-form-group">
                         <label>
                             Комментарий
@@ -144,6 +171,7 @@ export default class CheckoutModal extends Component {
                         </label>
                         <Button className="modal-checkout-form-buy">Купить</Button>
                     </div>
+                    <p>Внимание! Вы оплачиваете товар по цене магазина, выбранного Вами. Цены на товары в магазинах сети могут отличаться от цен, указанной на сайте.</p>
                 </PickupFormHOC>
             case 1:
                 return <MailFormHOC
@@ -152,49 +180,61 @@ export default class CheckoutModal extends Component {
                     onSubmit={this.handleSubmit}>
                     <div className="modal-checkout-form-group-one">
                         <label>
-                            <span className="required">*</span>Ф.И.О.
-                            <Input value='' name='fio' validations={[required]}/>
+                            <span className="required">*</span>Имя
+                            <Input value='' name='fio-n' validations={[required]}/>
+                        </label>
+                    </div>
+                    <div className="modal-checkout-form-group-one">
+                        <label>
+                            <span className="required">*</span>Фамилия
+                            <Input value='' name='fio-f' validations={[required]}/>
+                        </label>
+                    </div>
+                    <div className="modal-checkout-form-group-one">
+                        <label>
+                            <span className="required">*</span>Отчество
+                            <Input value='' name='fio-o' validations={[required]}/>
                         </label>
                     </div>
                     <div className="modal-checkout-form-group">
                         <label>
-                            Регион
-                            <Input value='' name='region'/>
+                            <span className="required">*</span>Регион
+                            <Input value='' name='region' validations={[required]}/>
                         </label>
                         <label>
-                            Район
-                            <Input value='' name='district'/>
+                            <span className="required">*</span>Район
+                            <Input value='' name='district' validations={[required]}/>
                         </label>
                     </div>
                     <div className="modal-checkout-form-group">
                         <label>
-                            Населенный пункт
-                            <Input value='' name='town'/>
+                            <span className="required">*</span>Населенный пункт
+                            <Input value='' name='town' validations={[required]}/>
                         </label>
                         <label>
-                            Улица
-                            <Input value='' name='street'/>
+                            <span className="required">*</span>Улица
+                            <Input value='' name='street' validations={[required]}/>
                         </label>
                     </div>
                     <div className="modal-checkout-form-group">
                         <div className="modal-checkout-form-group-child">
                             <label>
-                                Дом
-                                <Input value='' name='house'/>
+                                <span className="required">*</span>Дом
+                                <Input value='' name='house' validations={[required]}/>
                             </label>
                             <label>
                                 Корпус
-                                <Input value='' name='building'/>
+                                <Input value='' name='building' validations={[required]}/>
                             </label>
                         </div>
                         <div className="modal-checkout-form-group-child">
                             <label>
-                                Квартира
-                                <Input value='' name='apartment'/>
+                                <span className="required">*</span>Квартира
+                                <Input value='' name='apartment' validations={[required]}/>
                             </label>
                             <label>
-                                Индекс
-                                <Input value='' name='code'/>
+                                <span className="required">*</span>Индекс
+                                <Input value='' name='code' validations={[required]}/>
                             </label>
                         </div>
                     </div>
@@ -211,6 +251,18 @@ export default class CheckoutModal extends Component {
                                 minLength={18}
                                 maskChar=" "
                                 validations={[required, lt]}/>
+                        </label>
+                    </div>
+                    <div className="modal-checkout-form-group-one">
+                        <label>
+                            Согласие на обработку личных данных
+                            <Input
+                                style={{width: '20px', height: '20px', minHeight: 'auto'}}
+                                value='true'
+                                name='oferta'
+                                type="checkbox"
+                                checked="checked"
+                            />
                         </label>
                     </div>
                     <div className="modal-checkout-form-group">

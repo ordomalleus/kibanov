@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="title">Каталог</div>
+                    <div class="title">Интернет-магазин</div>
                     <ul class="catalog-list">
                         @foreach($categories as $category)
                             @if($category->child)

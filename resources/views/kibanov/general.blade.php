@@ -15,11 +15,13 @@
         <div class="section-gradient"></div>
         @include('kibanov.component.menu')
         <div class="slogan">
-            <div class="slogan-logan"><p>Театральная</p>
-                <p>фабрика</p>
-                <p>Кибанова</p></div>
+            <div class="slogan-logan">
+                <p>Сеть магазинов</p>
+                <p>'СЦЕНА'</p>
+            </div>
             <div class="slogan-text"><p>Производим обувь и одежду для занятий танцами.</p>
-                <p>Танцуйте, а мы Вам поможем!</p></div>
+                <p>Танцуйте, а мы Вам поможем!</p>
+            </div>
         </div>
     </section>
     <section id="general-2">

@@ -124,10 +124,12 @@ export default class CartModal extends Component {
                         <span className="modal-cart-total-price">Всего: {this.totalPrice()} Р</span>
                         <span
                             className="modal-cart-total-buy"
+                            hidden={this.totalPrice() < 1400}
                             onClick={this.sendCheckout}>
                             Купить
                         </span>
                     </div>
+                    <span hidden={this.totalPrice() >= 1400}>Минимальная сумма заказа 1400р. Вам не хватает набрать товаров на сумму: {1400 - this.totalPrice()} р.</span>
                     <div className='modal-cart-close' onClick={this.closeModal}/>
                 </div>
             </Modal>

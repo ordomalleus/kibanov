@@ -29,7 +29,7 @@
                             {{ Form::select('attributes_directory_values_id', $attributesDirectoryValue, null, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('price', 'Влеяние на цену') }}
+                            {{ Form::label('price', 'Влияние на цену') }}
                             {{ Form::number('price', 0, ['class' => 'form-control']) }}
                         </div>
                     </div>

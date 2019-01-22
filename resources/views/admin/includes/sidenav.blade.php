@@ -39,7 +39,7 @@
             </li>
             <li class="submenu">
                 <a href="#">
-                    <i class="glyphicon glyphicon-list"></i> Атрибты
+                    <i class="glyphicon glyphicon-list"></i> Атрибуты
                     <span class="caret pull-right"></span>
                 </a>
                 <!-- Sub menu -->

@@ -124,6 +124,7 @@ export default class ProductModal extends Component {
         return (
             <Modal
                 isOpen={this.props.modalIsOpen}
+                onRequestClose={this.closeModal}
                 style={customStyles}
                 ariaHideApp={false}
                 className="modal-product"

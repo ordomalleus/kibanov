@@ -175,10 +175,12 @@ export class AppCart extends Component {
     render() {
         return (
             <div className="basket-app">
-                <span onClick={this.openCartModal}>
-                    Корзина
-                </span>
-                <span className='basket-amount'>{this.state.cartContent.length}</span>
+                <div onClick={this.openCartModal}>
+                    <span>
+                        Корзина
+                    </span>
+                    <span className='basket-amount'>{this.state.cartContent.length}</span>
+                </div>
                 <ProductModal
                     modalIsOpen={this.state.modalProductIsOpen}
                     closeModal={this.closeProductModal}

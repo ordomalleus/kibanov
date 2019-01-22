@@ -3,20 +3,18 @@
     <div class="row">
         <div class="col-md-12 nav-menu">
             <div class="nav-menu-left hidden-menu-sm">
-                <div class="nav-menu-logo hidden-sm hidden-xs"></div>
-                {{--<div class="nav-menu-list hidden-sm hidden-xs">--}}
+                <a href="{{url('/')}}" class="nav-menu-logo hidden-sm hidden-xs"></a>
                 <div class="nav-menu-list">
                     <ul>
                         <li><a href="{{url('/')}}">Главная</a></li>
-                        <li><a href="{{url('/catalog')}}">Каталог</a></li>
+                        <li><a href="{{url('/catalog')}}">Интернет-магазин</a></li>
                         <li><a href="{{url('/shops')}}">Магазины</a></li>
                         <li><a href="{{url('/about')}}">О компании</a></li>
                     </ul>
                 </div>
             </div>
             <div class="nav-menu-right">
-                <div class="nav-menu-logo hidden-md hidden-lg"></div>
-                {{--<div class="nav-menu-basket hidden-sm hidden-xs">--}}
+                <a href="{{url('/')}}" class="nav-menu-logo hidden-md hidden-lg"></a>
                 <div class="nav-menu-basket">
                     <div id="app-cart"></div>
                 </div>
