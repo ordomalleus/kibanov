@@ -13,4 +13,13 @@ class Orders extends Model
     protected $fillable = [
         'orders_info_id', 'orders_products_id', 'delivery', 'order_status_id', 'unique_id'
     ];
+
+    /**
+     * Динамическое свойство модели
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function orderStatus()
+    {
+        return $this->belongsTo(OrderStatus::class);
+    }
 }

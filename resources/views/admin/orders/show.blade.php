@@ -32,6 +32,7 @@
                         <tr><th>E-mail</th><td>{{json_decode($order->orders_info_id)->mail}}</td></tr>
                         <tr><th>Контактный телефон</th><td>{{json_decode($order->orders_info_id)->phone}}</td></tr>
                         <tr><th>Комментарий</th><td>{{json_decode($order->orders_info_id)->comment}}</td></tr>
+                        <tr><th>Статус заказа</th><td>{{$order->orderStatus->title}}</td></tr>
                         </tbody>
                     </table>
                 @endif
@@ -56,6 +57,7 @@
                             <tr><th>E-mail</th><td>{{json_decode($order->orders_info_id)->mail}}</td></tr>
                             <tr><th>Контактный телефон</th><td>{{json_decode($order->orders_info_id)->phone}}</td></tr>
                             <tr><th>Комментарий</th><td>{{json_decode($order->orders_info_id)->comment}}</td></tr>
+                            <tr><th>Статус заказа</th><td>{{$order->orderStatus->title}}</td></tr>
                         </tbody>
                     </table>
                 @endif
@@ -123,6 +125,25 @@
                 </table>
             </div>
         </div>
+    </div>
+
+    <div>
+        {!! Form::open(['route' => ['orders.update', $order->id], 'method' => 'put']) !!}
+        <div class="modal-header">
+            <h4 class="modal-title" id="modalOrdersLabel">Редактировать заказ</h4>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+                {{ Form::label('order_status_id', 'Статус заказа') }}
+                {{ Form::select('order_status_id', $status, $order->order_status_id, ['class' => 'form-control']) }}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+        {!! Form::close() !!}
+
     </div>
 
 @endsection

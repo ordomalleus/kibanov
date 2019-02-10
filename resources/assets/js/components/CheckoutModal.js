@@ -70,7 +70,7 @@ export default class CheckoutModal extends Component {
         event.preventDefault();
         const delivery = this.state.selectDelivery.val;
         // Получаем сборное ФИО
-        const fio = `${this.form[delivery].getValues()['fio-n']} ${this.form[delivery].getValues()['fio-n']} ${this.form[delivery].getValues()['fio-n']}`;
+        const fio = `${this.form[delivery].getValues()['fio-n']} ${this.form[delivery].getValues()['fio-f']} ${this.form[delivery].getValues()['fio-o']}`;
         // Поднимаем форму на вверх
         this.props.sendCheckout({...this.form[delivery].getValues(), fio}, delivery);
     }

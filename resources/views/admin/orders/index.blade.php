@@ -21,6 +21,7 @@
                     Дата создания
                 </a>
             </th>
+            <th>Статус</th>
             <th>Действие</th>
         </tr>
         </thead>
@@ -35,6 +36,7 @@
                     })}} р.
                 </td>
                 <td>{{date($order->created_at)}}</td>
+                <td>{{$order->orderStatus->title}}</td>
                 <td>
                     <a href="{{url('admin/orders', $order->id)}}" title="Подробней" class="glyphicon glyphicon-search"></a>
                 </td>

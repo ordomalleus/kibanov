@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Orders;
 
+use App\Model\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class OrdersController extends Controller
 {
@@ -18,9 +20,9 @@ class OrdersController extends Controller
         if ($request->has('orderBy')) {
             $orderBy = $request->input('orderBy');
             $ask = $request->input('asc');
-            $orders = Orders::where('id', '>', 0)->orderBy($orderBy, $ask === 'asc' ? 'asc' : 'desc')->paginate(10);
+            $orders = Orders::with('orderStatus')->where('id', '>', 0)->orderBy($orderBy, $ask === 'asc' ? 'asc' : 'desc')->paginate(20);
         } else {
-            $orders = Orders::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
+            $orders = Orders::with('orderStatus')->where('id', '>', 0)->orderBy('id', 'desc')->paginate(20);
         }
 
         return view('admin.orders.index', compact('orders'));
@@ -69,7 +71,9 @@ class OrdersController extends Controller
     {
         $order = Orders::find($id);
 
-        return view('admin.orders.show', compact(['order']));
+        $status = OrderStatus::pluck('title', 'id');;
+
+        return view('admin.orders.show', compact(['order', 'status']));
     }
 
     /**
@@ -92,7 +96,15 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Orders::find($id);
+
+        $order->update([
+            'order_status_id' => $request->order_status_id
+        ]);
+
+        Session::flash('message', 'Заказ обновлен');
+
+        return redirect()->back();
     }
 
     /**

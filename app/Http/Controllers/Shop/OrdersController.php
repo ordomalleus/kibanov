@@ -38,7 +38,7 @@ class OrdersController extends Controller
             'orders_info_id' => json_encode($frontOrder['ordersInfoId']),
             'orders_products_id' => $cart->toJson(),
             'delivery' => $frontOrder['delivery'],
-            'order_status_id' => null,
+            'order_status_id' => 1,
             'unique_id' => Hash::make($frontOrder['ordersInfoId']['fio'] . '_' . time())
         ];
 
@@ -49,5 +49,21 @@ class OrdersController extends Controller
             'id' => $orderBd->id,
             'unique_id' => $orderBd->unique_id
         ]);
+    }
+
+    /**
+     * TODO: Временый метод для установки всех статусов
+     * @return string
+     */
+    public function setStatusOrder()
+    {
+        $orders = Orders::where('order_status_id', '=', null)->get();
+
+        foreach($orders as $order) {
+            $order->order_status_id = 1;
+            $order->save();
+        }
+
+        dd($orders);
     }
 }
