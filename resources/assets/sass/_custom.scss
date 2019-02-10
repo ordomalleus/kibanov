@@ -37,7 +37,7 @@ section {
 
     .slogan {
       position: absolute;
-      top: 40%;
+      top: 50%;
       width: calc(100% - 180px);
       text-align: center;
 
@@ -57,6 +57,7 @@ section {
         }
       }
       &-text {
+        padding-top: 20px;
         font-size: 20px;
         line-height: 28px;
         font-weight: normal;

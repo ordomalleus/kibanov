@@ -73,14 +73,14 @@
                         <div class="row">
                             @foreach($chunk as $product)
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <div class="product">
-                                        <div class="product-img">
+                                    <div class="product" data-id-product="{{$product->id}}">
+                                        <div class="product-img" data-id-product="{{$product->id}}">
         {{--                                <div class="product-img" style="background-image: url('{{url('products/images', $product->img_name)}}')">--}}
-                                            <img src="{{url('products/images/400x400/', $product->img_name)}}">
+                                            <img src="{{url('products/images/400x400/', $product->img_name)}}" data-id-product="{{$product->id}}">
                                         </div>
-                                        <div class="product-info">
+                                        <div class="product-info" data-id-product="{{$product->id}}">
                                             <p class="product-info-title" data-id-product="{{$product->id}}">{{$product->name}}</p>
-                                            <p class="product-info-price">{{$product->price}} Р</p>
+                                            <p class="product-info-price" data-id-product="{{$product->id}}">{{$product->price}} Р</p>
                                         </div>
                                     </div>
                                 </div>

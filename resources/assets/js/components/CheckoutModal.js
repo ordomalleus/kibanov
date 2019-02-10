@@ -171,7 +171,7 @@ export default class CheckoutModal extends Component {
                         </label>
                         <Button className="modal-checkout-form-buy">Купить</Button>
                     </div>
-                    <p>Внимание! Вы оплачиваете товар по цене магазина, выбранного Вами. Цены на товары в магазинах сети могут отличаться от цен, указанной на сайте.</p>
+                    <p>Внимание! Вы оплачиваете товар по цене магазина, выбранного Вами. Цены на товары в магазинах сети могут отличаться от цен, указанных на сайте.</p>
                 </PickupFormHOC>
             case 1:
                 return <MailFormHOC

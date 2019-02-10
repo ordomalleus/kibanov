@@ -5,10 +5,15 @@
 
   .title {
     margin-top: 35px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-size: 36px;
     line-height: 44px;
     font-family: $global-font-family-cormorant;
+  }
+
+  .mail {
+    font-size: 24px;
+    padding-bottom: 20px;
   }
 
   .address-container {
