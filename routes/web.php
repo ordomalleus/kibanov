@@ -26,7 +26,6 @@ Route::group(['prefix' => 'cart', 'middleware' => []], function (){
 // Работа с заказами
 Route::group(['prefix' => 'orders', 'middleware' => []], function (){
     Route::post('add', 'Shop\OrdersController@addOrder');
-    Route::get('set-status', 'Shop\OrdersController@setStatusOrder');
 });
 //=========================================================================================
 
