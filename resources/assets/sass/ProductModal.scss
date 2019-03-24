@@ -36,6 +36,9 @@
         // TODO: фикс ie11
         max-width: 100%;
         padding: 0 50px;
+        @media (max-width: $screen-xs-min) {
+          padding: 0 10px;
+        }
       }
       &-attributes {
         width: 100%;
@@ -45,6 +48,7 @@
         padding: 10px 50px 0;
         @media (max-width: $screen-xs-min) {
           flex-direction: column;
+          padding: 10px 10px 0;
         }
 
         .product-attributes {
@@ -57,7 +61,7 @@
             }
             @media (max-width: $screen-xs-min) {
               max-width: 100%;
-              margin-bottom: 20px;
+              margin-bottom: 5px;
             }
 
             &-name {
@@ -153,6 +157,7 @@
         @media (max-width: $screen-xs-min) {
           justify-content: center;
           flex-direction: row;
+          height: 300px;
         }
         &__lists {
           display: flex;
@@ -207,6 +212,9 @@
       &-name {
         font-size: 30px;
         text-align: center;
+        @media (max-width: $screen-xs-min) {
+          font-size: 18px;
+        }
       }
       &-control {
         display: flex;
@@ -214,6 +222,9 @@
         width: 100%;
         justify-content: flex-end;
         align-items: center;
+        @media (max-width: $screen-xs-min) {
+          padding: 10px 10px 0;
+        }
 
         .modal-product {
           &-price {

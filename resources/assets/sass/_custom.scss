@@ -27,6 +27,10 @@ section {
       margin-bottom: 80px;
     }
 
+    @media (max-width: $screen-xs-min) {
+      background-position: 45% 50%;
+    }
+
     // для меню при мобилке добавляет цвет
     .background-nav-menu-sm {
       @media (max-width: $screen-md) {
