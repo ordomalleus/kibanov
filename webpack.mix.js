@@ -50,7 +50,8 @@ if(process.env.NODE_ENV === 'developmentAnalyzer') {
  */
 
 mix.react('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+   // .sass('resources/assets/sass/app.scss', 'public/css');
+   .sass('resources/assets/sass/app.scss', 'public/css', { implementation: require('node-sass') });
 
 mix.react('resources/assets/js/admin.js', 'public/js/admin');
 

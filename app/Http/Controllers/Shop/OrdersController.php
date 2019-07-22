@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
+use App\Model\OrderStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Model\Orders;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
 {
@@ -45,6 +48,12 @@ class OrdersController extends Controller
         // создаем заказ
         $orderBd = Orders::create($order);
 
+        //Отправляем письмо
+        try {
+            Mail::to($frontOrder['ordersInfoId']['mail'])->send(new OrderMail($orderBd));
+        } catch (\Exception $e) {
+        }
+
         return response([
             'id' => $orderBd->id,
             'unique_id' => $orderBd->unique_id
@@ -52,18 +61,53 @@ class OrdersController extends Controller
     }
 
     /**
-     * TODO: Временый метод для установки всех статусов
-     * @return string
+     * Просмотр юзером свой заказ
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function setStatusOrder()
+    public function showUserStatusOrder(Request $request)
     {
-        $orders = Orders::where('order_status_id', '=', null)->get();
+        $uniqueId = $request->unique_id;
 
-        foreach($orders as $order) {
-            $order->order_status_id = 1;
-            $order->save();
+        $orderCollections = Orders::where('unique_id', $uniqueId)->get();
+
+        $status = OrderStatus::pluck('title', 'id');
+
+        // Если ничего не нашли то 404 страница
+        if (count($orderCollections) === 0) {
+            return view('errors.404');
         }
 
-        dd($orders);
+        // Получим 0 элемент (он там должен быть 1)
+        $order = $orderCollections[0];
+
+        return view('kibanov.orders.show', compact(['order', 'status']));
+    }
+
+    /**
+     * TODO: для тестинга
+     * @param $uniqueId
+     * @return string
+     */
+    public function sendMailOrder($uniqueId)
+    {
+        $orderCollections = Orders::where('unique_id', $uniqueId)->get();
+        $order = $orderCollections[0];
+        Mail::to('demidov_dv@proitr.ru')->send(new OrderMail($order));
+
+        return 'lol';
+    }
+
+    /**
+     * TODO: для тестинга
+     * @param $uniqueId
+     * @return OrderMail
+     */
+    public function showMailOrder($uniqueId)
+    {
+        $orderCollections = Orders::where('unique_id', $uniqueId)->get();
+        $order = $orderCollections[0];
+
+        return new OrderMail($order);
     }
 }

@@ -26,6 +26,9 @@ Route::group(['prefix' => 'cart', 'middleware' => []], function (){
 // Работа с заказами
 Route::group(['prefix' => 'orders', 'middleware' => []], function (){
     Route::post('add', 'Shop\OrdersController@addOrder');
+    Route::get('showUserStatus', 'Shop\OrdersController@showUserStatusOrder');
+//    Route::get('/sendMail/{id}', 'Shop\OrdersController@sendMailOrder');
+//    Route::get('/showMail/{id}', 'Shop\OrdersController@showMailOrder');
 });
 //=========================================================================================
 

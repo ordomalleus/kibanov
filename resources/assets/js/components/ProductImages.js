@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 
 // Путь до картинок
@@ -36,8 +36,8 @@ export default class ProductImages extends Component {
         // позиция картинки
         const productImgStyle = {
             backgroundImage: this.props.selectProduct &&
-            this.state.allImages.length &&
-            'url(' + pathToImagesProduct + this.state.allImages[this.state.selectImage] + ')'
+                this.state.allImages.length &&
+                'url(' + pathToImagesProduct + this.state.allImages[this.state.selectImage] + ')'
         };
 
         return (

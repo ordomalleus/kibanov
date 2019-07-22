@@ -26,7 +26,11 @@ export class AppCart extends Component {
             // открыта модалка формы
             modalCheckoutIsOpen: false,
             // сообщение о добавлении заказа: null - нет сообщения, true - удачно создался заказ, false - не смогли создать заказ
-            modalCheckoutOrderMessage: null
+            modalCheckoutOrderMessage: null,
+            // блокировка отправки формы
+            formSubmitDisabled: false,
+            // Получаеться уникальный id заказа после его формирования и зануляеться после закрытия формы
+            uniqueId: null
         };
 
         // Устанавливаем слушатель кастомного события
@@ -125,9 +129,15 @@ export class AppCart extends Component {
         })
     }
 
+    /**
+     * При закрытии формы заказа
+     */
     closeCheckoutModal() {
         this.setState({
-            modalCheckoutIsOpen: false
+            modalCheckoutIsOpen: false,
+            formSubmitDisabled: false,
+            uniqueId: null,
+            modalCheckoutOrderMessage: null
         })
     }
 
@@ -148,6 +158,8 @@ export class AppCart extends Component {
     async sendCheckout(formControl, delivery) {
         // меняем значение без вызова рендера
         this.state.modalCheckoutOrderMessage = null;
+        // Блокируем кнопку отправки
+        this.setState({formSubmitDisabled: true});
 
         const order = {
             ordersInfoId: formControl,
@@ -158,18 +170,18 @@ export class AppCart extends Component {
             const response = await Axios.post('/orders/add', order);
 
             if (response.status === 200) {
-                this.setState({modalCheckoutOrderMessage: true});
+                this.setState({modalCheckoutOrderMessage: true, uniqueId: response.data.unique_id});
             } else {
-                this.setState({modalCheckoutOrderMessage: false});
+                this.setState({modalCheckoutOrderMessage: false, formSubmitDisabled: false});
             }
         } catch (e) {
-            this.setState({modalCheckoutOrderMessage: false});
+            this.setState({modalCheckoutOrderMessage: false, formSubmitDisabled: false});
         }
 
-        // скрываем сообщение через 5 сек
-        setTimeout(() => {
-            this.setState({modalCheckoutOrderMessage: null})
-        }, 5000)
+        // скрываем сообщение через 10 сек
+        // setTimeout(() => {
+        //     this.setState({modalCheckoutOrderMessage: null})
+        // }, 10000)
     }
 
     render() {
@@ -198,6 +210,8 @@ export class AppCart extends Component {
                 <CheckoutModal
                     modalIsOpen={this.state.modalCheckoutIsOpen}
                     orderMessage={this.state.modalCheckoutOrderMessage}
+                    formSubmitDisabled={this.state.formSubmitDisabled}
+                    uniqueId={this.state.uniqueId}
                     closeModal={this.closeCheckoutModal}
                     sendCheckout={this.sendCheckout}
                 />

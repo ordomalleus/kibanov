@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal';
+import Input from 'react-validation/build/input';
+import Textarea from 'react-validation/build/textarea';
+import Select from 'react-validation/build/select';
 
 import {required, email, lt} from './../validations/validations';
 // https://www.npmjs.com/package/react-validation
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
-import Textarea from 'react-validation/build/textarea';
-import Button from 'react-validation/build/button';
-import Select from 'react-validation/build/select';
 import {MailFormHOC} from './MailFormHOC';
 import {PickupFormHOC} from './PickupFormHOC';
 import {InputFormHOC} from './InputFormHOC';
+import {ButtonFormHOC} from './ButtonFormHOC';
 
 const customStyles = {
     content: {
@@ -169,9 +168,12 @@ export default class CheckoutModal extends Component {
                             Комментарий
                             <Textarea name='comment' value=''/>
                         </label>
-                        <Button className="modal-checkout-form-buy">Купить</Button>
+                        {/*<Button className="modal-checkout-form-buy" disabled={this.props.formSubmitDisabled}>Купить</Button>*/}
+                        <ButtonFormHOC className="modal-checkout-form-buy"
+                                       formSubmitDisabled={this.props.formSubmitDisabled}>Купить</ButtonFormHOC>
                     </div>
-                    <p>Внимание! Вы оплачиваете товар по цене магазина, выбранного Вами. Цены на товары в магазинах сети могут отличаться от цен, указанных на сайте.</p>
+                    <p>Внимание! Вы оплачиваете товар по цене магазина, выбранного Вами. Цены на товары в магазинах сети
+                        могут отличаться от цен, указанных на сайте.</p>
                 </PickupFormHOC>
             case 1:
                 return <MailFormHOC
@@ -270,11 +272,23 @@ export default class CheckoutModal extends Component {
                             Комментарий
                             <Textarea name='comment' value=''/>
                         </label>
-                        <Button className="modal-checkout-form-buy">Купить</Button>
+                        {/*<Button className="modal-checkout-form-buy" disabled={this.props.formSubmitDisabled}>Купить</Button>*/}
+                        <ButtonFormHOC className="modal-checkout-form-buy"
+                                       formSubmitDisabled={this.props.formSubmitDisabled}>Купить</ButtonFormHOC>
                     </div>
                 </MailFormHOC>
                 break;
         }
+    }
+
+
+    renderHrefOrder() {
+        const url = window.location.origin + `/orders/showUserStatus?unique_id=${this.props.uniqueId}`;
+
+        return <div>
+            <p>Сылка на заказ:</p>
+            <a href={url} target="_blanc">сохраните сылку</a>
+        </div>
     }
 
     render() {
@@ -288,9 +302,10 @@ export default class CheckoutModal extends Component {
             >
                 <div className="modal-checkout-content">
                     {!(this.props.orderMessage === null) ?
-                        <p className={['modal-checkout-message', this.props.orderMessage ? 'success' : 'error'].join(' ')}>
-                            {this.props.orderMessage ? 'Заказ сформирован, с вами скоро свяжутся' : 'Не смогли сформировать заказ по техническим причинам'}
-                        </p> : ''}
+                        <div className={['modal-checkout-message', this.props.orderMessage ? 'success' : 'error'].join(' ')}>
+                            <span>{this.props.orderMessage ? 'Заказ сформирован, на вашу почту было направленно письмо о статусе заказа' : 'Не смогли сформировать заказ по техническим причинам'}</span>
+                            {this.renderHrefOrder()}
+                        </div> : ''}
                     <div className='modal-checkout-title'>Куда доставить ?</div>
                     <div className='modal-checkout-select'>
                         {this.state.delivery.map((val, i) => {
