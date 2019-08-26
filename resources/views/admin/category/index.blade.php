@@ -3,14 +3,9 @@
 @section('content')
     {{--Вывод категорий--}}
     <h3>Категории</h3>
-    {{--<pre>{{$categories->groupBy('parent_id')}}</pre>--}}
     <div class="navbar">
-        <ul class="nav navbar-nav">
-            @foreach($categories as $category)
-                <li>
-                    <a href="{{url('admin/category', $category->id)}}">{{$category->name}}</a>
-                </li>
-            @endforeach
+        <ul class="nav navbar-nav category-recursive">
+            @each('admin.category.recursive', $categoriesTree, 'category')
         </ul>
     </div>
 

@@ -16,6 +16,7 @@ section {
     padding-right: 80px;
     padding-left: 80px;
   }
+
   &#general-1 {
     background: url("../img/general-section-1-new.jpg") 50% 50% no-repeat;
     background-size: cover;
@@ -60,6 +61,7 @@ section {
           line-height: 55px;
         }
       }
+
       &-text {
         padding-top: 20px;
         font-size: 20px;
@@ -68,9 +70,11 @@ section {
       }
     }
   }
+
   &#general-2 {
     color: $global-color-second;
   }
+
   &#general-3 {
     background: url("../img/general-section-3.jpg") 50% 50% no-repeat;
     background-size: cover;
@@ -93,6 +97,7 @@ section {
       }
     }
   }
+
   &#general-5 {
     background: url("../img/general-section-5.jpg") 50% 100% no-repeat;
     background-size: cover;
@@ -111,9 +116,11 @@ section {
       line-height: 44px;
       font-family: $global-font-family-cormorant;
     }
+
     .general-5-text-left {
 
     }
+
     .general-5-text-right {
       text-align: right;
 
@@ -122,20 +129,25 @@ section {
       }
     }
   }
+
   &#general-6 {
     color: $global-color-second;
+
     .general-6-text {
       @media (max-width: $screen-md-min) {
         margin-top: 40px;
       }
+
       p {
         margin-top: 20px;
       }
     }
   }
+
   &#general-7 {
     color: $global-color-second;
     margin-bottom: 30px;
+
     .title {
       margin-bottom: 35px;
       font-size: 45px;
@@ -147,9 +159,11 @@ section {
       }
     }
   }
+
   &#general-8 {
     color: $global-color-second;
     margin-bottom: 30px;
+
     .general-8-text {
       p:nth-child(1) {
         font-family: $global-font-family-cormorant;
@@ -157,22 +171,26 @@ section {
         line-height: 41px;
         margin-bottom: 20px;
       }
+
       p:nth-child(3) {
         margin-top: 20px;
       }
     }
   }
+
   &#general-9 {
     background: url("../img/general-section-3.jpg") 50% 50% no-repeat;
     background-size: cover;
     padding-top: 40px;
     height: auto;
     min-height: 100vh;
+
     .title {
       font-size: 45px;
       line-height: 54px;
       margin-bottom: 50px;
     }
+
     .shops-container-ul {
       margin-bottom: 30px;
 
@@ -200,6 +218,7 @@ section {
             .shops-li-title {
               display: none;
             }
+
             .shops-li-text {
               display: block;
             }
@@ -209,6 +228,7 @@ section {
             text-align: center;
             text-decoration: underline;
           }
+
           &-text {
             display: none;
             background: $global-color;
@@ -217,10 +237,12 @@ section {
           }
         }
       }
+
       .gis-map-container {
       }
     }
   }
+
   &#catalog {
     color: $global-color-second;
     margin-top: 30px;
@@ -246,34 +268,52 @@ section {
       margin: 0;
       padding: 0;
       list-style: none;
+      font-size: 18px;
 
-      &-parent {
+      .catalog-list-parent {
         @media (max-width: $screen-md) {
           //text-align: center;
           //border: 1px solid #333;
         }
 
-        &-href {
+        // Кнопка открытия дочерних каталогов (появляеться только у)
+        .catalog-list-parent-toggle {
+          position: relative;
+          display: inline-block;
+          top: 0;
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-top: 10px solid #00b8e9;
+          cursor: pointer;
+        }
+
+        //Меню 1 уровня
+        .catalog-list-parent-href {
           color: $global-color-second;
           text-decoration: underline;
-          cursor: pointer;
+          //cursor: pointer;
+        }
+
+        // Меню любого уровня кроме 1
+        .catalog-list-child-href {
+          color: $global-color-second;
+
+          // Меню любого уровня кроме первого и активное
+          &.active {
+            font-weight: bold;
+          }
         }
 
         .catalog-list-child {
           margin: 0;
-          padding: 0 0 0 20px;
+          padding: 0 0 0 25px;
           list-style: none;
-
-          &-href {
-            color: $global-color-second;
-
-            &.active {
-              font-weight: bold;
-            }
-          }
         }
       }
     }
+
     // как выбирать обувь
     .question-catalog {
       padding-top: 120px;
@@ -284,11 +324,13 @@ section {
         line-height: 41px;
         margin-bottom: 20px;
       }
+
       &-text {
         margin-top: 20px;
       }
     }
   }
+
   &#about-1 {
     color: $global-color-second;
 
@@ -298,6 +340,7 @@ section {
       margin-right: auto;
     }
   }
+
   &#about-2 {
     background: url("../img/general-section-5.jpg") 50% 100% no-repeat;
     background-size: cover;
@@ -317,9 +360,11 @@ section {
       line-height: 44px;
       font-family: $global-font-family-cormorant;
     }
+
     .about-2-text-left {
 
     }
+
     .about-2-text-right {
       text-align: right;
 
@@ -328,6 +373,7 @@ section {
       }
     }
   }
+
   &#about-3 {
     color: $global-color-second;
 
@@ -337,12 +383,14 @@ section {
       margin-right: auto;
     }
   }
+
   &#shops {
     background: url("../img/general-section-3.jpg") 50% 50% no-repeat;
     background-size: cover;
     padding-top: 40px;
     height: auto;
     min-height: 100vh;
+
     .title {
       font-size: 45px;
       line-height: 54px;
@@ -351,6 +399,7 @@ section {
 
     .shops-container-ul {
       margin-bottom: 30px;
+
       .shops-ul {
         margin: 0;
         padding: 0;
@@ -375,6 +424,7 @@ section {
             .shops-li-title {
               display: none;
             }
+
             .shops-li-text {
               display: block;
             }
@@ -384,6 +434,7 @@ section {
             text-align: center;
             text-decoration: underline;
           }
+
           &-text {
             display: none;
             background: $global-color;
@@ -392,6 +443,7 @@ section {
           }
         }
       }
+
       .gis-map-container {
       }
     }

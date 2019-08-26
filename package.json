@@ -31,6 +31,9 @@
         "react-modal": "3.9.1",
         "react-validation": "3.0.7",
         "react-input-mask": "2.0.4",
+        "react-redux": "7.1.0",
+        "redux-freeze": "0.1.7",
+        "redux": "4.0.4",
         "validator": "9.4.1"
     }
 }

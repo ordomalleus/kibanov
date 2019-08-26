@@ -39,15 +39,28 @@ class CatalogController extends Controller
         // Метод flatten() преобразует многомерную коллекцию в одномерную:
         $cart = Cart::content()->flatten();
 
-        // получаем категории с вложенными детьми 1 уровня
-        // TODO: узнать нужно ли делать рекурсию для детей (если вложеность будет более чем 1 уровня)
+        // получаем категории 1 уровня
         $categories = Category::where('parent_id', '=', null)->orderBy('priority')->get();
+        // Рекурсивно получим дерево категорий
+        $categories = $this->recursiveChildMenu($categories);
+
+        return view('kibanov/catalog', compact(['products', 'cart', 'categories', 'title']));
+    }
+
+    /**
+     * Рекурсивно получаем дерево каталогов
+     * @param $categories
+     * @return mixed
+     */
+    private function recursiveChildMenu($categories)
+    {
         $categories->transform(function ($item) {
             $child = Category::where('parent_id', '=', $item->id)->orderBy('priority')->get();
-            $item->child = $child->count() > 0 ? $child : null;
+            $item->child = $child->count() > 0 ? $this->recursiveChildMenu($child) : null;
+
             return $item;
         });
 
-        return view('kibanov/catalog', compact(['products', 'cart', 'categories', 'title']));
+        return $categories;
     }
 }

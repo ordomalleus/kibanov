@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
 import Axios from 'axios';
 
+// Store
+import {store} from "./store";
+// Components
 import ProductModal from './ProductModal';
 import CartModal from './CartModal';
 import CheckoutModal from './CheckoutModal';
@@ -221,5 +225,5 @@ export class AppCart extends Component {
 }
 
 if (document.getElementById('app-cart')) {
-    ReactDOM.render(<AppCart/>, document.getElementById('app-cart'));
+    ReactDOM.render(<Provider store={store}><AppCart/></Provider>, document.getElementById('app-cart'));
 }

@@ -720,3 +720,35 @@ body {
     top: 0;
     right: 0;
 }
+
+/**
+    =========================================================Категории==================================================
+ */
+
+.category-recursive {
+    display: flex;
+    flex-direction: column;
+    float: none;
+}
+
+.category-recursive > li {
+    display: flex;
+    flex-direction: column;
+    float: none;
+}
+
+.category-recursive li a {
+    display: flex;
+    padding: 5px;
+}
+
+.category-recursive-child {
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+}
+
+.category-recursive-child > li {
+    display: flex;
+    flex-direction: column;
+}

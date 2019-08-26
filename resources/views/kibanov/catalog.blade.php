@@ -19,32 +19,35 @@
                 <div class="col-md-4">
                     <div class="title">Интернет-магазин</div>
                     <ul class="catalog-list">
+{{--                        @foreach($categories as $category)--}}
+{{--                            @if($category->child)--}}
+{{--                                <li class="catalog-list-parent">--}}
+{{--                                    <span class="catalog-list-parent-href">{{$category->name}}</span>--}}
+{{--                                    <ul class="catalog-list-child hidden">--}}
+{{--                                        @foreach($category->child as $child)--}}
+{{--                                            <li calss="catalog-list-child-li">--}}
+{{--                                                <a class="catalog-list-child-href{{!empty($title) && $child->id === $title->id ? ' active' : ''}}" href="{{url('catalog', $child->id)}}">--}}
+{{--                                                    {{$child->name}}--}}
+{{--                                                </a>--}}
+{{--                                            </li>--}}
+{{--                                        @endforeach--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
+{{--                            @else--}}
+{{--                                TODO: кастыль для Аксессуаров, подумать и исправить--}}
+{{--                                @if($category->id === 31)--}}
+{{--                                    <li class="catalog-list-parent">--}}
+{{--                                        <a class="catalog-list-parent-href" href="{{url('catalog', $category->id)}}">{{$category->name}}</a>--}}
+{{--                                    </li>--}}
+{{--                                @else--}}
+{{--                                    <li class="catalog-list-parent">--}}
+{{--                                        <span class="catalog-list-parent-href">{{$category->name}}</span>--}}
+{{--                                    </li>--}}
+{{--                                @endif--}}
+{{--                            @endif--}}
+{{--                        @endforeach--}}
                         @foreach($categories as $category)
-                            @if($category->child)
-                                <li class="catalog-list-parent">
-                                    <span class="catalog-list-parent-href">{{$category->name}}</span>
-                                    <ul class="catalog-list-child hidden">
-                                        @foreach($category->child as $child)
-                                            <li calss="catalog-list-child-li">
-                                                <a class="catalog-list-child-href{{!empty($title) && $child->id === $title->id ? ' active' : ''}}" href="{{url('catalog', $child->id)}}">
-                                                    {{$child->name}}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                {{--TODO: кастыль для Аксессуаров, подумать и исправить--}}
-                                @if($category->id === 31)
-                                    <li class="catalog-list-parent">
-                                        <a class="catalog-list-parent-href" href="{{url('catalog', $category->id)}}">{{$category->name}}</a>
-                                    </li>
-                                @else
-                                    <li class="catalog-list-parent">
-                                        <span class="catalog-list-parent-href">{{$category->name}}</span>
-                                    </li>
-                                @endif
-                            @endif
+                            @include('kibanov.component.recursive-categories', ['category' => $category])
                         @endforeach
                     </ul>
                     <div class="question-catalog hidden-sm hidden-xs">

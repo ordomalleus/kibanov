@@ -12,26 +12,38 @@ for (let element of elements) {
     });
 }
 
-// js для меню каталога
-const catalogs = document.getElementsByClassName('catalog-list-parent');
-for(let catalog of catalogs) {
+//======================================================================================================================
+// js для меню каталога кликер
+const toggles = document.getElementsByClassName('catalog-list-parent-toggle');
+for(let toggle of toggles) {
     // вешаем обработчик клика
-    catalog.addEventListener('click', (event) => {
-        // если нажали именно на родительском каталоге
-        if(event.target.classList.contains('catalog-list-parent-href')) {
-            const ulChild = catalog.getElementsByClassName('catalog-list-child');
-            if(ulChild[0]) {
-                ulChild[0].classList.toggle('hidden');
-            }
+    toggle.addEventListener('click', (event) => {
+        // Поднимимся до родителя и найдем прямого потомка на 1 уровень ниже меню
+        const catalogListChild = toggle.parentElement.getElementsByClassName('catalog-list-child');
+        // Найдем только непосредственного потомка 1 уровня
+        const childCatalogListChild = Array.prototype.filter.call(catalogListChild, (elem) => {
+            return elem.parentElement === event.target.parentElement;
+        })[0];
+        // Если нашли (хотя всегда должны найти) то переключем у него клас hidden
+        if (childCatalogListChild) {
+            childCatalogListChild.classList.toggle('hidden');
         }
     });
+}
+
+// js для меню каталога уберем скрытые при заходе на страницу
+const catalogs = document.getElementsByClassName('catalog-list-parent');
+for(let catalog of catalogs) {
     // удаляем класс hidden если попали в дочернюю категорию
     const li = catalog.getElementsByClassName('active');
     if (li.length > 0) {
         const hidden = catalog.getElementsByClassName('hidden');
-        hidden[0].classList.remove('hidden');
+        if (hidden.length > 0) {
+            hidden[0].classList.remove('hidden');
+        }
     }
 }
+//======================================================================================================================
 
 // js для переключения карт
 const mapArr = [

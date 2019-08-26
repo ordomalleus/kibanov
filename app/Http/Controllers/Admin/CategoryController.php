@@ -18,8 +18,11 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        // Получим все категории в виде дерева
+        $categoriesTree = Category::where('parent_id', '=', null)->orderBy('priority')->get();
+        $categoriesTree = $this->recursiveChildMenu($categoriesTree);
 
-        return view('admin.category.index', compact('categories'));
+        return view('admin.category.index', compact(['categories', 'categoriesTree']));
     }
 
     /**
@@ -66,12 +69,15 @@ class CategoryController extends Controller
     public function show($id)
     {
         $categories = Category::all();
+        // Получим все категории в виде дерева
+        $categoriesTree = Category::where('parent_id', '=', null)->orderBy('priority')->get();
+        $categoriesTree = $this->recursiveChildMenu($categoriesTree);
 
         $selectCategory = Category::find($id);
 
         $products = $selectCategory->products;
 
-        return view('admin.category.index', compact(['categories', 'selectCategory', 'products']));
+        return view('admin.category.index', compact(['categories', 'categoriesTree','selectCategory', 'products']));
     }
 
     /**
@@ -121,5 +127,22 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Рекурсивно получаем дерево каталогов
+     * @param $categories
+     * @return mixed
+     */
+    private function recursiveChildMenu($categories)
+    {
+        $categories->transform(function ($item) {
+            $child = Category::where('parent_id', '=', $item->id)->orderBy('priority')->get();
+            $item->child = $child->count() > 0 ? $this->recursiveChildMenu($child) : null;
+
+            return $item;
+        });
+
+        return $categories;
     }
 }
